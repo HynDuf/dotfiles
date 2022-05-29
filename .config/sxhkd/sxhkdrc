@@ -1,0 +1,188 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	st
+
+# program launcher
+
+super + c
+        rofi -show drun
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }a
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+# super + {_,shift + }{1-9,0} 
+#	bspc {desktop -f,node -d} '^{1-9,10}' 
+
+# focus to given desktop workaround
+super + {1-5}
+        ~/bin/switch_desktop_workaround.sh '^{1-5}'
+# send to given desktop workaround
+super + shift + {1-5}
+        ~/bin/switch_desktop_workaround.sh '^{1-5}' move
+# send and follow to given desktop workaround
+super + alt + {1-5} 
+        ~/bin/switch_desktop_workaround.sh '^{1-5}' follow
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Toggle floating
+super + d
+    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
+        bspc node focused -t floating; \
+    else \
+        bspc node focused -t tiled; \
+    fi
+
+#
+# Brightness and Volume
+#
+
+# Change the Brightness
+
+super + shift + n
+    brightnessctl s 0
+
+super + {F10, F11}
+    brightnessctl s 40{-,+}
+
+# Changing the Volume
+
+super + shift + m
+    amixer -D pulse set Master 1+ toggle
+
+super + shift + {F10, F11}
+    amixer set 'Master' 5%{-,+}
+
+
+#
+# Take screenshot
+#
+
+# fullscreen screenshot save
+super + Print
+    maim "/home/$USER/Pictures/$(date).png"
+
+# cropped save
+super + ctrl + Print
+    maim --select "/home/$USER/Pictures/$(date).png"
+
+# clipboard fullscreen
+super + u
+    maim --hidecursor | xclip -selection clipboard -t image/png
+
+# clipboard cropped
+super + shift + u
+    maim --hidecursor --select | xclip -selection clipboard -t image/png
+
+#
+# Lockscreen 
+#
+alt + shift + x
+    betterlockscreen -l dim
+

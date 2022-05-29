@@ -1,0 +1,19 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+$HOME/.config/polybar/launch.sh &
+dunst -conf $HOME/.config/dunst/dunstrc &
+picom &
+feh --bg-fill ~/Pictures/neon.png &
+xrdb merge ~/.Xresources &
+
+bspc monitor -d 1 2 3 4 5
+
+bspc config border_width          2
+bspc config borderless_monocle    true
+bspc config window_gap            8
+
+bspc config split_ratio           0.55
+bspc config gapless_monocle       true
+
+
