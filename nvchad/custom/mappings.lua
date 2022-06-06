@@ -1,7 +1,3 @@
-local function termcodes(str)
-   return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 local M = {}
 -- add this table only when you want to disable default keys
 M.disabled = {
@@ -9,9 +5,6 @@ M.disabled = {
       ["<S-b>"] = "",
    },
 
-   t = {
-      ["jk"] = "",
-   },
 }
 M.general = {
    i = {
@@ -38,10 +31,6 @@ M.general = {
       ["jk"] = { "<ESC>", " escape to normal mode" },
    },
 
-   t = {
-      -- escape to normal mode
-      ["<ESC>"] = { termcodes "<C-\\><C-N>", "   escape terminal mode" },
-   },
 }
 
 M.telescope = {

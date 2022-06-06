@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	st
+	~/bin/st_padding && st
 
 # program launcher
 
@@ -19,9 +19,13 @@ super + Escape
 # bspwm hotkeys
 #
 
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
+# quit bspwm 
+super + alt + q
+        ~/bin/close_bspwm
+
+# restart bspwm
+super + alt + r
+	bspc wm -r
 
 # close and kill
 super + {_,shift + }w
@@ -43,9 +47,9 @@ super + g
 # state/flags
 #
 
-# set the window state
+# alternate between the window states
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t \~{tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -71,9 +75,13 @@ super + {_,shift + }a
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# focus the last node
+super + grave
+	bspc node -f last
+
+# focus the last desktop 
+super + Tab 
+        ~/bin/switch_desktop_workaround -1 last
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -87,13 +95,13 @@ super + {o,i}
 
 # focus to given desktop workaround
 super + {1-5}
-        ~/bin/switch_desktop_workaround.sh '^{1-5}'
+        ~/bin/switch_desktop_workaround '^{1-5}'
 # send to given desktop workaround
 super + shift + {1-5}
-        ~/bin/switch_desktop_workaround.sh '^{1-5}' move
+        ~/bin/switch_desktop_workaround '^{1-5}' move
 # send and follow to given desktop workaround
 super + alt + {1-5} 
-        ~/bin/switch_desktop_workaround.sh '^{1-5}' follow
+        ~/bin/switch_desktop_workaround '^{1-5}' follow
 
 #
 # preselect
@@ -131,14 +139,6 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Toggle floating
-super + d
-    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
-        bspc node focused -t floating; \
-    else \
-        bspc node focused -t tiled; \
-    fi
-
 #
 # Brightness and Volume
 #
@@ -153,12 +153,16 @@ super + {F10, F11}
 
 # Changing the Volume
 
+## Toggle mute/unmute volume
+super + shift + v
+    pactl set-sink-mute 0 toggle
+
+## Toggle mute/unmute mic
 super + shift + m
-    amixer -D pulse set Master 1+ toggle
+    pactl set-source-mute 1 toggle
 
 super + shift + {F10, F11}
-    amixer set 'Master' 5%{-,+}
-
+    pactl set-sink-mute 0 false && pactl set-sink-volume 0 {-,+}5%
 
 #
 # Take screenshot
