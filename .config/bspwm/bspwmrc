@@ -1,13 +1,14 @@
 #! /bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
+xsetroot -cursor_name left_ptr &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
 feh --bg-fill ~/Pictures/neon.png &
 xrdb merge ~/.Xresources &
 
-bspc monitor -d 1 2 3 4 5
+bspc monitor -d 1 2 3 4 5 6 7
 
 bspc config border_width          2
 bspc config borderless_monocle    true

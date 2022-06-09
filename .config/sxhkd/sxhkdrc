@@ -94,14 +94,14 @@ super + {o,i}
 #	bspc {desktop -f,node -d} '^{1-9,10}' 
 
 # focus to given desktop workaround
-super + {1-5}
-        ~/bin/switch_desktop_workaround '^{1-5}'
+super + {1-7}
+        ~/bin/switch_desktop_workaround '^{1-7}'
 # send to given desktop workaround
-super + shift + {1-5}
-        ~/bin/switch_desktop_workaround '^{1-5}' move
+super + shift + {1-7}
+        ~/bin/switch_desktop_workaround '^{1-7}' move
 # send and follow to given desktop workaround
-super + alt + {1-5} 
-        ~/bin/switch_desktop_workaround '^{1-5}' follow
+super + alt + {1-7} 
+        ~/bin/switch_desktop_workaround '^{1-7}' follow
 
 #
 # preselect
@@ -170,7 +170,7 @@ super + shift + {F10, F11}
 
 # fullscreen screenshot save
 super + Print
-    maim "/home/$USER/Pictures/$(date).png"
+    maim --hidecursor "/home/$USER/Pictures/$(date).png"
 
 # cropped save
 super + ctrl + Print
