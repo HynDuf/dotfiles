@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sed -i "s/st.borderpx: 4/st.borderpx: 15/g" ~/.Xresources
+xrdb merge ~/.Xresources 

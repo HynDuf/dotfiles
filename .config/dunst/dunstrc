@@ -1,8 +1,8 @@
 [global]
     monitor = 0
     follow = mouse
-    width = 350
-    offset = 20x50
+    width = 370
+    offset = 35x35
     origin = bottom-right
     progress_bar = true
     progress_bar_height = 10
@@ -14,15 +14,15 @@
     shrink = no
     separator_height = 2
     padding = 8
-    horizontal_padding = 8
+    horizontal_padding = 10
     text_icon_padding = 0
     frame_width = 2
     frame_color = "#4A5057"
     separator_color = frame
     sort = yes
-    idle_threshold = 120
+    idle_threshold = 180
     font = JetBrains Mono Nerd Font Medium 10
-    line_height = 0
+    line_height = 1
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
@@ -36,7 +36,7 @@
     show_indicators = yes
     icon_position = left
     min_icon_size = 0
-    max_icon_size = 32
+    max_icon_size = 50
     /* icon_path = /home/eric/.local/share/icons/fontawesome */
     sticky_history = yes
     history_length = 20
@@ -49,20 +49,19 @@
     mouse_left_click = do_action, close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
-
+    browser = /usr/bin/firefox -new-tab
 
 [urgency_low]
     background = "#11121D"
     foreground = "#A0A8CD"
-    timeout = 10
+    timeout = 15
 
 [urgency_normal]
     background = "#11121D"
     foreground = "#A0A8CD"
-    timeout = 10
+    timeout = 25
 
 [urgency_critical]
     background = "#11121D"
     foreground = "#EE6D85"
-    timeout = 30
-
+    timeout = 35
