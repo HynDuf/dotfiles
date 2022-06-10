@@ -19,7 +19,7 @@ M.general = {
       ["<C-k>"] = { ":m .-2<CR>==", "  nmove line up" },
 
       -- delete content inside parenthesis block and enter insert mode
-      ["<A-r>"] = { "vibc", " delete inner block, enter insert mode" },
+      ["<A-r>"] = { "vibc", "   delete inner block, enter insert mode" },
    },
 
    v = {
@@ -28,16 +28,16 @@ M.general = {
       ["<C-k>"] = { ":m '<-2<CR>gv=gv", "  vmove lines up" },
 
       -- return to normal mode
-      ["jk"] = { "<ESC>", " escape to normal mode" },
+      ["jk"] = { "<ESC>", "   escape to normal mode" },
    },
 
 }
 
 M.telescope = {
    n = {
-      ["<F9>"] = { "<cmd> Telescope lsp_implementations <CR>", " lsp go to implementations" },
-      ["<F12>"] = { "<cmd> Telescope lsp_definitions <CR>", " lsp go to definitions" },
-      ["<F10>"] = { "<cmd> Telescope lsp_references <CR>", " lsp list all references" },
+      ["<F9>"] = { "<cmd> Telescope lsp_implementations <CR>", "   lsp go to implementations" },
+      ["<F12>"] = { "<cmd> Telescope lsp_definitions <CR>", "   lsp go to definitions" },
+      ["<F10>"] = { "<cmd> Telescope lsp_references <CR>", "   lsp list all references" },
    },
 }
 
