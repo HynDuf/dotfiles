@@ -5,7 +5,7 @@ xsetroot -cursor_name left_ptr &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
-feh --bg-fill ~/Pictures/neon.png &
+feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
 xrdb merge ~/.Xresources &
 
 bspc monitor -d 1 2 3 4 5 6 7
