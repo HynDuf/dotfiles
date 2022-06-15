@@ -139,6 +139,10 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# Toggle polybar
+super + x
+    ~/bin/toggle_polybar
+
 #
 # Brightness and Volume
 #
@@ -177,11 +181,11 @@ super + ctrl + Print
     maim --select "/home/$USER/Pictures/$(date).png"
 
 # clipboard fullscreen
-super + u
+super + s
     maim --hidecursor | xclip -selection clipboard -t image/png
 
 # clipboard cropped
-super + shift + u
+super + shift + s
     maim --hidecursor --select | xclip -selection clipboard -t image/png
 
 #

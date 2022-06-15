@@ -1,5 +1,12 @@
 -- custom/plugins/init.lua
-
+local lazy = function(plugin, timer)
+  if plugin then
+    timer = timer or 0
+    vim.defer_fn(function()
+      require("packer").loader(plugin)
+    end, timer)
+  end
+end
 return {
   ["goolord/alpha-nvim"] = {
     disable = false,
@@ -9,24 +16,21 @@ return {
   },
 
   ["karb94/neoscroll.nvim"] = {
+    event = "CursorMoved",
     config = function()
       require("neoscroll").setup()
     end,
 
     -- lazy loading
-    setup = function()
-      require("core.utils").packer_lazy_load "neoscroll.nvim"
-    end,
+    -- setup = function()
+    --   require("core.lazy_load").packer_lazy_load "neoscroll.nvim"
+    -- end,
   },
 
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
       require ("custom.plugins.configs.null-ls").setup()
-    end,
-    -- lazy loading
-    setup = function()
-      require("core.utils").packer_lazy_load "null-ls.nvim"
     end,
   },
 
@@ -49,15 +53,15 @@ return {
     end,
   },
 
-  ["hrsh7th/nvim-cmp"] = {
-    after = "friendly-snippets",
-    config = function()
-        require "custom.plugins.configs.cmp"
-    end,
-  },
+  -- ["hrsh7th/nvim-cmp"] = {
+  --   after = "friendly-snippets",
+  --   config = function()
+  --       require "custom.plugins.configs.cmp"
+  --   end,
+  -- },
 
   ["jghauser/mkdir.nvim"] = {
-
+    after = "nvim-treesitter",
   },
 
   ["max397574/better-escape.nvim"] = {
@@ -77,7 +81,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "tex", "plaintex" },
         callback = function()
-          require("core.utils").packer_lazy_load "vimtex"
+          lazy "vimtex"
         end,
       })
     end,

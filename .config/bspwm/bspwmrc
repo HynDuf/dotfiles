@@ -7,12 +7,13 @@ dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
 feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
 xrdb merge ~/.Xresources &
+~/bin/battery_alert &
 
 bspc monitor -d 1 2 3 4 5 6 7
 
 bspc config border_width          2
 bspc config borderless_monocle    true
-bspc config window_gap            8
+bspc config window_gap            7
 
 bspc config split_ratio           0.55
 bspc config gapless_monocle       true

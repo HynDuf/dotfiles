@@ -27,8 +27,6 @@ M.general = {
       ["<C-j>"] = { ":m '>+1<CR>gv=gv", "  vmove lines down" },
       ["<C-k>"] = { ":m '<-2<CR>gv=gv", "  vmove lines up" },
 
-      -- return to normal mode
-      ["jk"] = { "<ESC>", "   escape to normal mode" },
    },
 
 }

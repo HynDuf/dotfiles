@@ -1,3 +1,3 @@
--- example file i.e lua/custom/init.lua
-
+require "custom.autocmds"
 -- load your globals, autocmds here or anything .__.
+vim.keymap.set("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { remap = false, expr = true })

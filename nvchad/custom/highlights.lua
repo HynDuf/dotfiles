@@ -29,6 +29,9 @@ local M = {
       fg = "red",
       bold = true,
    },
+
+   -- Visual background color override
+   Visual = { bg = "#222d40" },
 }
 
 return M
