@@ -2,6 +2,8 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
+xset r rate 250 22 &
+setxkbmap -option caps:swapescape &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
