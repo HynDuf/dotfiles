@@ -1,23 +1,33 @@
 #! /bin/sh
-
+# xrandr --setprovideroutputsource modesetting NVIDIA-0 
+# xrandr --auto 
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 xset r rate 250 22 &
+
 setxkbmap -option caps:swapescape &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
+flashfocus &
 picom &
 feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
 xrdb merge ~/.Xresources &
+ibus-daemon -drxR &
 ~/bin/battery_alert &
 
 bspc monitor -d 1 2 3 4 5 6 7
 
-bspc config border_width          2
-bspc config borderless_monocle    true
-bspc config window_gap            7
 
-bspc config split_ratio           0.55
-bspc config gapless_monocle       true
+bspc config border_width         0
+bspc config window_gap          17
+# bspc config border_radius	15
+
+# bspc config normal_border_color \#c0caf5
+# bspc config active_border_color \#c0caf5
+# bspc config focused_border_color \#c0caf5
+
+bspc config split_ratio          0.55
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
 
 

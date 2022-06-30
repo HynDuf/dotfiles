@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# A script to toggle between various desktop layouts for polybar, intended to be used for my polybar module.
+
+CURRENT=$(cat $HOME/.config/polybar/scripts/current-layout)
+
+# Switch layouts
+
+# Tiled
+if [[ $CURRENT == "[~]" ]]; then
+        bsp-layout set tiled
+        echo "[=]" > $HOME/.config/polybar/scripts/current-layout
+fi
+
+# Grid
+if [[ $CURRENT == "[=]" ]]; then
+        bsp-layout set grid
+        echo "[-]" > $HOME/.config/polybar/scripts/current-layout
+fi
+
+
+# Wide
+if [[ $CURRENT == "[-]" ]]; then
+        bsp-layout set wide
+        echo "[_]" > $HOME/.config/polybar/scripts/current-layout
+fi
+
+# Even
+if [[ $CURRENT == "[_]" ]]; then
+        bsp-layout set even
+        echo "[~]" > $HOME/.config/polybar/scripts/current-layout
+fi

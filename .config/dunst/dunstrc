@@ -1,6 +1,6 @@
 [global]
     monitor = 0
-    follow = mouse
+    follow = none
     width = 370
     offset = 35x35
     origin = bottom-right
@@ -10,7 +10,7 @@
     progress_bar_min_width = 150
     progress_bar_max_width = 400
     indicate_hidden = false
-    notification_limit = 5
+    notification_limit = 0
     shrink = no
     separator_height = 2
     padding = 8
@@ -21,7 +21,7 @@
     separator_color = frame
     sort = yes
     idle_threshold = 180
-    font = JetBrains Mono Nerd Font Medium 10
+    font = JetBrains Mono Nerd Font Medium 13
     line_height = 1
     markup = full
     format = "<b>%s</b>\n%b"
@@ -37,15 +37,15 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 50
-    /* icon_path = /home/eric/.local/share/icons/fontawesome */
+    icon_path = /usr/share/icons/Papirus-Dark/128x128/devices/
+    icon_theme = "Papirus, Adwaita"
+    enable_recursive_icon_lookup = true
     sticky_history = yes
     history_length = 20
     always_run_script = true
     title = Dunst
     class = Dunst
     ignore_dbusclose = false
-    /* force_xwayland = false */
-    /* force_xinerama = false */
     mouse_left_click = do_action, close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
