@@ -193,8 +193,8 @@ super + shift + s
     maim --hidecursor --select | xclip -selection clipboard -t image/png
 
 #
-# Lockscreen 
+# Utils 
 #
-alt + shift + x
-    betterlockscreen -l dim
+super + e
+    rofi -show emoji -modi emoji
 
