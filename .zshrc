@@ -117,7 +117,6 @@ source $ZSH/oh-my-zsh.sh
 # # Dành cho những phần mềm dùng thư viện đồ họa clutter/OpenGL
 # export CLUTTER_IM_MODULE=ibus
 # export GLFW_IM_MODULE=ibus
-alias calc="rofi -show calc -modi calc -no-show-match -no-sort"
 alias vi='nvim_padding && nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'

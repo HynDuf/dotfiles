@@ -198,3 +198,5 @@ super + shift + s
 super + e
     rofi -show emoji -modi emoji
 
+super + shift + c
+    rofi -show calc -modi calc -no-show-match -no-sort

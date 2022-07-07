@@ -1,6 +1,4 @@
 #! /bin/sh
-# xrandr --setprovideroutputsource modesetting NVIDIA-0 
-# xrandr --auto 
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 xset r rate 250 22 &
@@ -8,7 +6,7 @@ xset r rate 250 22 &
 setxkbmap -option caps:swapescape &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
-flashfocus &
+# flashfocus &
 picom &
 feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
 xrdb merge ~/.Xresources &
@@ -24,7 +22,7 @@ bspc config window_gap          17
 
 # bspc config normal_border_color \#c0caf5
 # bspc config active_border_color \#c0caf5
-# bspc config focused_border_color \#c0caf5
+bspc config focused_border_color \#c0caf5
 
 bspc config split_ratio          0.55
 bspc config borderless_monocle   true

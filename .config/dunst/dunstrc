@@ -1,6 +1,7 @@
 [global]
     monitor = 0
     follow = none
+    allow_markup = yes
     width = 370
     offset = 35x35
     origin = bottom-right
@@ -16,7 +17,7 @@
     padding = 8
     horizontal_padding = 10
     text_icon_padding = 0
-    frame_width = 2
+    frame_width = 0
     frame_color = "#4A5057"
     separator_color = frame
     sort = yes
