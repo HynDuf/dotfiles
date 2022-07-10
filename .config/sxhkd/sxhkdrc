@@ -200,3 +200,6 @@ super + e
 
 super + shift + c
     rofi -show calc -modi calc -no-show-match -no-sort
+
+super + shift + x
+    ~/bin/noticenter
