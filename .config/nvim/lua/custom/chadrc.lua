@@ -3,7 +3,7 @@ local M = {}
 local override = require "custom.override"
 
 M.ui = {
-    theme = "rxyhn",
+    theme = "tokyodark",
     hl_override = require "custom.highlights"
 }
 

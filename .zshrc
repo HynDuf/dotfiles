@@ -7,6 +7,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export EDITOR=nvim
+export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -122,4 +123,6 @@ alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
 setopt extendedglob
 source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Comment this to upgrade miniconda3 package safely
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

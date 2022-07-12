@@ -13,13 +13,13 @@ M.setup_lsp = function(attach, capabilities)
     lspconfig.pylsp.setup {
         on_attach = attach,
         capabilities = capabilities,
-        plugins = {flake8 = {enabled = true, ignore = {"E501"}}}
     }
 
     lspconfig.java_language_server.setup {
         on_attach = attach,
         capabilities = capabilities,
-        cmd = {"/home/hynduf/Downloads/java-language-server/dist/lang_server_linux.sh"}
+        cmd = {"/home/hynduf/Downloads/java-language-server/dist/lang_server_linux.sh"},
+        root_dir = vim.loop.cwd,
     }
 end
 
