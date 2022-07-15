@@ -47,6 +47,9 @@ super + y
 super + g
 	bspc node -s biggest.window
 
+# swap the marked nodes with the focused one and unmarked the node
+super + alt + s
+    bspc node -s $(bspc query -N -n .marked) && bspc node -g marked
 #
 # state/flags
 #
@@ -203,3 +206,6 @@ super + shift + c
 
 super + shift + x
     ~/bin/noticenter
+
+super + shift + z
+    ~/bin/wifimenu

@@ -24,7 +24,7 @@
     font = JetBrains Mono Nerd Font Medium 13
     line_height = 1
     markup = full
-    format = "<b>%s</b>\n%b"
+    format = "<b>%a</b>\n%s\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60

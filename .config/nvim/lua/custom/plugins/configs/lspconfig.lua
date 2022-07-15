@@ -15,11 +15,9 @@ M.setup_lsp = function(attach, capabilities)
         capabilities = capabilities,
     }
 
-    lspconfig.java_language_server.setup {
+    lspconfig.jdtls.setup {
         on_attach = attach,
         capabilities = capabilities,
-        cmd = {"/home/hynduf/Downloads/java-language-server/dist/lang_server_linux.sh"},
-        root_dir = vim.loop.cwd,
     }
 end
 

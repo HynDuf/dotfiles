@@ -34,6 +34,10 @@ local sources = {
     b.formatting.yapf,
     b.formatting.isort,
 
+    -- java
+    b.formatting.google_java_format.with({
+        extra_args = {"--aosp"},
+    })
     -- LuaFormatter on
 }
 
