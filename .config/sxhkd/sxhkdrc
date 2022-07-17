@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	~/bin/st_padding && st
+	~/bin/st-padding && st
 
 # program launcher
 
@@ -21,13 +21,13 @@ super + Escape
 
 # quit bspwm 
 super + alt + q
-        ~/bin/close_bspwm
+        ~/bin/close-bspwm
 
 # restart bspwm
 super + alt + r
 	bspc wm -r
 
-# Open powermenu
+# Open Power menu
 super + alt + z
 	~/bin/powermenu
 
@@ -88,7 +88,7 @@ super + grave
 
 # focus the last desktop 
 super + Tab 
-        ~/bin/switch_desktop_workaround -1 last
+        ~/bin/switch-desktop-workaround -1 last
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -102,13 +102,13 @@ super + {o,i}
 
 # focus to given desktop workaround
 super + {1-7}
-        ~/bin/switch_desktop_workaround '^{1-7}'
+        ~/bin/switch-desktop-workaround '^{1-7}'
 # send to given desktop workaround
 super + shift + {1-7}
-        ~/bin/switch_desktop_workaround '^{1-7}' move
+        ~/bin/switch-desktop-workaround '^{1-7}' move
 # send and follow to given desktop workaround
 super + alt + {1-7} 
-        ~/bin/switch_desktop_workaround '^{1-7}' follow
+        ~/bin/switch-desktop-workaround '^{1-7}' follow
 
 #
 # preselect
@@ -148,7 +148,7 @@ super + {Left,Down,Up,Right}
 
 # Toggle polybar
 super + x
-    ~/bin/toggle_polybar
+    ~/bin/toggle-polybar
 
 #
 # Brightness and Volume

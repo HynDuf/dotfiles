@@ -118,7 +118,7 @@ source $ZSH/oh-my-zsh.sh
 # # Dành cho những phần mềm dùng thư viện đồ họa clutter/OpenGL
 # export CLUTTER_IM_MODULE=ibus
 # export GLFW_IM_MODULE=ibus
-alias vi='nvim_padding && nvim'
+alias vi='nvim-padding && nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
 alias pom='pomo start -t my-project "Study now"'

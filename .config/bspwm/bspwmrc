@@ -9,7 +9,7 @@ picom &
 feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
 xrdb merge ~/.Xresources &
 ibus-daemon -drxR &
-~/bin/battery_alert &
+~/bin/battery-alert &
 
 bspc monitor -d 1 2 3 4 5 6 7
 
@@ -26,3 +26,4 @@ bspc config gapless_monocle      true
 
 bspc rule -a firefox desktop=^2
 bspc rule -a discord desktop=^3
+bspc config external_rules_command "$HOME/bin/spotify-rule"

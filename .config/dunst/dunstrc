@@ -53,7 +53,7 @@
     startup_notification = true
 
 [log_notifs]
-    script = ~/bin/dunst_logger
+    script = ~/bin/dunst-logger
 
 [urgency_low]
     background = "#11121D"
