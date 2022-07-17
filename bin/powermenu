@@ -5,7 +5,7 @@ chosen=$(printf "  Power Off\n  Restart\n  Lock\n  Log out\n  Sle
 case "$chosen" in
 	"  Power Off") poweroff ;;
 	"  Restart") reboot ;;
-	"  Lock") betterlockscreen -l dim ;;
+	"  Lock") screen-lock ;;
     "  Log out") ~/bin/close-bspwm ;;
     "  Sleep") doas systemctl suspend ;;
 	*) exit 1 ;;

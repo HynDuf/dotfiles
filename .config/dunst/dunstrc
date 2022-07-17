@@ -50,7 +50,6 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
     browser = /usr/bin/firefox -new-tab
-    startup_notification = true
 
 [log_notifs]
     script = ~/bin/dunst-logger
