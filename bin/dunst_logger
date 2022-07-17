@@ -16,5 +16,13 @@ if [[ "$crunch_appname" == "Spotify" ]]; then
     curl -s "$artlink" -o "$random_name"
     crunch_icon=$random_name
 fi
+
+if [[ "$crunch_appname" == "discord" ]]; then
+    crunch_icon="discord"
+fi
+
+if [[ "$crunch_appname" == "Firefox" ]]; then
+    crunch_icon="Firefox"
+fi
     
 echo -en "$timestamp\n$crunch_urgency\n$crunch_icon\n$crunch_body\n$crunch_summary\n$crunch_appname\n" >> /tmp/dunstlog
