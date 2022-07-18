@@ -96,10 +96,6 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
-# super + {_,shift + }{1-7,0} 
-#	bspc {desktop -f,node -d} '^{1-7,10}' 
-
 # focus to given desktop workaround
 super + {1-7}
         ~/bin/switch-desktop-workaround '^{1-7}'
@@ -209,3 +205,6 @@ super + shift + x
 
 super + shift + z
     ~/bin/wifimenu
+
+super + shift + g
+    ~/bin/get-active-window
