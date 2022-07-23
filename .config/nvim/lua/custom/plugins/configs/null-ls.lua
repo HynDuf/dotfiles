@@ -37,7 +37,10 @@ local sources = {
     -- java
     b.formatting.google_java_format.with({
         extra_args = {"--aosp"},
-    })
+    }),
+
+    -- xml
+    b.formatting.tidy,
     -- LuaFormatter on
 }
 

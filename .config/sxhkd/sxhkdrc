@@ -43,13 +43,10 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
+# swap the current node and the biggest window (toggle if it's already the biggest window)
 super + g
-	bspc node -s biggest.window
+    ~/bin/toggle-biggest-window
 
-# swap the marked nodes with the focused one and unmarked the node
-super + alt + s
-    bspc node -s $(bspc query -N -n .marked) && bspc node -g marked
 #
 # state/flags
 #
@@ -207,4 +204,5 @@ super + shift + z
     ~/bin/wifimenu
 
 super + shift + g
-    ~/bin/get-active-window
+    ~/bin/screen-lock
+

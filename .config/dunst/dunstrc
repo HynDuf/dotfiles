@@ -20,7 +20,7 @@
     frame_color = "#4A5057"
     separator_color = frame
     sort = yes
-    idle_threshold = 180
+    idle_threshold = 100
     font = JetBrains Mono Nerd Font Medium 13
     line_height = 1
     markup = full

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+f="${1:-$(bspc query -N -n)}"
+b="$(bspc query -N -n biggest.local)"
+m="$(bspc query -N -n last.marked.local)" ||
+    m="$(bspc query -N -n any.marked.local)"
+[ "$f" = "$b" ] && {
+    set -- "${m:-$(bspc query -N -n last.local)}" "$f"
+} || {
+    [ -n "$m" ] && bspc node "$m" -g marked=off
+    set -- "$f" "$b"
+}
+bspc node "$1" -s "$2" -g marked=off -f &&
+    bspc node "$2" -g marked=on
