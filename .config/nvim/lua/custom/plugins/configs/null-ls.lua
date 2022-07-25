@@ -40,7 +40,11 @@ local sources = {
     }),
 
     -- xml
-    b.formatting.tidy,
+    b.diagnostics.tidy,
+    b.formatting.tidy.with({
+        extra_args = {"-q -xml"},
+    }),
+    b.formatting.xmllint,
     -- LuaFormatter on
 }
 

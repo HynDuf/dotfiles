@@ -6,7 +6,7 @@ setxkbmap -option caps:swapescape &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
-feh --bg-fill ~/Pictures/jellyfish-astronaut.jpg &
+feh --bg-fill ~/Pictures/hollow-1.png &
 xrdb merge ~/.Xresources &
 ibus-daemon -drxR &
 ~/bin/battery-alert &
