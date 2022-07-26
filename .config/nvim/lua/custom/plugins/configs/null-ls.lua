@@ -3,58 +3,43 @@ local b = null_ls.builtins
 
 local sources = {
 
-    -- LuaFormatter off
-    -- webdev stuff
-    b.formatting.deno_fmt,
-    b.formatting.prettierd.with({
-        filetypes = { "html", "markdown", "css" }
-    }),
+  -- webdev stuff
+  b.formatting.deno_fmt,
+  b.formatting.prettierd.with {
+    filetypes = { "html", "markdown", "css" },
+  },
 
-    b.formatting.eslint_d,
+  b.formatting.eslint_d,
 
-    -- Lua
-    b.formatting.lua_format.with({
-        extra_args = {
-            "--no-keep-simple-control-block-one-line",
-            "--no-keep-simple-function-one-line",
-            "--column-limit=50"
-        }
-    }),
+  -- Lua
+  b.formatting.stylua,
 
-    -- Shell
-    b.formatting.shfmt,
-    b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+  -- Shell
+  b.formatting.shfmt,
+  b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
-    -- cpp
-    b.formatting.clang_format.with({
-        extra_args = { vim.fn.expand("-style=file") }
-    }),
+  -- cpp
+  b.formatting.clang_format.with {
+    extra_args = { vim.fn.expand "-style=file" },
+  },
 
-    -- python
-    b.formatting.yapf,
-    b.formatting.isort,
+  -- python
+  b.formatting.yapf,
+  b.formatting.isort,
 
-    -- java
-    b.formatting.google_java_format.with({
-        extra_args = {"--aosp"},
-    }),
-
-    -- xml
-    b.diagnostics.tidy,
-    b.formatting.tidy.with({
-        extra_args = {"-q -xml"},
-    }),
-    b.formatting.xmllint,
-    -- LuaFormatter on
+  -- java
+  b.formatting.google_java_format.with {
+    extra_args = { "--aosp" },
+  },
 }
 
 local M = {}
 
 M.setup = function()
-    null_ls.setup {
-        debug = true,
-        sources = sources
-    }
+  null_ls.setup {
+    debug = true,
+    sources = sources,
+  }
 end
 
 return M

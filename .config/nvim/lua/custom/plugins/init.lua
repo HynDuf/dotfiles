@@ -8,25 +8,32 @@
 --   end
 -- end
 return {
-    ["goolord/alpha-nvim"] = {
-        disable = false,
-        config = function()
-            require'alpha'.setup(require'alpha.themes.theta'.config)
-        end
-    },
+  ["goolord/alpha-nvim"] = {
+    disable = false,
+    config = function()
+      require("alpha").setup(require("alpha.themes.theta").config)
+    end,
+  },
 
-    ["karb94/neoscroll.nvim"] = {
-        event = "CursorMoved",
-        config = function() require("neoscroll").setup() end
+  ["karb94/neoscroll.nvim"] = {
+    event = "CursorMoved",
+    config = function()
+      require("neoscroll").setup()
+    end,
+  },
 
-    },
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require("custom.plugins.configs.null-ls").setup()
+    end,
+  },
 
-    ["jose-elias-alvarez/null-ls.nvim"] = {
-        after = "nvim-lspconfig",
-        config = function()
-            require("custom.plugins.configs.null-ls").setup()
-        end
-    },
-
-    ["jghauser/mkdir.nvim"] = {after = "nvim-treesitter"}
+  ["jghauser/mkdir.nvim"] = { after = "nvim-treesitter" },
+  ["neovim/nvim-lspconfig"] = {
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.configs.lspconfig"
+    end,
+  },
 }
