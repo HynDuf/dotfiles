@@ -19,12 +19,4 @@ M.plugins = {
 
 M.mappings = require "custom.mappings"
 
-M.options = {
-  user = function()
-    vim.opt.clipboard = "unnamedplus"
-    vim.opt.tabstop = 4
-    vim.opt.shiftwidth = 4
-  end,
-}
-
 return M

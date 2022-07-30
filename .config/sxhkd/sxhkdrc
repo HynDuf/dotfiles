@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	~/bin/st-padding && st
+        st
 
 # program launcher
 
