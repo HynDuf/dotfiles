@@ -36,4 +36,5 @@ return {
       require "custom.plugins.configs.lspconfig"
     end,
   },
+  ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
 }
