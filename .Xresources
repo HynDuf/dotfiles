@@ -32,7 +32,7 @@ st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 #define base0F #be5046
 
 *foreground:   base07
-*background:   #11131a
+*background:   #11111b
 *cursorColor:  base05
 
 *color0:       base00

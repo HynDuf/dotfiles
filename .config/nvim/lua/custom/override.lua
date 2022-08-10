@@ -17,10 +17,10 @@ M.treesitter = {
     "java",
   },
   rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-  }
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  },
 }
 
 M.nvimtree = {

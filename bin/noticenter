@@ -11,7 +11,7 @@ use_appname=true
 ###########################
 
 ### Raw data
-raw=$(tac /tmp/dunstlog)
+raw=$(tail --lines=96 /tmp/dunstlog | tac)
 appname=$(echo -n "$raw" | sed -n '1~6p')
 to_rofi=$(echo -n "$raw" | sed -n '2~6p;3~6p' | sed 's/\&/&amp;/g')
 icon=$(echo -n "$raw" | sed -n '4~6p' | while read -r line; do echo "$line"; done)

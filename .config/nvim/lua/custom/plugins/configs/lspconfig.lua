@@ -12,5 +12,5 @@ for _, lsp in ipairs(servers) do
 end
 lspconfig.clangd.setup {
   on_attach = on_attach,
-  capabilities = vim.tbl_deep_extend("force", capabilities, {offsetEncoding = "utf-8"})
+  capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
 }
