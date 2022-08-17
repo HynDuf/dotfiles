@@ -206,3 +206,6 @@ super + shift + z
 super + shift + g
     ~/bin/screen-lock
 
+super + shift + f
+    ~/bin/calendar-launcher
+

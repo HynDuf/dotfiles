@@ -1,0 +1,96 @@
+*
+{
+    all: unset;
+}
+
+/* launcher */
+
+.launchermenu
+{
+    background-color: #1D1F28;
+    border-radius: 8px;
+    //border: 2px solid #2f354b;
+}
+
+.launcher-icon
+{
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
+.launcher-pfp-label
+{
+    font-family: Inconsolata Semi Condensed Medium;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.launcher-pfp-label2
+{
+    font-family: Inconsolata Semi Condensed Medium;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.launcher-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.launcher-btn:hover
+{
+    color: #F28FAD;
+    font-family: Material Design Icons Desktop;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+/* Calendar */
+
+.cal-box {
+  background-color: #1D1F28;
+  border-radius: 8px;
+  //border: 2px solid #2f354b;
+  font-family: JetBrainsMonoMedium Nerd Font;
+  font-size: .9em;
+
+  .cal-inner-box {
+      padding: 1rem 1rem .2rem;
+
+      .cal {
+          &.highlight {
+              padding: 10rem;
+          }
+
+          padding: .8rem .25rem 0rem;
+          margin-left: 10px;
+      }
+  }
+}
+
+calendar:selected {
+  color: #C574DD;
+}
+
+calendar.header {
+color: #D9E0EE;
+font-weight: bold;
+}
+
+calendar.button {
+color: #C574DD;
+}
+
+calendar.highlight {
+color: #C574DD;
+font-weight: bold;
+}
+
+calendar:indeterminate {
+color: #8C8C8C;
+}

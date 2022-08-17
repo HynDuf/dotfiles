@@ -1,0 +1,20 @@
+; widgets
+
+(defpoll time0 :interval "10s"  "date '+%H':%M")
+(defpoll date :interval "10s"  "date '+%b %d'")
+
+;; Calendar Widgets ;;
+(defwidget cal []
+	(box :class "cal-box" 
+		 :orientation "v"
+	(box :class "cal-inner-box"
+	(calendar :class "cal" 
+			  :day calendar_day 
+			  :month calendar_month 
+			  :year calendar_year))))
+(defpoll calendar_day :interval "10h"
+    "date '+%d'")
+(defpoll calendar_month :interval "10h"
+    "calendar")
+(defpoll calendar_year :interval "10h"
+    "date '+%Y'")
