@@ -6,75 +6,92 @@ configuration {
   modi: "window,run,drun";
   show-icons: true;
   icon-theme: "Papirus";
+
+	/*---------- File browser settings ----------*/
+    filebrowser {
+/*	  directory: "/home";*/
+      directories-first: true;
+      sorting-method:    "name";
+    }
+
+	/*---------- Other settings ----------*/
+    timeout {
+      action: "kb-cancel";
+      delay:  0;
+    }
+
+	/*---------- Keybindings ----------*/
+    kb-primary-paste: "Control+V,Shift+Insert";
+	kb-secondary-paste: "Control+v,Insert";
+	kb-clear-line: "Control+w";
+	kb-move-front: "Control+a";
+	kb-move-end: "Control+e";
+	kb-move-word-back: "Alt+b,Control+Left";
+	kb-move-word-forward: "Alt+f,Control+Right";
+	kb-move-char-back: "Left,Control+b";
+	kb-move-char-forward: "Right,Control+f";
+	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";
+	kb-remove-word-forward: "Control+Alt+d";
+	kb-remove-char-forward: "Delete,Control+d";
+	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";
+	kb-remove-to-eol: "Control+k";
+	kb-remove-to-sol: "Control+u";
+	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";
+	kb-accept-custom: "Control+Return";
+	kb-accept-custom-alt: "Control+Shift+Return";
+	kb-accept-alt: "Shift+Return";
+	kb-delete-entry: "Shift+Delete";
+	kb-mode-next: "Shift+Right,Control+Tab";
+	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+	kb-mode-complete: "Control+l";
+	kb-row-left: "Control+Page_Up";
+	kb-row-right: "Control+Page_Down";
+	kb-row-down: "Down,Control+n";
+	kb-page-prev: "Page_Up";
+	kb-page-next: "Page_Down";
+	kb-row-first: "Home,KP_Home";
+	kb-row-last: "End,KP_End";
+	kb-row-select: "Control+space";
+	kb-screenshot: "Super+Shift+S";
+	kb-ellipsize: "Alt+period";
+	kb-toggle-case-sensitivity: "grave,dead_grave";
+	kb-toggle-sort: "Alt+grave";
+	kb-cancel: "Escape,Control+g,Control+bracketleft";
+	kb-custom-1: "Alt+1";
+	kb-custom-2: "Alt+2";
+	kb-custom-3: "Alt+3";
+	kb-custom-4: "Alt+4";
+	kb-custom-5: "Alt+5";
+	kb-custom-6: "Alt+6";
+	kb-custom-7: "Alt+7";
+	kb-custom-8: "Alt+8";
+	kb-custom-9: "Alt+9";
+	kb-custom-10: "Alt+0";
+	kb-custom-11: "Alt+exclam";
+	kb-custom-12: "Alt+at";
+	kb-custom-13: "Alt+numbersign";
+	kb-custom-14: "Alt+dollar";
+	kb-custom-15: "Alt+percent";
+	kb-custom-16: "Alt+dead_circumflex";
+	kb-custom-17: "Alt+ampersand";
+	kb-custom-18: "Alt+asterisk";
+	kb-custom-19: "Alt+parenleft";
+	kb-select-1: "Control+1";
+	kb-select-2: "Control+2";
+	kb-select-3: "Control+3";
+	kb-select-4: "Control+4";
+	kb-select-5: "Control+5";
+	kb-select-6: "Control+6";
+	kb-select-7: "Control+7";
+	kb-select-8: "Control+8";
+	kb-select-9: "Control+9";
+	kb-select-10: "Control+0";
+	ml-row-left: "ScrollLeft";
+	ml-row-right: "ScrollRight";
+	ml-row-up: "ScrollUp";
+	ml-row-down: "ScrollDown";
+	me-select-entry: "MousePrimary";
+	me-accept-entry: "MouseDPrimary";
+	me-accept-custom: "Control+MouseDPrimary";
 }
-
-@theme "/dev/null"
-
-* {
-  bg: #11121D;
-  bg-alt: #1f243d;
-
-  fg: #FFFFFF;
-  fg-alt: #787c99;
-
-  background-color: @bg;
-  
-  border: 0;
-  margin: 0;
-  padding: 0;
-  spacing: 0;
-}
-
-window {
-  width: 30%;
-}
-
-element {
-  padding: 8 0;
-  text-color: @fg-alt;
-}
-
-element selected {
-  text-color: @fg;
-}
-
-element-text {
-  background-color: inherit;
-  text-color: inherit;
-  vertical-align: 0.5;
-}
-
-element-icon {
-  size: 30;
-}
-
-entry {
-  background-color: @bg-alt;
-  padding: 12;
-  text-color: @fg;
-}
-
-inputbar {
-  children: [prompt, entry];
-}
-
-listview {
-  padding: 8 12;
-  background-color: @bg;
-  columns: 1;
-  lines: 8;
-}
-
-mainbox {
-  background-color: @bg;
-  children: [inputbar, listview];
-}
-
-prompt {
-  background-color: @bg-alt;
-  enabled: true;
-  padding: 12 0 0 12;
-  text-color: @fg;
-}
-
 

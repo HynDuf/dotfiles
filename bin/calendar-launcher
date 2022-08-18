@@ -7,6 +7,11 @@ run() {
     eww open calendar -c ~/.config/eww/
 }
 
+# Run eww daemon if not running
+if [[ ! $(pidof eww) ]]; then
+	eww daemon
+	sleep 1
+fi
 # Open widgets
 if [[ ! -f "$LOCK_FILE_CALENDAR" ]]; then
     eww close calendar -c ~/.config/eww/
@@ -17,7 +22,6 @@ elif [[ -f "$LOCK_FILE_CALENDAR" ]]; then
     rm "$LOCK_FILE_CALENDAR"
 fi
 }
-
 calendarl
 
 
