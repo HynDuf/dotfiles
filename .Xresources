@@ -27,7 +27,7 @@ st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 #define base0A #e5c07b
 #define base0B #98c379
 #define base0C #56b6c2
-#define base0D #61afef
+#define base0D #7aa2f7
 #define base0E #c678dd
 #define base0F #be5046
 
