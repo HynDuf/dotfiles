@@ -14,7 +14,7 @@ st.borderpx: 20
 st.alpha: 1
 st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 
-#define base00 #282c34
+#define base00 #32344a
 #define base01 #353b45
 #define base02 #3e4451
 #define base03 #545862
@@ -22,13 +22,13 @@ st.font:           JetBrainsMono Nerd Font:style:medium:pixelsize=15
 #define base05 #abb2bf
 #define base06 #b6bdca
 #define base07 #c8ccd4
-#define base08 #e06c75
+#define base08 #f7768e
 #define base09 #d19a66
-#define base0A #e5c07b
-#define base0B #98c379
-#define base0C #56b6c2
+#define base0A #e0af68
+#define base0B #9ece6a
+#define base0C #449dab
 #define base0D #7aa2f7
-#define base0E #c678dd
+#define base0E #ad8ee6
 #define base0F #be5046
 
 *foreground:   base07
