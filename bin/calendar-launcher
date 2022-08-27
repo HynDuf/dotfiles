@@ -10,7 +10,6 @@ run() {
 # Run eww daemon if not running
 if [[ ! $(pidof eww) ]]; then
 	eww daemon
-	sleep 1
 fi
 # Open widgets
 if [[ ! -f "$LOCK_FILE_CALENDAR" ]]; then

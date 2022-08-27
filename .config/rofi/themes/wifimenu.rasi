@@ -23,7 +23,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       700px;
+    width:                       500px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -73,7 +73,7 @@ textbox-prompt-colon {
 entry {
     enabled:                     true;
     expand:                      false;
-    width:                       550px;
+    width:                       350px;
     padding:                     12px 15px;
     border-radius:               100%;
     background-color:            @background-alt;
@@ -129,7 +129,7 @@ element-icon {
     cursor:                      inherit;
 }
 element-text {
-    padding:                     20px 0px 0px 0px;
+    padding:                     2px; 
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
