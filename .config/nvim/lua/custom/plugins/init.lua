@@ -1,12 +1,3 @@
--- custom/plugins/init.lua
--- local lazy = function(plugin, timer)
---   if plugin then
---     timer = timer or 0
---     vim.defer_fn(function()
---       require("packer").loader(plugin)
---     end, timer)
---   end
--- end
 return {
   ["goolord/alpha-nvim"] = {
     disable = false,

@@ -36,7 +36,6 @@ end
 autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
-    -- exclude when nvim has norg ft & more than 2 buffers
     sed("st.borderpx: 20", "st.borderpx: 0", "~/.Xresources")
     liveReload_xresources()
 
@@ -51,6 +50,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd("VimLeavePre", {
   callback = function()
     sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")
-    liveReload_xresources()
+    vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
   end,
 })

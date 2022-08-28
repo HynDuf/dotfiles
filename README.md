@@ -3,6 +3,6 @@
 
 ## Preview
 
-![preview](preview.png)
+![preview](preview/preview.png)
 
-![preview-1](preview-1.png)
+![preview-1](preview/preview-1.png)

@@ -207,3 +207,5 @@ super + shift + g
 super + shift + f
     ~/bin/calendar-launcher
 
+super + shift + e
+    rofi -modi emoji -show emoji -theme "$HOME/.config/rofi/themes/emojimenu.rasi"
