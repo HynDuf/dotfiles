@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Array of folders/files to update to Github
-declare -a needUpdate=(".config/eww" ".config/btop" ".config/cava" ".config/nvim/lua/custom" ".config/rofi" ".config/bspwm" ".config/dunst" ".config/picom" ".config/sxhkd" ".config/ranger" ".config/gtk-3.0" ".config/polybar" ".config/zathura" ".config/neofetch" ".xinitrc" ".Xresources" ".clang-format" ".zshrc" ".oh-my-zsh/themes/pacman.zsh-theme" "bin")
+declare -a needUpdate=(".config/colorls" ".config/eww" ".config/btop" ".config/cava" ".config/nvim/lua/custom" ".config/rofi" ".config/bspwm" ".config/dunst" ".config/picom" ".config/sxhkd" ".config/ranger" ".config/gtk-3.0" ".config/polybar" ".config/zathura" ".config/neofetch" ".xinitrc" ".Xresources" ".clang-format" ".zshrc" ".oh-my-zsh/themes/pacman.zsh-theme" "bin")
 
 # Local dotfiles folder
 dotfilesPath="$HOME/Projects/dotfiles"

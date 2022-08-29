@@ -49,8 +49,8 @@ mainbox {
 }
 
 listbox {
-    spacing:                     20px;
-    padding:                     20px;
+    spacing:                     10px;
+    padding:                     10px 10px 10px 15px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "message", "listview" ];
@@ -60,7 +60,7 @@ listbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     50px 60px;
+    padding:                     50px 40px 50px 30px;
     background-color:            transparent;
     background-image:            url("~/Pictures/hollow.jpg", width);
     text-color:                  @foreground;
@@ -70,8 +70,8 @@ inputbar {
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         " ";
-    padding:                     12px 14px;
+    str:                         "";
+    padding:                     12px 19px;
     border-radius:               100%;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -79,7 +79,7 @@ textbox-prompt-colon {
 entry {
     enabled:                     true;
     expand:                      false;
-    width:                       250px;
+    width:                       300px;
     padding:                     12px 15px;
     border-radius:               100%;
     background-color:            @background-alt;
@@ -101,8 +101,8 @@ mode-switcher{
     text-color:                  @foreground;
 }
 button {
-    width:                       45px;
-    padding:                     12px;
+    width:                       49px;
+    padding:                     8px 0px 8px 8px;
     border-radius:               100%;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -126,7 +126,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     10px;
+    spacing:                     5px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -135,8 +135,8 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     10px;
-    padding:                     4px;
+    spacing:                     15px;
+    padding:                     7px;
     border-radius:               100%;
     background-color:            transparent;
     text-color:                  @foreground;

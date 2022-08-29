@@ -44,7 +44,7 @@ mainbox {
 }
 
 listbox {
-    padding:                     10px;
+    padding:                     8px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "listview" ];
