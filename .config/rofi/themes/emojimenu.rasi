@@ -44,7 +44,7 @@ mainbox {
 }
 
 listbox {
-    padding:                     10px 10px 10px 15px;
+    padding:                     10px 10px 10px 5px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "listview" ];
@@ -64,8 +64,8 @@ inputbar {
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         " ";
-    padding:                     12px 10px 12px 14px;
+    str:                         " ";
+    padding:                     12px 10px 12px 19px;
     border-radius:               100%;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -105,8 +105,8 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     5px;
-    padding:                     2px;
+    padding:                     5px;
+    spacing:                     0px;
     border-radius:               100%;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -129,7 +129,7 @@ element-icon {
     cursor:                      inherit;
 }
 element-text {
-    padding:                     8px 0px 8px 0px;
+    padding:                     8px;
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;

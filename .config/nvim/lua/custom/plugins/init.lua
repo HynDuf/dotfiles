@@ -28,4 +28,7 @@ return {
     end,
   },
   ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
+  ["iamcco/markdown-preview.nvim"] = {
+      run = function() vim.fn["mkdp#util#install"]() end,
+  }
 }
