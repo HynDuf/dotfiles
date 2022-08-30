@@ -26,13 +26,14 @@
 
 ## :herb: <samp>About</samp>
 
-<div style="display:flex">
-    <div style="flex:1;padding-left:10px;">
+<div style="flex:1;padding: 11px 0px 0px 10px">
+<img src="assets/showcase.jpg" alt="Rice Showcase" align="right" width="350px">
+</div>
+
 Thanks for dropping by! 
 
-This is my personal repository for my Arch dotfiles (always WIP though).
+This is my personal repository for my Arch dotfiles (always WIP)
 
-</br>
 Here are some information about my setup: 
 
 
@@ -45,13 +46,6 @@ Here are some information about my setup:
 - Notification Manager: [`dunst`](https://github.com/dunst-project/dunst)
 - Application Launcher: [`rofi`](https://github.com/davatorium/rofi)
 - File Manager: [`ranger`](https://github.com/ranger/ranger)                                                   
-
-</div>
-
-<div style="flex:1;padding: 11px 0px 0px 0px">
-<img src="assets/showcase.jpg" width="350px"/>
-</div>
-</div>
 
 <a name="showcase"/>
 
