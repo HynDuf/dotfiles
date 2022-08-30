@@ -28,26 +28,28 @@
 
 <div style="display:flex">
     <div style="flex:1;padding-left:10px;">
-Thanks for dropping by!
+Thanks for dropping by! 
 
+This is my personal repository for my Arch dotfiles (always WIP though).
+
+</br>
 Here are some information about my setup: 
 
-| Feature              | Package                                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------------------- |
-| Window Manager       | [`bspwm`](https://github.com/baskerville/bspwm)                                                |
-| Compositor           | [`pijulius/picom`](https://github.com/pijulius/picom)                                          |
-| Terminal             | [`st`](https://github.com/siduck/st)                                                           |
-| Shell                | [`zsh`](https://www.zsh.org/)                                                                  |
-| Editor               | [`neovim`](https://github.com/neovim/neovim) ([`nvchad`](https://nvchad.github.io/))           |
-| Panel                | [`polybar`](https://github.com/polybar/polybar)                                                |
-| Notification Manager | [`dunst`](https://github.com/dunst-project/dunst)                                              |
-| Application Launcher | [`rofi`](https://github.com/davatorium/rofi)                                                   |
-| File Manager         | [`ranger`](https://github.com/ranger/ranger)                                                   |
+
+- Window Manager: [`bspwm`](https://github.com/baskerville/bspwm)
+- Compositor: [`pijulius/picom`](https://github.com/pijulius/picom)
+- Terminal: [`st`](https://github.com/siduck/st)
+- Shell: [`zsh`](https://www.zsh.org/)
+- Editor: [`neovim`](https://github.com/neovim/neovim) ([`nvchad`](https://nvchad.github.io/))
+- Panel: [`polybar`](https://github.com/polybar/polybar)
+- Notification Manager: [`dunst`](https://github.com/dunst-project/dunst)
+- Application Launcher: [`rofi`](https://github.com/davatorium/rofi)
+- File Manager: [`ranger`](https://github.com/ranger/ranger)                                                   
 
 </div>
 
 <div style="flex:1;padding: 11px 0px 0px 0px">
-<img src="assets/showcase.jpg" width="400px"/>
+<img src="assets/showcase.jpg" width="350px"/>
 </div>
 </div>
 
