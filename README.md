@@ -20,6 +20,14 @@
 - [:camera: <samp>Showcase</samp>](#showcase)
     - [<samp>Overview</samp>](#overview) 
     - [<samp>Rofi Utils</samp>](#rofi-utils)
+    - [<samp>Fonts</samp>](#fonts)
+- [:wrench: <samp>Set up</samp>](#setup)
+    - [<samp>Dependency</samp>](#dependency)
+    - [<samp>Polybar</samp>](#polybar)
+    - [<samp>Rofi</samp>](#rofi)
+    - [<samp>Picom</samp>](#picom)
+    - [<samp>Sxhkd Keybindings</samp>](#sxhkd-keybindings)
+    - [<samp>Others</samp>](#others)
 - [:tada: <samp>Credits</samp>](#credits)
 
 <a name="about"/>
@@ -45,7 +53,7 @@ Here are some information about my setup:
 - Panel: [`polybar`](https://github.com/polybar/polybar)
 - Notification Manager: [`dunst`](https://github.com/dunst-project/dunst)
 - Application Launcher: [`rofi`](https://github.com/davatorium/rofi)
-- File Manager: [`ranger`](https://github.com/ranger/ranger)                                                   
+- File Manager: [`ranger`](https://github.com/ranger/ranger)
 
 <a name="showcase"/>
 
@@ -55,7 +63,7 @@ Here are some information about my setup:
 
 ### <samp>Overview</samp>
 
-Here are some details:
+Here are some details about programs in the screenshots:
 
 - **Color schemes**: a combination of [`catppuccin`](https://github.com/catppuccin) and [`tokyonight`](https://github.com/zatchheems/tokyo-night-alacritty-theme/blob/main/tokyo-night.yaml)
 - **Theme**: [`catppuccin gtk`](https://github.com/catppuccin/gtk) and [`catppuccin cursor`](https://github.com/catppuccin/cursors)
@@ -71,9 +79,19 @@ Here are some details:
 - **Flashcards study**: [`anki`](https://apps.ankiweb.net/) with some additional plugins
 - **Text editor**: [`neovim`](https://github.com/neovim/neovim) with [`nvchad`](https://nvchad.github.io/) ([`custom folder`](https://github.com/HynDuf7/dotfiles/tree/main/.config/nvim/lua/custom))
 - **PDF reader**: [`zathura`](https://github.com/pwmt/zathura) with [`catppuccin theme`](https://github.com/catppuccin/zathura) (and some color configs)
+- **Spotify theme**: [`spicetify`](https://spicetify.app/docs/getting-started) with [`catppuccin theme`](https://github.com/catppuccin/spicetify)
 - **Screen lock**: [`script`](https://github.com/HynDuf7/dotfiles/blob/main/bin/screen-lock) using [`i3lock-color`](https://github.com/Raymo111/i3lock-color)
 
-![overview](assets/overview.jpg)
+![overview-1](assets/preview-1.png)
+![overview-2](assets/preview-2.png)
+![overview-3](assets/showcase-discord-ranger.png)
+![overview-4](assets/showcase-firefox.png)
+![overview-5](assets/showcase-english.png)
+![overview-6](assets/showcase-neovim.png)
+![overview-7](assets/showcase-zathura.png)
+![overview-8](assets/showcase-spotify.png)
+![overview-9](assets/showcase-screen-lock.png)
+
 
 <h2></h2>
 
@@ -81,19 +99,77 @@ Here are some details:
 
 ### <samp>Rofi Utils</samp>
 
-These rofi configurations are highly based on [adi1090x/rofi](https://github.com/adi1090x/rofi) (it's not like I just copied it and change some colors or anything :flushed:)
+These rofi configurations are highly based on [adi1090x/rofi](https://github.com/adi1090x/rofi) (it's not like I just copied it and changed some colors or anything :flushed:)
+
+<h2></h2>
 
 ##### Rofi app launchers, directory menu and windows menu
 
-![rofi-1](assets/rofi-1.jpg)
+![app-menu](assets/app-menu.png)
+![directory-menu](assets/directory-menu.png)
+![windows-menu](assets/windows-menu.png)
+
+<h2></h2>
 
 ##### Rofi calculator, emoji selector and wifi menu
 
-![rofi-2](assets/rofi-2.jpg)
+![calculator](assets/calculator.png)
+![emoji-menu](assets/emoji-menu.png)
+![wifi-menu](assets/wifi-menu.png)
+
+<h2></h2>
 
 ##### Rofi power menu
 
 ![rofi-power-menu](assets/rofi-power-menu.png)
+
+<h2></h2>
+
+<a name="fonts"/>
+
+### <samp>Fonts</samp>
+
+- [`JetBrainsMono Nerd Font`](https://github.com/jtbx/jetbrainsmono-nerdfont)
+- [`Iosevka Nerd Font`](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka)
+- [`FiraCode`](https://github.com/tonsky/FiraCode) and [`FiraCode Nerd Font`](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+- [`Material Icon and Feathers`](https://github.com/Murzchnvok/polybar-collection#prerequisites) (for polybar)
+
+<a name="setup"/>
+
+## :wrench: <samp>Set up</samp>
+
+:warning: **Note**: This configuration was made for my Laptop (and Arch Linux specifically), so some things might not work on yours, in that case, please try if you can fix that up as much as possible, or you can open an issue for help :).
+
+This was made for a `1920x1080` and `75` dpi screen.
+
+Most programs can be installed and used easily by following guides from their own github (I already added as many links as possible). Some other harder ones I'll state below.
+
+WIP!!
+
+<a name="dependency"/>
+
+### <samp>Dependency</samp>
+
+<a name="polybar"/>
+
+### <samp>Polybar</samp>
+
+<a name="rofi"/>
+
+### <samp>Rofi</samp>
+
+<a name="picom"/>
+
+### <samp>Picom</samp>
+
+<a name="sxhkd-keybindings"/>
+
+### <samp>Sxhkd Keybindings</samp>
+
+<a name="others"/>
+
+### <samp>Others</samp>
+
 
 <a name="credits"/>
 
