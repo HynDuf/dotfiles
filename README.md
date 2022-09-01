@@ -22,6 +22,7 @@
     - [<samp>Rofi Utils</samp>](#rofi-utils)
     - [<samp>Fonts</samp>](#fonts)
 - [:wrench: <samp>Set up</samp>](#setup)
+    - [<samp>Preinstall</samp>](#preinstall)
     - [<samp>Dependency</samp>](#dependency)
     - [<samp>Polybar</samp>](#polybar)
     - [<samp>Rofi</samp>](#rofi)
@@ -131,28 +132,90 @@ These rofi configurations are highly based on [adi1090x/rofi](https://github.com
 
 - [`JetBrainsMono Nerd Font`](https://github.com/jtbx/jetbrainsmono-nerdfont)
 - [`Iosevka Nerd Font`](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka)
-- [`FiraCode`](https://github.com/tonsky/FiraCode) and [`FiraCode Nerd Font`](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+- [`FiraCode`](https://github.com/tonsky/FiraCode) (for `lxappearance` font theme)
 - [`Material Icon and Feathers`](https://github.com/Murzchnvok/polybar-collection#prerequisites) (for polybar)
 
 <a name="setup"/>
 
 ## :wrench: <samp>Set up</samp>
 
-:warning: **Note**: This configuration was made for my Laptop (and Arch Linux specifically), so some things might not work on yours, in that case, please try if you can fix that up as much as possible, or you can open an issue for help :).
+:warning: **Note**: This configuration was made for my Laptop (Arch-based distribution specifically), so some things might not work on yours, in that case, please try if you can fix that up as much as possible, or you can open an issue for help :smile:.
 
 This was made for a `1920x1080` and `75` dpi screen.
 
 Most programs can be installed and used easily by following guides from their own github (I already added as many links as possible). Some other harder ones I'll state below.
 
-WIP!!
+<a name="preinstall"/>
+
+
+### <samp>Preinstall</samp>
+
+Just to be tidy, create a folder for your about-to-download packages as you would want to delete redundant things afterward.
+
+```sh
+mkdir ~/Downloads
+cd ~/Downloads
+```
+
+Clone my dotfiles in advance for later uses (`~/Downloads/dotfiles`):
+
+```sh
+git clone https://github.com/HynDuf7/dotfiles
+```
 
 <a name="dependency"/>
 
+
 ### <samp>Dependency</samp>
+
+
+First of all, we need `yay` and `git` (if you haven't had them):
+
+```sh
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+Then let's install all the needed packages:
+
+```sh
+yay -S bspwm brightnessctl dunst eww-git feh i3lock-color nerd-fonts-jetbrains-mono polybar pomo papirus-icon-theme ranger rofi rofi-calc rofi-emoji sxhkd ttf-fira-code ttf-iosevka-nerd ueberzug
+```
 
 <a name="polybar"/>
 
 ### <samp>Polybar</samp>
+
+Firstly, let's install `Material Icon and Feathers` for our `polybar` icons.
+
+```sh
+mkdir ~/.fonts
+git clone https://github.com/Murzchnvok/polybar-collection
+cp -r ./polybar-collection/fonts/* ~/.fonts/
+fc-cache -fv
+```
+
+Copy my `polybar` setup into yours:
+
+```sh
+cp -r ~/Downloads/dotfiles/.config/polybar ~/.config/polybar
+```
+
+Enable autostart `polybar` when starting `bspwm`:
+
+```sh
+chmod +x ~/.config/polybar/launch.sh
+```
+
+Then add this to your `~/.config/bspwm/bspwmrc` (see [`mine`](https://github.com/HynDuf7/dotfiles/blob/main/.config/bspwm/bspwmrc))
+
+```sh
+$HOME/.config/polybar/launch.sh &
+```
+
+:warning: Note: My `~/.config/bspwm/bspwmrc` file is not for straight copying. There are many things that are personal and unrelated (can cause confusion if you don't understand what they are for). Use it responsibly.
 
 <a name="rofi"/>
 
@@ -161,6 +224,37 @@ WIP!!
 <a name="picom"/>
 
 ### <samp>Picom</samp>
+
+This is a `picom` fork with spendlid animations so we have to build it on our own.
+
+First install all the dependencies required to build the compositor:
+
+```sh
+yay -S libconfig libev libxdg-basedir pcre pixman xcb-util-image xcb-util-renderutil hicolor-icon-theme libglvnd libx11 libxcb libxext libdbus asciidoc uthash
+```
+
+Then let's build it:
+
+```sh
+cd ~/Downloads
+git clone https://github.com/pijulius/picom.git
+cd picom/
+meson --buildtype=release . build --prefix=/usr -Dwith_docs=true
+sudo ninja -C build install
+```
+
+Copy my `picom` configuration into yours:
+
+```sh
+cp -r ~/Downloads/dotfiles/.config/picom ~/.config/picom
+```
+
+Then enable `picom` start-up when starting `bspwm` by adding this to your `~/.config/bspwm/bspwmrc` (see [`mine`](https://github.com/HynDuf7/dotfiles/blob/main/.config/bspwm/bspwmrc))
+
+```sh
+picom &
+```
+
 
 <a name="sxhkd-keybindings"/>
 
