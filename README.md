@@ -308,7 +308,7 @@ From those, you can imply that the command to run the rofi utils are (Bind it to
 
 ### <samp>Picom</samp>
 
-This is a `picom` fork with spendlid animations so we have to build it on our own.
+This is a `picom` fork with splendid animations so we have to build it on our own.
 
 First install all the dependencies required to build the compositor:
 
@@ -363,7 +363,7 @@ This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.co
 
 For other ones please follow the link to the application you want to install and do it on your own. I believe you can do it in no time. Good luck :wink:
 
-:exclamation: In case you are desperately stuck, create an issue. I would consider updating additional guides for the ones you need.
+:exclamation: In case you are desperately stuck, open an issue. I would consider updating additional guides for the ones you need.
 
 
 <a name="credits"/>
