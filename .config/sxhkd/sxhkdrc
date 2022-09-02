@@ -178,7 +178,7 @@ super + Print
 
 # cropped save
 super + shift + Print
-    maim --select "/home/$USER/Pictures/$(date).png"
+    maim --hidecursor --select "/home/$USER/Pictures/$(date).png"
 
 # clipboard fullscreen
 super + s

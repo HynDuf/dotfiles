@@ -25,7 +25,7 @@
     - [<samp>Preinstall</samp>](#preinstall)
     - [<samp>Dependency</samp>](#dependency)
     - [<samp>Polybar</samp>](#polybar)
-    - [<samp>Rofi</samp>](#rofi)
+    - [<samp>Rofi and Eww</samp>](#rofi-and-eww)
     - [<samp>Picom</samp>](#picom)
     - [<samp>Sxhkd Keybindings</samp>](#sxhkd-keybindings)
     - [<samp>Others</samp>](#others)
@@ -163,6 +163,14 @@ Clone my dotfiles in advance for later uses (`~/Downloads/dotfiles`):
 git clone https://github.com/HynDuf7/dotfiles
 ```
 
+Let's set up the necessary scripts. Copy them to yours and grant execute permission (You don't need all the scripts. You can keep only the ones you need):
+
+
+```sh
+cp -r ~/Downloads/dotfiles/bin ~/bin
+chmod +x ~/bin/*
+```
+
 <a name="dependency"/>
 
 
@@ -188,10 +196,13 @@ yay -S bspwm brightnessctl dunst eww-git feh i3lock-color nerd-fonts-jetbrains-m
 
 ### <samp>Polybar</samp>
 
+![polybar](assets/polybar.png)
+
 Firstly, let's install `Material Icon and Feathers` for our `polybar` icons.
 
 ```sh
 mkdir ~/.fonts
+cd ~/Downloads
 git clone https://github.com/Murzchnvok/polybar-collection
 cp -r ./polybar-collection/fonts/* ~/.fonts/
 fc-cache -fv
@@ -217,9 +228,81 @@ $HOME/.config/polybar/launch.sh &
 
 :warning: Note: My `~/.config/bspwm/bspwmrc` file is not for straight copying. There are many things that are personal and unrelated (can cause confusion if you don't understand what they are for). Use it responsibly.
 
-<a name="rofi"/>
+:exclamation: Note: The below section in the `polybar` is from [`pomo`](https://github.com/kevinschoon/pomo) package which is a pomodoro timer. When running, it would update in the `polybar`.
 
-### <samp>Rofi</samp>
+![pomo](assets/pomo.png)
+
+![pomo-1](assets/pomo-1.png)
+
+<a name="rofi-and-eww"/>
+
+### <samp>Rofi and Eww</samp>
+
+Copy my `rofi` and `eww` configuration into yours:
+
+```sh
+cp -r ~/Downloads/dotfiles/.config/rofi ~/.config/rofi
+cp -r ~/Downloads/dotfiles/.config/eww ~/.config/eww
+```
+
+In my `~/.config/sxhkd/sxhkdrc` file, you can see some related keybindings:
+
+```
+super + c
+    rofi -show drun -theme "$HOME/.config/rofi/themes/app-launcher.rasi"
+
+super + alt + z
+	~/bin/powermenu
+
+super + shift + c
+    rofi -show calc -modi calc -theme "$HOME/.config/rofi/themes/calc.rasi"
+
+super + shift + x
+    ~/bin/noticenter
+
+super + shift + z
+    ~/bin/wifimenu
+
+super + shift + f
+    ~/bin/calendar-launcher
+
+super + shift + e
+    rofi -modi emoji -show emoji -theme "$HOME/.config/rofi/themes/emojimenu.rasi"
+```
+
+From those, you can imply that the command to run the rofi utils are (Bind it to your keymappings or use my [`sxhkdrc`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc)):
+
+- App launcher/Directory menu/Windows menu:
+    ```sh
+    rofi -show drun -theme "$HOME/.config/rofi/themes/app-launcher.rasi"
+    ```
+    There are some [`rofi keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/rofi/config.rasi) that you can learn to use to navigate.
+- Calculator (remember the package `rofi-calc` we have already downloaded at [<samp>Dependency</samp>](#dependency)):
+    ```sh
+    rofi -show calc -modi calc -theme "$HOME/.config/rofi/themes/calc.rasi"
+    ```
+- Emoji selector (package `rofi-emoji`):
+    ```sh
+    rofi -modi emoji -show emoji -theme "$HOME/.config/rofi/themes/emojimenu.rasi"
+    ```
+- Power menu:
+    ```sh
+    ~/bin/powermenu
+    ```
+
+- Notification center:
+    ```sh
+    ~/bin/noticenter
+    ```
+- Wifi menu:
+    ```sh
+    ~/bin/wifimenu
+    ```
+- Calendar (This is `eww` widgets and not rofi):
+    ```sh
+    ~/bin/calendar-launcher
+    ```
+
 
 <a name="picom"/>
 
@@ -260,9 +343,27 @@ picom &
 
 ### <samp>Sxhkd Keybindings</samp>
 
+This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc) of you happen to use it:
+
+|Action|Keybinding|
+|---|---|
+|App launcher|<code>super + c</code>|
+|Hide / Unhide Bar|<code>super + x</code>|
+|Terminal|<code>super + Return</code>|
+|Restart bspwm|<code>super + alt + r</code>|
+|Reload sxhkd|<code>super + Esc</code>|
+|Close program|<code>super + w</code>|
+|Quit bspwm|<code>super + alt + q</code>|
+|Increase/Decrease brightness|<code>super + F10/F11</code>|
+|Increase/Decrease volume|<code>super + shift + F10/F11</code>|
+
 <a name="others"/>
 
 ### <samp>Others</samp>
+
+For other ones please follow the link to the application you want to install and do it on your own. I believe you can do it in no time. Good luck :wink:
+
+:exclamation: In case you are desperately stuck, create an issue. I would consider updating additional guides for the ones you need.
 
 
 <a name="credits"/>
