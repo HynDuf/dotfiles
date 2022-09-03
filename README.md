@@ -234,6 +234,22 @@ $HOME/.config/polybar/launch.sh &
 
 ![pomo-1](assets/pomo-1.png)
 
+<a name="dunst"/>
+
+### <samp>Dunst</samp>
+
+Copy my `dunst` configuration into yours:
+
+```sh
+cp -r ~/Downloads/dotfiles/.config/dunst ~/.config/dunst
+```
+
+Add `dunst` startup to your `~/.config/bspwm/bspwmrc` (see [`mine`](https://github.com/HynDuf7/dotfiles/blob/main/.config/bspwm/bspwmrc)):
+
+```sh
+dunst -conf $HOME/.config/dunst/dunstrc &
+```
+
 <a name="rofi-and-eww"/>
 
 ### <samp>Rofi and Eww</samp>
