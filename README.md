@@ -25,6 +25,7 @@
     - [<samp>Preinstall</samp>](#preinstall)
     - [<samp>Dependency</samp>](#dependency)
     - [<samp>Polybar</samp>](#polybar)
+    - [<samp>Dunst</samp>](#dunst)
     - [<samp>Rofi and Eww</samp>](#rofi-and-eww)
     - [<samp>Picom</samp>](#picom)
     - [<samp>Sxhkd Keybindings</samp>](#sxhkd-keybindings)
@@ -169,6 +170,12 @@ Let's set up the necessary scripts. Copy them to yours and grant execute permiss
 ```sh
 cp -r ~/Downloads/dotfiles/bin ~/bin
 chmod +x ~/bin/*
+```
+
+Add that `~/bin` folder to your `$PATH` as well, in your `.bashrc` or `.zshrc` add the following:
+
+```sh
+export PATH="$HOME/bin:$PATH"
 ```
 
 <a name="dependency"/>
@@ -359,7 +366,7 @@ picom &
 
 ### <samp>Sxhkd Keybindings</samp>
 
-This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc) of you happen to use it:
+This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc) if you happen to use it:
 
 |Action|Keybinding|
 |---|---|
