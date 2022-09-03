@@ -241,6 +241,19 @@ $HOME/.config/polybar/launch.sh &
 
 ![pomo-1](assets/pomo-1.png)
 
+If you want to be able to controll the WIFI from polybar, first you should install the net-tools with the following command
+```sh
+yay -S net-tools
+```
+and then run
+```sh
+ifconfig
+```
+
+If your WIFI setup is alright , you should get an addapter with the name like wlpXsY, where X and Y are integers. Take this value and in the file ~/Downloads/dotfiles/.config/polybar/modules/wlan.ini replace the default value wlp3s0 with youe value (in the line `interface = wlp3s0`).
+
+If you did this correctly , on the next reboot you will be able to see the wifi info in polybar.
+
 <a name="dunst"/>
 
 ### <samp>Dunst</samp>
