@@ -243,6 +243,8 @@ $HOME/.config/polybar/launch.sh &
 
 ![pomo-1](assets/pomo-1.png)
 
+There are the [`network`](https://github.com/polybar/polybar/wiki/Module:-network) module and [`battery`](https://github.com/polybar/polybar/wiki/Module:-battery) module that might need to be changed accordingly to your machine. See the `polybar` wiki link given.
+
 <a name="dunst"/>
 
 ### <samp>Dunst</samp>

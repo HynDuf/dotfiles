@@ -37,7 +37,7 @@ M.general = {
     -- :q and readding the border in st
     ["<C-z>"] = {
       function()
-        sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")
+        sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
         liveReload_xresources()
         vim.cmd(string.format "silent :qa")
       end,

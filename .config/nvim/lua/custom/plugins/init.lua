@@ -19,7 +19,7 @@ return {
       require "custom.plugins.configs.null-ls"
     end,
   },
-
+  ["mfussenegger/nvim-jdtls"] = { after = "nvim-treesitter" },
   ["jghauser/mkdir.nvim"] = { after = "nvim-treesitter" },
   ["neovim/nvim-lspconfig"] = {
     config = function()
@@ -29,6 +29,15 @@ return {
   },
   ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
   ["iamcco/markdown-preview.nvim"] = {
-      run = function() vim.fn["mkdp#util#install"]() end,
-  }
+    after = "nvim-treesitter",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+
+  -- fzf for telescope
+  ["nvim-telescope/telescope-fzf-native.nvim"] = {
+    before = "telescope.nvim",
+    run = "make",
+  },
 }

@@ -36,11 +36,11 @@ end
 autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
-    sed("st.borderpx: 20", "st.borderpx: 0", "~/.Xresources")
+    sed("st.borderpx: 25", "st.borderpx: 0", "~/.Xresources")
     liveReload_xresources()
 
     -- revert xresources change but dont reload it
-    sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")
+    sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
     vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
     vim.api.nvim_del_autocmd(ctx.id)
   end,
@@ -49,7 +49,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
 -- add terminal padding
 autocmd("VimLeavePre", {
   callback = function()
-    sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")
+    sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
     vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
   end,
 })

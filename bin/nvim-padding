@@ -1,9 +1,9 @@
 #!/bin/sh
 
-sed -i "s/st.borderpx: 20/st.borderpx: 0/g" ~/.Xresources
+sed -i "s/st.borderpx: 25/st.borderpx: 0/g" ~/.Xresources
 nvim_window=$(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')
 xrdb merge ~/.Xresources &&
 kill -USR1 $nvim_window
-sed -i "s/st.borderpx: 0/st.borderpx: 20/g" ~/.Xresources
+sed -i "s/st.borderpx: 0/st.borderpx: 25/g" ~/.Xresources
 xrdb merge ~/.Xresources
 

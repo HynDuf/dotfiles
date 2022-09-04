@@ -14,10 +14,3 @@ lspconfig.clangd.setup {
   on_attach = on_attach,
   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
 }
-
-lspconfig.jdtls.setup {
-  cmd = { "jdtls" },
-  root_dir = function(fname)
-    return lspconfig.util.root_pattern("pom.xml", "gradle.build", ".git")(fname) or vim.fn.getcwd()
-  end,
-}
