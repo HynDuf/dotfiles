@@ -24,6 +24,7 @@
 - [:wrench: <samp>Set up</samp>](#setup)
     - [<samp>Preinstall</samp>](#preinstall)
     - [<samp>Dependency</samp>](#dependency)
+    - [<samp>Background Wallpaper</samp>](#background-wallpaper)
     - [<samp>Polybar</samp>](#polybar)
     - [<samp>Dunst</samp>](#dunst)
     - [<samp>Rofi and Eww</samp>](#rofi-and-eww)
@@ -201,6 +202,24 @@ Then let's install all the needed packages:
 yay -S bspwm brightnessctl dunst eww-git feh i3lock-color nerd-fonts-jetbrains-mono polybar pomo papirus-icon-theme ranger rofi rofi-calc rofi-emoji sxhkd ttf-fira-code ttf-iosevka-nerd ueberzug xdotool
 ```
 
+<a name="background-wallpaper"/>
+
+### <samp>Background Wallpaper</samp>
+
+Copy the wallpapers into your `~/Pictures` folder:
+
+```sh
+cp -r ~/Downloads/dotfiles/wallpapers ~/Pictures
+```
+
+We will use `feh` to set up the wallpaper.
+Add the following into your `~/.config/bspwm/bspwmrc` (see [`mine`](https://github.com/HynDuf7/dotfiles/blob/main/.config/bspwm/bspwmrc)):
+
+```sh
+feh --bg-fill ~/Pictures/hollow-knight.png &
+```
+
+
 <a name="polybar"/>
 
 ### <samp>Polybar</samp>
@@ -329,6 +348,8 @@ From those, you can imply that the command to run the rofi utils are (Bind it to
     ```sh
     ~/bin/calendar-launcher
     ```
+
+:exclamation: In case the background image on the input bar doesn't appear, double check that you have done copied all the images to your `~/Pictures` folder in [<samp>Background Wallpaper</samp>](#background-wallpaper). All the `rofi` themes used this [background image](https://github.com/HynDuf7/dotfiles/blob/main/wallpapers/hollow.jpg).
 
 
 <a name="picom"/>
