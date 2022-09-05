@@ -147,10 +147,12 @@ This was made for a `1920x1080` and `75` dpi screen.
 
 Most programs can be installed and used easily by following guides from their own github (I already added as many links as possible). Some other harder ones I'll state below.
 
+<h2></h2>
+
 <a name="preinstall"/>
 
-
 ### <samp>Preinstall</samp>
+
 
 Just to be tidy, create a folder for your about-to-download packages as you would want to delete redundant things afterward.
 
@@ -181,8 +183,9 @@ export PATH="$HOME/bin:$PATH"
 
 After that, `source ~/.zshrc` (or `source ~/.bashrc`) to update it though.
 
-<a name="dependency"/>
+<h2></h2>
 
+<a name="dependency"/>
 
 ### <samp>Dependency</samp>
 
@@ -202,6 +205,8 @@ Then let's install all the needed packages:
 yay -S bspwm brightnessctl dunst eww-git feh i3lock-color nerd-fonts-jetbrains-mono polybar pomo papirus-icon-theme ranger rofi rofi-calc rofi-emoji sxhkd ttf-fira-code ttf-iosevka-nerd ueberzug xdotool
 ```
 
+<h2></h2>
+
 <a name="background-wallpaper"/>
 
 ### <samp>Background Wallpaper</samp>
@@ -219,6 +224,7 @@ Add the following into your `~/.config/bspwm/bspwmrc` (see [`mine`](https://gith
 feh --bg-fill ~/Pictures/hollow-knight.png &
 ```
 
+<h2></h2>
 
 <a name="polybar"/>
 
@@ -264,6 +270,8 @@ $HOME/.config/polybar/launch.sh &
 
 There are the [`network`](https://github.com/polybar/polybar/wiki/Module:-network) module and [`battery`](https://github.com/polybar/polybar/wiki/Module:-battery) module that might need to be changed accordingly to your machine. See the `polybar` wiki link given.
 
+<h2></h2>
+
 <a name="dunst"/>
 
 ### <samp>Dunst</samp>
@@ -279,6 +287,8 @@ Add `dunst` startup to your `~/.config/bspwm/bspwmrc` (see [`mine`](https://gith
 ```sh
 dunst -conf $HOME/.config/dunst/dunstrc &
 ```
+
+<h2></h2>
 
 <a name="rofi-and-eww"/>
 
@@ -351,6 +361,7 @@ From those, you can imply that the command to run the rofi utils are (Bind it to
 
 :exclamation: In case the background image on the input bar doesn't appear, double check that you have done copied all the images to your `~/Pictures` folder in [<samp>Background Wallpaper</samp>](#background-wallpaper). All the `rofi` themes used this [background image](https://github.com/HynDuf7/dotfiles/blob/main/wallpapers/hollow.jpg).
 
+<h2></h2>
 
 <a name="picom"/>
 
@@ -386,6 +397,7 @@ Then enable `picom` start-up when starting `bspwm` by adding this to your `~/.co
 picom &
 ```
 
+<h2></h2>
 
 <a name="sxhkd-keybindings"/>
 
@@ -404,6 +416,8 @@ This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.co
 |Quit bspwm|<code>super + alt + q</code>|
 |Increase/Decrease brightness|<code>super + F10/F11</code>|
 |Increase/Decrease volume|<code>super + shift + F10/F11</code>|
+
+<h2></h2>
 
 <a name="others"/>
 

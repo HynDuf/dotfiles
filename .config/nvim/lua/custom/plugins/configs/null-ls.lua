@@ -22,19 +22,20 @@ local sources = {
   b.formatting.shfmt,
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
+  -- -- java
+  -- b.formatting.google_java_format.with {
+  --   extra_args = { vim.fn.expand "--aosp" },
+  -- },
+
   -- cpp
   b.formatting.clang_format.with {
+    disabled_filetypes = { "java" },
     extra_args = { vim.fn.expand "-style=file" },
   },
 
   -- python
   b.formatting.yapf,
   b.formatting.isort,
-
-  -- java
-  b.formatting.google_java_format.with {
-    extra_args = { "--aosp" },
-  },
 }
 
 null_ls.setup {

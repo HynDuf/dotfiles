@@ -22,9 +22,10 @@ source $ZSH/oh-my-zsh.sh
 alias vi='nvim-padding && nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
-alias pom='~/bin/switch-desktop-workaround 7 follow && pomo start -t my-project "Study now"'
-setopt extendedglob
+alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "Study now"'
+alias r='ranger'
 alias f='fuck'
+setopt extendedglob
 source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Comment this to upgrade miniconda3 package safely

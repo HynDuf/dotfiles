@@ -40,4 +40,11 @@ return {
     before = "telescope.nvim",
     run = "make",
   },
+
+  ["simrat39/rust-tools.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require("rust-tools").setup()
+    end,
+  },
 }
