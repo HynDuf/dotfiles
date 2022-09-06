@@ -145,7 +145,7 @@ These rofi configurations are highly based on [adi1090x/rofi](https://github.com
 
 This was made for a `1920x1080` and `75` dpi screen.
 
-Most programs can be installed and used easily by following guides from their own github (I already added as many links as possible). Some other harder ones I'll state below.
+Most programs can be installed and used easily by following guides from their own GitHub (I already added as many links as possible). Some other harder ones I'll state below.
 
 <h2></h2>
 
@@ -190,7 +190,7 @@ After that, `source ~/.zshrc` (or `source ~/.bashrc`) to update it though.
 ### <samp>Dependency</samp>
 
 
-First of all, we need `yay` and `git` (if you haven't had them):
+First, we need `yay` and `git` (if you haven't had them):
 
 ```sh
 sudo pacman -S --needed git base-devel
@@ -326,7 +326,7 @@ super + shift + e
     rofi -modi emoji -show emoji -theme "$HOME/.config/rofi/themes/emojimenu.rasi"
 ```
 
-From those, you can imply that the command to run the rofi utils are (Bind it to your keymappings or use my [`sxhkdrc`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc)):
+From those, you can imply that the command to run the rofi utils are (Bind it to your key mappings or use my [`sxhkdrc`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc)):
 
 - App launcher/Directory menu/Windows menu:
     ```sh
@@ -367,7 +367,7 @@ From those, you can imply that the command to run the rofi utils are (Bind it to
 
 ### <samp>Picom</samp>
 
-This is a `picom` fork with splendid animations so we have to build it on our own.
+This is a `picom` fork with splendid animations, so we have to build it on our own.
 
 First install all the dependencies required to build the compositor:
 
@@ -403,12 +403,12 @@ picom &
 
 ### <samp>Sxhkd Keybindings</samp>
 
-This is some of main keybindings in my [`sxhkdrc keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc) if you happen to use it:
+This is some main keybindings in my [`sxhkdrc keybindings`](https://github.com/HynDuf7/dotfiles/blob/main/.config/sxhkd/sxhkdrc) if you happen to use it:
 
 |Action|Keybinding|
 |---|---|
 |App launcher|<code>super + c</code>|
-|Hide / Unhide Bar|<code>super + x</code>|
+|Toggle polybar|<code>super + x</code>|
 |Terminal|<code>super + Return</code>|
 |Restart bspwm|<code>super + alt + r</code>|
 |Reload sxhkd|<code>super + Esc</code>|

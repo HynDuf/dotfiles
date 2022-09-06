@@ -5,6 +5,7 @@ local override = require "custom.override"
 M.ui = {
   theme = "tokyodark",
   hl_override = require "custom.highlights",
+  theme_toggle = { "tokyodark", "one_light" },
 }
 
 M.plugins = {

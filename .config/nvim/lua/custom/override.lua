@@ -8,6 +8,7 @@ M.treesitter = {
     "css",
     "javascript",
     "json",
+    "toml",
     "markdown",
     "c",
     "bash",
@@ -41,11 +42,22 @@ M.mason = {
     -- c/cpp
     "clangd",
 
+    -- java
+    "jdtls",
+
     -- python
     "pyright",
 
-    -- java
-    "jdtls",
+    -- web dev
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "deno",
+    "emmet-ls",
+    "json-lsp",
+
+    -- markdown
+    "ltex-ls",
   },
 }
 

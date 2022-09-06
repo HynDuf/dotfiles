@@ -174,19 +174,19 @@ super + shift + {F10, F11}
 
 # fullscreen screenshot save
 super + Print
-    maim --hidecursor "/home/$USER/Pictures/$(date).png"
+    ~/bin/screenshot -f
 
 # cropped save
 super + shift + Print
-    maim --hidecursor --select "/home/$USER/Pictures/$(date).png"
+    ~/bin/screenshot -s
 
 # clipboard fullscreen
 super + s
-    maim --hidecursor | xclip -selection clipboard -t image/png
+    ~/bin/screenshot -fc
 
 # clipboard cropped
 super + shift + s
-    maim --hidecursor --select | xclip -selection clipboard -t image/png
+    ~/bin/screenshot -sc
 
 #
 # Utils 
@@ -200,6 +200,9 @@ super + shift + x
 
 super + shift + z
     ~/bin/wifimenu
+
+super + alt + shift + z
+    nm-applet
 
 super + shift + g
     ~/bin/screen-lock

@@ -1,7 +1,10 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+export DENO_INSTALL="/home/hynduf/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 export EDITOR=nvim
 export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
 export PATH="$HOME/.linuxbrew/bin:$PATH"
@@ -19,12 +22,13 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
-alias vi='nvim-padding && nvim'
+alias v='nvim-padding && nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
 alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "Study now"'
 alias r='ranger'
 alias f='fuck'
+alias ss='screenshot'
 setopt extendedglob
 source $(dirname $(gem which colorls))/tab_complete.sh
 

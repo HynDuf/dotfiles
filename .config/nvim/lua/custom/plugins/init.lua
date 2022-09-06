@@ -47,4 +47,13 @@ return {
       require("rust-tools").setup()
     end,
   },
+
+  -- autoclose tags in html, jsx etc
+  ["windwp/nvim-ts-autotag"] = {
+    ft = { "html", "javascriptreact" },
+    after = "nvim-treesitter",
+    config = function()
+      require("custom.plugins.configs.misc").autotag()
+    end,
+  },
 }

@@ -23,13 +23,13 @@ local config = {
     "java.base/java.lang=ALL-UNNAMED",
 
     "-jar",
-    "/home/hynduf/data/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+    "/home/hynduf/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
     "-configuration",
-    "/home/hynduf/data/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux",
+    "/home/hynduf/.local/share/nvim/mason/packages/jdtls/config_linux",
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
     -- Must point to the                      Change to one of `linux`, `win` or `mac`
     -- eclipse.jdt.ls installation            Depending on your system.
