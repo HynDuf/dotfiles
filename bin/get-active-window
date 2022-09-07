@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if xdotool getactivewindow getwindowname >/dev/null 2>&1 ;
+if xdotool getactivewindow getwindowname > /dev/null 2>&1 ;
 then
     xdotool getactivewindow getwindowname
 else 
-    echo "    HynDuf  "
+    echo "  ^  HynDuf  ^  "
 fi
 # notify-send "$(xdotool getactivewindow getwindowname)"

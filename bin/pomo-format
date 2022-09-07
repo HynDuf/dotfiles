@@ -6,12 +6,12 @@ firstCharacter="${output:0:1}"
 remain="${output:1}"
 if [[ $firstCharacter == "?" ]]
 then
-    echo "${remain}  "
+    echo "${remain} Idle"
 elif [[ $firstCharacter == "R" ]]
 then
     echo "${remain}"
 else
-    echo "${remain}  "
+    echo "${remain} Play"
 fi
 
 
