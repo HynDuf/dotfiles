@@ -12,7 +12,6 @@ local function liveReload_xresources()
 end
 
 local M = {}
--- add this table only when you want to disable default keys
 M.general = {
   i = {
     -- move a line up/down
@@ -46,6 +45,11 @@ M.general = {
 
     -- do PackerSync
     ["<leader>ud"] = { ":PackerSync<CR>", "do PackerSync" },
+
+    -- jupyter-ascending
+    ["<leader><leader>c"] = {"o<CR># %%<CR>", "insert code block"},
+    ["<leader><leader>m"] = {"o<CR># %% [md]<CR>", "insert markdown block"},
+    ["<leader><leader>r"] = {"o<CR># %% [raw]<CR>", "insert raw block"},
   },
 
   v = {

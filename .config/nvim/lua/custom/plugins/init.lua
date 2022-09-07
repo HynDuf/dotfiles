@@ -56,4 +56,9 @@ return {
       require("custom.plugins.configs.misc").autotag()
     end,
   },
+
+  ["untitled-ai/jupyter_ascending.vim"] = {
+    ft = { "python" },
+    after = "nvim-treesitter",
+  },
 }

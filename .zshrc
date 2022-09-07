@@ -29,6 +29,15 @@ alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "
 alias r='ranger'
 alias f='fuck'
 alias ss='screenshot'
+
+# Start jupyter notebook and edit something with neovim
+# Usage: juv test.sync.py
+alias juv='jupyter notebook > /dev/null 2>&1 & v'
+
+# Create a paired .py file (in percent format) from a .ipynb file
+# Usage: jug test.sync.ipynb
+alias jug='jupytext --set-formats ipynb,py:percent'
+
 setopt extendedglob
 source $(dirname $(gem which colorls))/tab_complete.sh
 
