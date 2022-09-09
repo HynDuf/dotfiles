@@ -20,7 +20,7 @@ autocmd("InsertLeave", {
   end,
 })
 
--- Dynamic terminal padding with/without nvim
+-- Dynamic terminal padding with/without nvim - credit: siduck
 -- replace stuff from file
 local function sed(from, to, fname)
   vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
@@ -51,5 +51,42 @@ autocmd("VimLeavePre", {
   callback = function()
     sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
     vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
+  end,
+})
+
+-- auto reload buffer when changed
+autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.api.nvim_get_mode() ~= "c" then
+      vim.cmd "checktime"
+    end
+  end,
+})
+
+autocmd("FileChangedShellPost", {
+  callback = function()
+    vim.cmd(([[echohl WarningMsg | echomsg "%s" | echohl None]]):format "File changed on disk. Buffer reloaded.")
+  end,
+})
+
+autocmd("FileType", {
+  pattern = "cpp",
+  callback = function()
+    vim.cmd(string.format "silent !ulimit -s unlimited")
+  end,
+})
+
+autocmd("BufRead", {
+  pattern = { "*.inp", "*.out" },
+  callback = function()
+    vim.cmd(string.format "set nonumber")
+  end,
+})
+
+autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
   end,
 })

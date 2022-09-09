@@ -1,4 +1,20 @@
+local override = require "custom.override"
+
 return {
+  -- Override plugins config (partly)
+  ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
+  ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
+  ["williamboman/mason.nvim"] = override.mason,
+
+  -- Override definition
+  ["L3MON4D3/LuaSnip"] = {
+    wants = "friendly-snippets",
+    after = "nvim-cmp",
+    config = function()
+      require("custom.plugins.configs.misc").luasnip()
+    end,
+  },
+
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function()

@@ -47,9 +47,22 @@ M.general = {
     ["<leader>ud"] = { ":PackerSync<CR>", "do PackerSync" },
 
     -- jupyter-ascending
-    ["<leader><leader>c"] = {"o<CR># %%<CR>", "insert code block"},
-    ["<leader><leader>m"] = {"o<CR># %% [md]<CR>", "insert markdown block"},
-    ["<leader><leader>r"] = {"o<CR># %% [raw]<CR>", "insert raw block"},
+    ["<leader><leader>c"] = { "o<CR># %%<CR>", "insert code block" },
+    ["<leader><leader>m"] = { "o<CR># %% [md]<CR>", "insert markdown block" },
+    ["<leader><leader>r"] = { "o<CR># %% [raw]<CR>", "insert raw block" },
+
+    -- CP
+    ["<F9>"] = {
+      function()
+        vim.cmd(string.format ":w")
+        require("nvterm.terminal").send(
+          "g++ -std=c++14 -DHynDuf " .. vim.fn.expand "%" .. " -o " .. vim.fn.expand "%:r" .. " && " .. vim.fn.expand "%:r"
+        )
+      end,
+      " Compile and run cpp program",
+    },
+
+    ["<C-a>"] = { "ggVG", "Select all" },
   },
 
   v = {
