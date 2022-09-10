@@ -10,6 +10,9 @@ export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+export FZF_DEFAULT_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"
+export FZF_CTRL_T_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"
+export FZF_ALT_C_COMMAND='find . -type d'
 
 ZSH_THEME="pacman"
 
@@ -27,7 +30,7 @@ alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
 alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "Study now"'
 alias r='ranger'
-alias f='fuck'
+alias f='fzf'
 alias ss='screenshot'
 
 # Start jupyter notebook and edit something with neovim
@@ -46,4 +49,3 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval $(thefuck --alias)

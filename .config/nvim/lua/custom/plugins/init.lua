@@ -35,15 +35,20 @@ return {
       require "custom.plugins.configs.null-ls"
     end,
   },
-  ["mfussenegger/nvim-jdtls"] = { after = "nvim-treesitter" },
+
+  ["mfussenegger/nvim-jdtls"] = { after = "nvim-treesitter", ft = "java" },
+
   ["jghauser/mkdir.nvim"] = { after = "nvim-treesitter" },
+
   ["neovim/nvim-lspconfig"] = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.plugins.configs.lspconfig"
     end,
   },
+
   ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
+
   ["iamcco/markdown-preview.nvim"] = {
     after = "nvim-treesitter",
     run = function()
@@ -53,11 +58,15 @@ return {
 
   -- fzf for telescope
   ["nvim-telescope/telescope-fzf-native.nvim"] = {
-    before = "telescope.nvim",
+    after = "telescope.nvim",
     run = "make",
+    config = function()
+      require("telescope").load_extension "fzf"
+    end,
   },
 
   ["simrat39/rust-tools.nvim"] = {
+    ft = "rust",
     after = "nvim-lspconfig",
     config = function()
       require("rust-tools").setup()
@@ -76,5 +85,20 @@ return {
   ["untitled-ai/jupyter_ascending.vim"] = {
     ft = { "python" },
     after = "nvim-treesitter",
+  },
+
+  ["tpope/vim-repeat"] = {
+    event = "CursorMoved",
+  },
+
+  ["ggandor/lightspeed.nvim"] = {
+    after = "vim-repeat",
+  },
+
+  ["kylechui/nvim-surround"] = {
+    after = "lightspeed.nvim",
+    config = function()
+      require("nvim-surround").setup { keymaps = { visual = "gs" } }
+    end,
   },
 }
