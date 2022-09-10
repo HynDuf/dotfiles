@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Array of folders/files to update to Github
-declare -a needUpdate=(".config/BetterDiscord/data/stable/custom.css" ".config/colorls" ".config/eww" ".config/btop" ".config/cava" ".config/nvim/lua/custom" ".config/nvim/ftplugin" ".config/rofi" ".config/bspwm" ".config/dunst" ".config/picom" ".config/sxhkd" ".config/ranger" ".config/gtk-3.0" ".config/polybar" ".config/zathura" ".config/neofetch" ".xinitrc" ".Xresources" ".clang-format" ".prettierrc.json" ".jupyter/custom/custom.js" ".zshrc" ".oh-my-zsh/themes/pacman.zsh-theme" "bin")
+declare -a needUpdate=(".config/BetterDiscord/data/stable/custom.css" ".config/colorls" ".config/eww" ".config/btop" ".config/cava" ".config/nvim/lua/custom" ".config/nvim/ftplugin" ".config/nvim/snippets" ".config/rofi" ".config/bspwm" ".config/dunst" ".config/picom" ".config/sxhkd" ".config/ranger" ".config/gtk-3.0" ".config/polybar" ".config/zathura" ".config/neofetch" ".xinitrc" ".Xresources" ".clang-format" "java-google-style.xml" ".prettierrc.json" ".jupyter/custom/custom.js" ".zshrc" ".oh-my-zsh/themes/pacman.zsh-theme" "bin")
 
 # Local dotfiles folder
 dotfilesPath="$HOME/Projects/dotfiles"
 
 # Iterate through each file/folder and replace to the dotfiles folder
 for f in "${needUpdate[@]}"; do
-    rm -rf "${dotfilesPath}/${f}"
-    mkdir -p "$(dirname "${dotfilesPath}/${f}")" && cp -r  "$HOME/${f}" "${dotfilesPath}/${f}"
+	rm -rf "${dotfilesPath}/${f}"
+	mkdir -p "$(dirname "${dotfilesPath}/${f}")" && cp -r "$HOME/${f}" "${dotfilesPath}/${f}"
 done

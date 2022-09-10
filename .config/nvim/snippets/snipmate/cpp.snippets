@@ -1,0 +1,13 @@
+snippet hyn
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    int32_t main() {
+    #ifdef HynDuf
+        freopen("${1:FILE}.inp", "r", stdin);
+    #else
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+    #endif
+        $0
+    }

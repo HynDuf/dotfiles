@@ -12,6 +12,13 @@ local function liveReload_xresources()
 end
 
 local M = {}
+
+M.disabled = {
+  n = {
+    ["<leader>fm"] = "",
+  },
+}
+
 M.general = {
   i = {
     -- move a line up/down
@@ -56,13 +63,25 @@ M.general = {
       function()
         vim.cmd(string.format ":w")
         require("nvterm.terminal").send(
-          "g++ -std=c++14 -DHynDuf " .. vim.fn.expand "%" .. " -o " .. vim.fn.expand "%:r" .. " && " .. vim.fn.expand "%:r"
+          "g++ -std=c++14 -DHynDuf "
+            .. vim.fn.expand "%"
+            .. " -o "
+            .. vim.fn.expand "%:r"
+            .. " && "
+            .. vim.fn.expand "%:r"
         )
       end,
       " Compile and run cpp program",
     },
 
     ["<C-a>"] = { "ggVG", "Select all" },
+
+    ["<leader>ff"] = {
+      function()
+        vim.lsp.buf.formatting {}
+      end,
+      "lsp formatting",
+    },
   },
 
   v = {

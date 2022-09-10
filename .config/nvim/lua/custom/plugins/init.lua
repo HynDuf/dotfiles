@@ -38,8 +38,6 @@ return {
 
   ["mfussenegger/nvim-jdtls"] = { after = "nvim-treesitter", ft = "java" },
 
-  ["jghauser/mkdir.nvim"] = { after = "nvim-treesitter" },
-
   ["neovim/nvim-lspconfig"] = {
     config = function()
       require "plugins.configs.lspconfig"
@@ -99,6 +97,22 @@ return {
     after = "lightspeed.nvim",
     config = function()
       require("nvim-surround").setup { keymaps = { visual = "gs" } }
+    end,
+  },
+
+  ["mfussenegger/nvim-dap"] = {
+    module = "dap",
+    -- ft = {"cpp"},
+    config = function()
+      require "custom.plugins.configs.dap"
+    end,
+  },
+
+  ["rcarriga/nvim-dap-ui"] = {
+    module = "dapui",
+    -- ft = {"cpp"},
+    config = function()
+      require "custom.plugins.configs.dap.ui"
     end,
   },
 }

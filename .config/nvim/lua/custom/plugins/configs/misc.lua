@@ -34,7 +34,7 @@ M.luasnip = function()
     end,
   }
 
-  require("luasnip.loaders.from_lua").lazy_load { paths = "./snippets/luasnip" }
+  require("luasnip.loaders.from_snipmate").lazy_load { paths = "./snippets/snipmate" }
 
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
