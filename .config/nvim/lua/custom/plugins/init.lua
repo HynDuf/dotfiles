@@ -15,6 +15,21 @@ return {
     end,
   },
 
+  ["hrsh7th/nvim-cmp"] = {
+    after = "friendly-snippets",
+    config = function()
+      require "custom.plugins.configs.cmp"
+    end,
+  },
+
+  ["NvChad/ui"] = {
+    override_options = {
+      statusline = {
+        separator_style = "round",
+      },
+    },
+  },
+
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function()
@@ -48,6 +63,7 @@ return {
   ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
 
   ["iamcco/markdown-preview.nvim"] = {
+    ft = "markdown",
     after = "nvim-treesitter",
     run = function()
       vim.fn["mkdp#util#install"]()
@@ -90,11 +106,11 @@ return {
   },
 
   ["ggandor/lightspeed.nvim"] = {
-    after = "vim-repeat",
+    after = "nvim-treesitter",
   },
 
   ["kylechui/nvim-surround"] = {
-    after = "lightspeed.nvim",
+    after = "neoscroll.nvim",
     config = function()
       require("nvim-surround").setup { keymaps = { visual = "gs" } }
     end,

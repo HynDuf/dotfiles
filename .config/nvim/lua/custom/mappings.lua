@@ -16,23 +16,27 @@ local M = {}
 M.disabled = {
   n = {
     ["<leader>fm"] = "",
+    ["ZZ"] = "",
+    ["<A-j>"] = "",
+    ["<A-k>"] = "",
+  },
+  i = {
+    ["<A-j>"] = "",
+    ["<A-k>"] = "",
   },
 }
 
 M.general = {
   i = {
     -- move a line up/down
-    ["<C-j>"] = { "<Esc>:m .+1<CR>==gi", "  imove line down" },
-    ["<C-k>"] = { "<Esc>:m .-2<CR>==gi", "  imove line up" },
+    ["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "  imove line down" },
+    ["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "  imove line up" },
   },
 
   n = {
     -- move a line up/down
-    ["<C-j>"] = { ":m .+1<CR>==", "  nmove line down" },
-    ["<C-k>"] = { ":m .-2<CR>==", "  nmove line up" },
-
-    -- delete content inside parenthesis block and enter insert mode
-    ["<A-r>"] = { "vibc", "   delete inner block, enter insert mode" },
+    ["<A-j>"] = { ":m .+1<CR>==", "  nmove line down" },
+    ["<A-k>"] = { ":m .-2<CR>==", "  nmove line up" },
 
     -- move to the next openning instance ([{<
     ["]]"] = {
@@ -82,6 +86,8 @@ M.general = {
       end,
       "lsp formatting",
     },
+
+    ["."] = { "<Plug>Lightspeed_;_ft", "Repeat lightspeed" },
   },
 
   v = {

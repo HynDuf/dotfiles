@@ -79,7 +79,7 @@ autocmd("FileType", {
 autocmd("BufRead", {
   pattern = { "*.inp", "*.out" },
   callback = function()
-    vim.cmd(string.format "set nonumber")
+    vim.cmd(string.format "setlocal nonumber")
   end,
 })
 
@@ -90,3 +90,37 @@ autocmd("FileType", {
     vim.opt.shiftwidth = 2
   end,
 })
+
+-- setting `;` (forward) and `,` (backward) to repeat the last Lightspeed motion (s/x or f/t):
+vim.g.lightspeed_last_motion = ""
+
+local last_motion = vim.api.nvim_create_augroup("LightSpeedLastMotion", { clear = true })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LightSpeedSxEnter",
+  group = last_motion,
+  callback = function()
+    vim.g.lightspeed_last_motion = "sx"
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LightSpeedftEnter",
+  group = last_motion,
+  callback = function()
+    vim.g.lightspeed_last_motion = "ft"
+  end,
+})
+
+vim.keymap.set(
+  "n",
+  ";",
+  [[g:lightspeed_last_motion == 'sx' ? "<Plug>Lightspeed_;_sx" : "<Plug>Lightspeed_;_ft"]],
+  { expr = true }
+)
+vim.keymap.set(
+  "n",
+  ",",
+  [[g:lightspeed_last_motion == 'sx' ? "<Plug>Lightspeed_,_sx" : "<Plug>Lightspeed_,_ft"]],
+  { expr = true }
+)
