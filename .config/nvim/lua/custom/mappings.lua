@@ -64,11 +64,11 @@ M.general = {
         vim.cmd(string.format ":w")
         require("nvterm.terminal").send(
           "g++ -std=c++14 -DHynDuf "
-            .. vim.fn.expand "%"
+            .. vim.fn.expand "%:p"
             .. " -o "
-            .. vim.fn.expand "%:r"
+            .. vim.fn.expand "%:p:r"
             .. " && "
-            .. vim.fn.expand "%:r"
+            .. vim.fn.expand "%:p:r"
         )
       end,
       " Compile and run cpp program",
