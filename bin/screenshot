@@ -1,19 +1,12 @@
 #!/bin/sh
 
-if [[ "$1" == "-f" ]]; then
-    maim --hidecursor "$HOME/Pictures/$(date).png"
-elif [[ "$1" == "-s" ]]; then
-    maim --hidecursor --select "$HOME/Pictures/$(date).png"
-elif [[ "$1" == "-fc" ]]; then
-    maim --hidecursor | xclip -selection clipboard -t image/png
-elif [[ "$1" == "-sc" ]]; then
-    maim --hidecursor --select | xclip -selection clipboard -t image/png
-elif [[ "$1" == "-fd" ]]; then
-    maim -d "$2" --hidecursor "$HOME/Pictures/$(date).png"
-elif [[ "$1" == "-sd" ]]; then
-    maim -d "$2" --hidecursor --select "$HOME/Pictures/$(date).png"
-elif [[ "$1" == "-fcd" ]]; then
-    maim -d "$2" --hidecursor | xclip -selection clipboard -t image/png
-elif [[ "$1" == "-scd" ]]; then
-    maim -d "$2" --hidecursor --select | xclip -selection clipboard -t image/png
-fi
+case $1 in
+    "-f") maim --hidecursor "$HOME/Pictures/$(date).png";;
+    "-s") maim --hidecursor --select "$HOME/Pictures/$(date).png";;
+    "-fc") maim --hidecursor | xclip -selection clipboard -t image/png;;
+    "-sc") maim --hidecursor --select | xclip -selection clipboard -t image/png;;
+    "-fd") maim -d "$2" --hidecursor "$HOME/Pictures/$(date).png";;
+    "-sd") maim -d "$2" --hidecursor --select "$HOME/Pictures/$(date).png";;
+    "-fcd") maim -d "$2" --hidecursor | xclip -selection clipboard -t image/png;;
+    "-scd") maim -d "$2" --hidecursor --select | xclip -selection clipboard -t image/png;;
+esac
