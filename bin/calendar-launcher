@@ -8,19 +8,15 @@ run() {
 }
 
 # Run eww daemon if not running
-if [[ ! $(pidof eww) ]]; then
-	eww daemon
-fi
+pidof eww || eww daemon
 # Open widgets
-if [[ ! -f "$LOCK_FILE_CALENDAR" ]]; then
+if [ ! -f "$LOCK_FILE_CALENDAR" ]; then
     eww close calendar -c ~/.config/eww/
     touch "$LOCK_FILE_CALENDAR"
     run
-elif [[ -f "$LOCK_FILE_CALENDAR" ]]; then
+elif [ -f "$LOCK_FILE_CALENDAR" ]; then
     eww close calendar -c ~/.config/eww/
     rm "$LOCK_FILE_CALENDAR"
 fi
 }
 calendarl
-
-
