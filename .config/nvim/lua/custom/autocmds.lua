@@ -97,7 +97,7 @@ vim.g.lightspeed_last_motion = ""
 local last_motion = vim.api.nvim_create_augroup("LightSpeedLastMotion", { clear = true })
 
 vim.api.nvim_create_autocmd("User", {
-  pattern = "LightSpeedSxEnter",
+  pattern = "LightspeedSxEnter",
   group = last_motion,
   callback = function()
     vim.g.lightspeed_last_motion = "sx"
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 vim.api.nvim_create_autocmd("User", {
-  pattern = "LightSpeedftEnter",
+  pattern = "LightspeedFtEnter",
   group = last_motion,
   callback = function()
     vim.g.lightspeed_last_motion = "ft"

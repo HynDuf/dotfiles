@@ -51,7 +51,7 @@ return {
     end,
   },
 
-  ["mfussenegger/nvim-jdtls"] = { after = "nvim-treesitter", ft = "java" },
+  ["mfussenegger/nvim-jdtls"] = { opt = true },
 
   ["neovim/nvim-lspconfig"] = {
     config = function()

@@ -1,6 +1,13 @@
+if not vim.g.loaded_jdtls then
+  vim.g.loaded_jdtls = true
+  require("packer").loader "nvim-jdtls"
+end
+
 local jdtls = require "jdtls"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = "/home/hynduf/.cache/nvim-jdtls/workspace/" .. project_name
+local extendedClientCapabilities = jdtls.extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
@@ -52,16 +59,11 @@ local config = {
     java = { signatureHelp = { enabled = true } },
   },
 
-  -- -- Language server `initializationOptions`
-  -- -- You need to extend the `bundles` with paths to jar files
-  -- -- if you want to use additional eclipse.jdt.ls plugins.
-  -- --
-  -- -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-  -- --
-  -- -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-  -- init_options = {
-  --   bundles = {},
-  -- },
+  init_options = {
+    bundles = {},
+    extendedClientCapabilities = extendedClientCapabilities,
+  },
+
   on_attach = function(client, bufnr)
     jdtls.setup.add_commands()
     local function buf_set_keymap(...)
@@ -69,18 +71,19 @@ local config = {
     end
 
     -- Mappings
+    require("core.utils").load_mappings("lspconfig", { buffer = bufnr })
     local opts = { noremap = true, silent = true }
-    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>ra", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-    buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>ra", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    -- buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    -- buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
     -- Java specific
     buf_set_keymap("n", "<leader>di", "<Cmd>lua require'jdtls'.organize_imports()<CR>", opts)
