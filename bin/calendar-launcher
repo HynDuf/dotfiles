@@ -19,4 +19,4 @@ elif [ -f "$LOCK_FILE_CALENDAR" ]; then
     rm "$LOCK_FILE_CALENDAR"
 fi
 }
-calendarl
+calendarl >/dev/null 2>&1
