@@ -17,12 +17,6 @@ M.disabled = {
   n = {
     ["<leader>fm"] = "",
     ["ZZ"] = "",
-    ["<A-j>"] = "",
-    ["<A-k>"] = "",
-  },
-  i = {
-    ["<A-j>"] = "",
-    ["<A-k>"] = "",
   },
 }
 
@@ -86,14 +80,12 @@ M.general = {
       end,
       "lsp formatting",
     },
-
-    ["."] = { "<Plug>Lightspeed_;_ft", "Repeat lightspeed" },
   },
 
   v = {
     -- move selected lines up/down
-    ["<C-j>"] = { ":m '>+1<CR>gv=gv", "  vmove lines down" },
-    ["<C-k>"] = { ":m '<-2<CR>gv=gv", "  vmove lines up" },
+    ["<A-j>"] = { ":m '>+1<CR>gv=gv", "  vmove lines down" },
+    ["<A-k>"] = { ":m '<-2<CR>gv=gv", "  vmove lines up" },
   },
 }
 

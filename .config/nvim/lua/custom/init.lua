@@ -6,6 +6,6 @@ vim.keymap.set("x", "p", function()
 end, { remap = false, expr = true })
 
 vim.opt.clipboard = "unnamedplus"
-vim.opt.tabstop = 4
+vim.opt.clipboard = 4
 vim.opt.shiftwidth = 4
 

@@ -11,12 +11,18 @@ export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export FZF_DEFAULT_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"
+export FZF_DEFAULT_OPTS='
+  --color fg:#a9b1d6,bg:#11111b
+  --color bg+:#2f263d,fg+:#a9b1d6,hl:#7aa2f7,hl+:#ff9e64,gutter:#3a404c
+  --color pointer:#373d49,prompt:#ff7a93,info:#606672,spinner:#9ece6a
+  --height 15'
 export FZF_CTRL_T_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"
 export FZF_ALT_C_COMMAND='find . -type d'
 
 ZSH_THEME="pacman"
 
 plugins=(git
+        fzf-tab
         archlinux
         zsh-syntax-highlighting
         colorize        
