@@ -2,7 +2,6 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 xset r rate 350 20 &
-setxkbmap -option caps:swapescape &
 $HOME/.config/polybar/launch.sh &
 dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
@@ -10,13 +9,13 @@ feh --bg-fill ~/Pictures/hollow-knight.png &
 xrdb merge ~/.Xresources &
 ibus-daemon -drxR &
 ~/bin/battery-alert &
+setxkbmap -option caps:swapescape &
 
 bspc monitor -d 1 2 3 4 5 6 7
 
 
 bspc config border_width         0
-bspc config window_gap          17
-# bspc config border_radius	15
+bspc config window_gap          18
 
 bspc config focused_border_color \#c0caf5
 
