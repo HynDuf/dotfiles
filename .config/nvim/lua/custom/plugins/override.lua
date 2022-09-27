@@ -1,6 +1,14 @@
 -- overriding default plugin configs!
 local M = {}
 
+M.ui = {
+  override_options = {
+    statusline = {
+      separator_style = "round",
+    },
+  },
+}
+
 M.treesitter = {
   override_options = {
     ensure_installed = {

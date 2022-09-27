@@ -15,7 +15,6 @@ local M = {}
 
 M.disabled = {
   n = {
-    ["<leader>fm"] = "",
     ["ZZ"] = "",
   },
 }
@@ -52,9 +51,11 @@ M.general = {
     ["<leader>ud"] = { ":PackerSync<CR>", "do PackerSync" },
 
     -- jupyter-ascending
-    ["<leader><leader>c"] = { "o<CR># %%<CR>", "insert code block" },
-    ["<leader><leader>m"] = { "o<CR># %% [md]<CR>", "insert markdown block" },
-    ["<leader><leader>r"] = { "o<CR># %% [raw]<CR>", "insert raw block" },
+    ["<leader>jc"] = { "cc# %%<CR>", "insert code block" },
+    ["<leader>jm"] = { "cc# %% [md]<CR>", "insert markdown block" },
+    ["<leader>jr"] = { "cc# %% [raw]<CR>", "insert raw block" },
+    ["<leader>jx"] = { "<Plug>JupyterExecute", "run a block of code of the jupyter notebook" },
+    ["<leader>ja"] = { "<Plug>JupyterExecuteAll", "run a block of code of the jupyter notebook" },
 
     -- CP
     ["<F9>"] = {
@@ -73,13 +74,6 @@ M.general = {
     },
 
     ["<C-a>"] = { "ggVG", "Select all" },
-
-    ["<leader>ff"] = {
-      function()
-        vim.lsp.buf.formatting {}
-      end,
-      "lsp formatting",
-    },
   },
 
   v = {

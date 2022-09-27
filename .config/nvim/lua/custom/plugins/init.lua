@@ -1,11 +1,6 @@
-local override = require "custom.override"
+local override = require "custom.plugins.override"
 
 return {
-  -- Override plugins config (partly)
-  ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
-  ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
-  ["williamboman/mason.nvim"] = override.mason,
-
   -- Override definition
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
@@ -14,22 +9,12 @@ return {
       require("custom.plugins.configs.misc").luasnip()
     end,
   },
-
   ["hrsh7th/nvim-cmp"] = {
     after = "friendly-snippets",
     config = function()
       require "custom.plugins.configs.cmp"
     end,
   },
-
-  ["NvChad/ui"] = {
-    override_options = {
-      statusline = {
-        separator_style = "round",
-      },
-    },
-  },
-
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function()
@@ -37,6 +22,13 @@ return {
     end,
   },
 
+  -- Override plugins config (partly)
+  ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
+  ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
+  ["williamboman/mason.nvim"] = override.mason,
+  ["NvChad/ui"] = override.ui,
+
+  -- Custom plugins
   ["karb94/neoscroll.nvim"] = {
     event = "CursorMoved",
     config = function()
@@ -76,6 +68,13 @@ return {
     run = "make",
     config = function()
       require("telescope").load_extension "fzf"
+    end,
+  },
+
+  ["nvim-telescope/telescope-media-files.nvim"] = {
+    after = "telescope.nvim",
+    config = function()
+      require("telescope").load_extension "media_files"
     end,
   },
 
