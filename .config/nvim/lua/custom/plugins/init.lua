@@ -26,7 +26,7 @@ return {
   ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
   ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
   ["williamboman/mason.nvim"] = override.mason,
-  ["NvChad/ui"] = override.ui,
+  ["NvChad/ui"] = override.nvchad_ui,
 
   -- Custom plugins
   ["karb94/neoscroll.nvim"] = {
@@ -128,6 +128,15 @@ return {
     -- ft = {"cpp"},
     config = function()
       require "custom.plugins.configs.dap.ui"
+    end,
+  },
+
+  ["SmiteshP/nvim-navic"] = {
+    module = "nvim-navic",
+    config = function()
+      require("nvim-navic").setup {
+        highlight = true,
+      }
     end,
   },
 }

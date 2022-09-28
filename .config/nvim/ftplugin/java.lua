@@ -75,6 +75,8 @@ local config = {
     buf_set_keymap("v", "<leader>de", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
     buf_set_keymap("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
     buf_set_keymap("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
+
+    require("nvim-navic").attach(client, bufnr)
   end,
 }
 -- This starts a new client & server,

@@ -1,10 +1,34 @@
 -- overriding default plugin configs!
 local M = {}
 
-M.ui = {
+M.statusline_overrides = function()
+  local st_modules = require "nvchad_ui.statusline.modules"
+
+  local function nvim_navic()
+    local navic = require "nvim-navic"
+
+    if navic.is_available() then
+      return navic.get_location()
+    else
+      return " "
+    end
+  end
+  -- override lsp_progress statusline module
+  return {
+    LSP_progress = function()
+      if rawget(vim, "lsp") then
+        return st_modules.LSP_progress() .. "%#Nvim_navic#" .. nvim_navic()
+      else
+        return ""
+      end
+    end,
+  }
+end
+
+M.nvchad_ui = {
   override_options = {
     statusline = {
-      separator_style = "round",
+      overriden_modules = M.statusline_overrides,
     },
   },
 }
