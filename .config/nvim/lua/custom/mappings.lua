@@ -51,9 +51,9 @@ M.general = {
     ["<leader>ud"] = { ":PackerSync<CR>", "do PackerSync" },
 
     -- jupyter-ascending
-    ["<leader>jc"] = { "cc# %%<CR>", "insert code block" },
-    ["<leader>jm"] = { "cc# %% [md]<CR>", "insert markdown block" },
-    ["<leader>jr"] = { "cc# %% [raw]<CR>", "insert raw block" },
+    ["<leader>jc"] = { "0C# %%<CR>", "insert code block" },
+    ["<leader>jm"] = { "0C# %% [md]<CR>", "insert markdown block" },
+    ["<leader>jr"] = { "0C# %% [raw]<CR>", "insert raw block" },
     ["<leader>jx"] = { "<Plug>JupyterExecute", "run a block of code of the jupyter notebook" },
     ["<leader>ja"] = { "<Plug>JupyterExecuteAll", "run a block of code of the jupyter notebook" },
 
@@ -77,7 +77,7 @@ M.general = {
   },
 
   v = {
-    -- move selected lines up/down
+    -- hove selected lines up/down
     ["<A-j>"] = { ":m '>+1<CR>gv=gv", "  vmove lines down" },
     ["<A-k>"] = { ":m '<-2<CR>gv=gv", "  vmove lines up" },
   },

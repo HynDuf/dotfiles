@@ -79,7 +79,7 @@ autocmd("FileType", {
 autocmd("BufRead", {
   pattern = { "*.inp", "*.out" },
   callback = function()
-    vim.cmd(string.format "setlocal nonumber")
+    vim.cmd(string.format "setlocal nornu")
   end,
 })
 
@@ -112,15 +112,9 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-vim.keymap.set(
-  "n",
-  ";",
-  [[g:lightspeed_last_motion == 'sx' ? "<Plug>Lightspeed_;_sx" : "<Plug>Lightspeed_;_ft"]],
-  { expr = true }
-)
-vim.keymap.set(
-  "n",
-  ",",
-  [[g:lightspeed_last_motion == 'sx' ? "<Plug>Lightspeed_,_sx" : "<Plug>Lightspeed_,_ft"]],
-  { expr = true }
-)
+vim.keymap.set("n", ";", function()
+  return (vim.g.lightspeed_last_motion == "sx" and "<Plug>Lightspeed_;_sx" or "<Plug>Lightspeed_;_ft")
+end, { expr = true })
+vim.keymap.set("n", ",", function()
+  return (vim.g.lightspeed_last_motion == "sx" and "<Plug>Lightspeed_,_sx" or "<Plug>Lightspeed_,_ft")
+end, { expr = true })

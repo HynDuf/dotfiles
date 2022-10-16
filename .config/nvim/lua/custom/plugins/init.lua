@@ -139,4 +139,6 @@ return {
       }
     end,
   },
+
+  ["andymass/vim-matchup"] = {},
 }
