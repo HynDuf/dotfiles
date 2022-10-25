@@ -1,10 +1,21 @@
 snippet hyn
     #include <bits/stdc++.h>
+
     using namespace std;
+    #define DB(X) { cout << #X << " = " << (X) << '\n'; }
+    #define DB1(A, _) { cout << #A << "[" << _ << "] = " << (A[_]) << '\n'; }
+    #define DB2(A, _, __) { cout << #A << "[" << _ << "][" << __ << "] = " << (A[_][__]) << '\n'; }
+    #define DB3(A, _, __, ___) { cout << #A << "[" << _ << "][" << __ << "][" << ___ << "] = " << (A[_][__][___]) << '\n'; }
+    #define PR(A, l, r) { cout << '\n'; FOR(_, l, r) DB1(A, _); cout << '\n';}
+    #define sz(x) ((int) (x).size())
+    #define all(v) (v).begin(), (v).end()
+    #define fi first
+    #define se second
 
     int32_t main() {
     #ifdef HynDuf
         freopen("${1:FILE}.inp", "r", stdin);
+        freopen("${2:FILE}.out", "w", stdout);
     #else
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);

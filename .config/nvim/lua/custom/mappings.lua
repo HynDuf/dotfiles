@@ -27,6 +27,9 @@ M.general = {
   },
 
   n = {
+    -- new file vertical split
+    ["<C-w>b"] = { ":vnew<CR>", "new file vertical split" },
+    ["<C-w><C-b>"] = { ":vnew<CR>", "new file vertical split" },
     -- move a line up/down
     ["<A-j>"] = { ":m .+1<CR>==", "  nmove line down" },
     ["<A-k>"] = { ":m .-2<CR>==", "  nmove line up" },

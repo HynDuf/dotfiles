@@ -1,37 +1,37 @@
 -- overriding default plugin configs!
 local M = {}
 
-M.statusline_overrides = function()
-  local st_modules = require "nvchad_ui.statusline.modules"
-
-  local function nvim_navic()
-    local navic = require "nvim-navic"
-
-    if navic.is_available() then
-      return navic.get_location()
-    else
-      return " "
-    end
-  end
-  -- override lsp_progress statusline module
-  return {
-    LSP_progress = function()
-      if rawget(vim, "lsp") then
-        return st_modules.LSP_progress() .. "%#Nvim_navic#" .. nvim_navic()
-      else
-        return ""
-      end
-    end,
-  }
-end
-
-M.nvchad_ui = {
-  override_options = {
-    statusline = {
-      overriden_modules = M.statusline_overrides,
-    },
-  },
-}
+-- M.statusline_overrides = function()
+--   local st_modules = require "nvchad_ui.statusline.modules"
+--
+--   local function nvim_navic()
+--     local navic = require "nvim-navic"
+--
+--     if navic.is_available() then
+--       return navic.get_location()
+--     else
+--       return " "
+--     end
+--   end
+--   -- override lsp_progress statusline module
+--   return {
+--     LSP_progress = function()
+--       if rawget(vim, "lsp") then
+--         return st_modules.LSP_progress() .. "%#Nvim_navic#" .. nvim_navic()
+--       else
+--         return ""
+--       end
+--     end,
+--   }
+-- end
+--
+-- M.nvchad_ui = {
+--   override_options = {
+--     statusline = {
+--       overriden_modules = M.statusline_overrides,
+--     },
+--   },
+-- }
 
 M.treesitter = {
   override_options = {
@@ -54,6 +54,11 @@ M.treesitter = {
       enable = true,
       extended_mode = true,
       max_file_lines = nil,
+    },
+    matchup = {
+      enable = true,
+      include_match_words = true,
+      disable_virtual_text = true,
     },
   },
 }

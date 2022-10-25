@@ -2,6 +2,7 @@ local M = {}
 M.override = {
   -- Visual background color override
   Visual = { bg = "#2f263d" },
+  CursorLineNr = { fg = "#7aa2f7" },
 }
 M.add = {
   NavicText = {

@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
     require("nvchad_ui.signature").setup(client)
   end
-  require("nvim-navic").attach(client, bufnr)
+  -- require("nvim-navic").attach(client, bufnr)
 end
 
 local capabilities = require("plugins.configs.lspconfig").capabilities
@@ -21,10 +21,10 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-lspconfig.clangd.setup {
-  on_attach = on_attach,
-  capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
-}
+-- lspconfig.clangd.setup {
+--   on_attach = on_attach,
+--   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
+-- }
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,

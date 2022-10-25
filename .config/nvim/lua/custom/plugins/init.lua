@@ -52,8 +52,6 @@ return {
     end,
   },
 
-  ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
-
   ["iamcco/markdown-preview.nvim"] = {
     ft = "markdown",
     after = "nvim-treesitter",
@@ -115,22 +113,6 @@ return {
     end,
   },
 
-  ["mfussenegger/nvim-dap"] = {
-    module = "dap",
-    -- ft = {"cpp"},
-    config = function()
-      require "custom.plugins.configs.dap"
-    end,
-  },
-
-  ["rcarriga/nvim-dap-ui"] = {
-    module = "dapui",
-    -- ft = {"cpp"},
-    config = function()
-      require "custom.plugins.configs.dap.ui"
-    end,
-  },
-
   ["SmiteshP/nvim-navic"] = {
     module = "nvim-navic",
     config = function()
@@ -140,5 +122,9 @@ return {
     end,
   },
 
-  ["andymass/vim-matchup"] = {},
+  ["andymass/vim-matchup"] = {
+    config = function()
+        vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+    end,
+    },
 }
