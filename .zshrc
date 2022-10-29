@@ -31,7 +31,7 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
-alias v='nvim-padding && nvim'
+alias v='nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
 alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "Study now"'
@@ -54,4 +54,5 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/z/z.sh
 

@@ -50,21 +50,17 @@ M.treesitter = {
       "python",
       "java",
     },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-    },
     matchup = {
       enable = true,
-      include_match_words = true,
-      disable_virtual_text = true,
     },
   },
 }
 
 M.nvimtree = {
   override_options = {
+    filters = {
+      dotfiles = true,
+    },
     git = { enable = true, ignore = false },
     renderer = { highlight_git = true, icons = { show = { git = true } } },
   },

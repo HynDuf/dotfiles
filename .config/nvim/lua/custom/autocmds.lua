@@ -26,22 +26,20 @@ local function sed(from, to, fname)
   vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
 end
 
--- reloads xresources for current focused window only
+-- reloads kitty for current focused window only
 local function liveReload_xresources()
   vim.cmd(
-    string.format "silent !xrdb merge ~/.Xresources && kill -USR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
+    string.format "silent !kill -s SIGUSR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
   )
 end
 
 autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
-    sed("st.borderpx: 25", "st.borderpx: 0", "~/.Xresources")
+    sed("window_margin_width 20", "window_margin_width 0", "~/.config/kitty/kitty.conf")
     liveReload_xresources()
-
     -- revert xresources change but dont reload it
-    sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
-    vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
+    sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
     vim.api.nvim_del_autocmd(ctx.id)
   end,
 })
@@ -49,8 +47,8 @@ autocmd({ "BufNewFile", "BufRead" }, {
 -- add terminal padding
 autocmd("VimLeavePre", {
   callback = function()
-    sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
-    vim.cmd(string.format "silent !xrdb merge ~/.Xresources")
+    sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
+    liveReload_xresources()
   end,
 })
 
