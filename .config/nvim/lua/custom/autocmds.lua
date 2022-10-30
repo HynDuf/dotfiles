@@ -2,14 +2,14 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Ibus typing
 local ibus_cur = "xkb:us::eng"
 autocmd("InsertEnter", {
-  pattern = { "*.tex", "*.md" },
+  pattern = { "*.tex", "*.md", "*.txt" },
   callback = function()
     os.execute("ibus engine " .. ibus_cur)
   end,
 })
 
 autocmd("InsertLeave", {
-  pattern = { "*.tex", "*.md" },
+  pattern = { "*.tex", "*.md", "*.txt" },
   callback = function()
     local f = io.popen("ibus engine", "r")
     if f then
@@ -27,7 +27,7 @@ local function sed(from, to, fname)
 end
 
 -- reloads kitty for current focused window only
-local function liveReload_xresources()
+local function liveReloadKitty()
   vim.cmd(
     string.format "silent !kill -s SIGUSR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
   )
@@ -37,8 +37,8 @@ autocmd({ "BufNewFile", "BufRead" }, {
   callback = function(ctx)
     -- remove terminal padding
     sed("window_margin_width 20", "window_margin_width 0", "~/.config/kitty/kitty.conf")
-    liveReload_xresources()
-    -- revert xresources change but dont reload it
+    liveReloadKitty()
+    -- revert kitty margin width change but dont reload it
     sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
     vim.api.nvim_del_autocmd(ctx.id)
   end,
@@ -48,7 +48,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd("VimLeavePre", {
   callback = function()
     sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
-    liveReload_xresources()
+    liveReloadKitty()
   end,
 })
 
@@ -64,13 +64,6 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 autocmd("FileChangedShellPost", {
   callback = function()
     vim.cmd(([[echohl WarningMsg | echomsg "%s" | echohl None]]):format "File changed on disk. Buffer reloaded.")
-  end,
-})
-
-autocmd("FileType", {
-  pattern = "cpp",
-  callback = function()
-    vim.cmd(string.format "silent !ulimit -s unlimited")
   end,
 })
 

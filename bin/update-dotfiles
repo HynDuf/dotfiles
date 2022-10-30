@@ -11,3 +11,7 @@ for f in "${needUpdate[@]}"; do
 	rm -rf "${dotfilesPath}/${f}"
 	mkdir -p "$(dirname "${dotfilesPath}/${f}")" && cp -r "$HOME/${f}" "${dotfilesPath}/${f}"
 done
+
+
+# List all installed packages
+yay -Qeqa > "${dotfilesPath}/packages.txt"

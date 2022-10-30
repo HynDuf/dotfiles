@@ -56,3 +56,5 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /usr/share/z/z.sh
 
+ulimit -s unlimited
+
