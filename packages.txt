@@ -59,6 +59,7 @@ jre-openjdk
 kitty
 libconfig
 libev
+libreoffice-fresh
 libtool
 libva-mesa-driver
 libva-utils
@@ -133,6 +134,7 @@ shellcheck
 simplescreenrecorder
 spicetify-cli
 spotify
+sshpass
 sudo
 sxhkd
 teams

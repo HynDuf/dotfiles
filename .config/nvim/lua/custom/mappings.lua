@@ -1,16 +1,3 @@
--- Dynamic terminal padding with/without nvim
--- replace stuff from file
-local function sed(from, to, fname)
-  vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
-end
-
--- reloads xresources for current focused window only
-local function liveReload_xresources()
-  vim.cmd(
-    string.format "silent !xrdb merge ~/.Xresources && kill -USR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
-  )
-end
-
 local M = {}
 
 M.disabled = {
@@ -43,8 +30,6 @@ M.general = {
     -- :q and readding the border in st
     ["<C-z>"] = {
       function()
-        sed("st.borderpx: 0", "st.borderpx: 25", "~/.Xresources")
-        liveReload_xresources()
         vim.cmd(string.format "silent :qa")
       end,
       "   close and add st border",
