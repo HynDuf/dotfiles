@@ -121,6 +121,7 @@ pulseaudio
 pulseaudio-bluetooth
 ranger
 rar
+redshift-git
 ripgrep
 rofi
 rofi-calc

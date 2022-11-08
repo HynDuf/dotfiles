@@ -28,9 +28,7 @@ end
 
 -- reloads kitty for current focused window only
 local function liveReloadKitty()
-  vim.cmd(
-    string.format "silent !kill -s SIGUSR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
-  )
+  vim.cmd(([[silent !kill -s SIGUSR1 %s]]):format(vim.g.window_id))
 end
 
 autocmd({ "BufNewFile", "BufRead" }, {
@@ -83,8 +81,6 @@ autocmd("FileType", {
 })
 
 -- setting `;` (forward) and `,` (backward) to repeat the last Lightspeed motion (s/x or f/t):
-vim.g.lightspeed_last_motion = ""
-
 local last_motion = vim.api.nvim_create_augroup("LightSpeedLastMotion", { clear = true })
 
 vim.api.nvim_create_autocmd("User", {
