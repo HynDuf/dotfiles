@@ -1,6 +1,4 @@
 #! /bin/sh
-killall -q battery-alert
-killall -q redshift
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
@@ -10,10 +8,10 @@ dunst -conf $HOME/.config/dunst/dunstrc &
 picom &
 feh --bg-fill ~/Pictures/hollow-knight.png &
 ibus-daemon -drxR &
-~/bin/battery-alert &
 nm-applet &
 setxkbmap -option caps:swapescape &
-redshift -l "21.1:105.50" -t 6500:3800 &
+pgrep -x battery-alert > /dev/null || ~/bin/battery-alert &
+pidof redshift || redshift -l "21.1:105.50" -t 6500:3800 &
 
 bspc monitor -d 1 2 3 4 5 6 7
 bspc config border_width         1
