@@ -50,7 +50,7 @@ Here are some information about my setup:
 
 - Window Manager: [`bspwm`](https://github.com/baskerville/bspwm)
 - Compositor: [`pijulius/picom`](https://github.com/pijulius/picom)
-- Terminal: [`st`](https://github.com/siduck/st)
+- Terminal: [`kitty`](https://github.com/kovidgoyal/kitty)
 - Shell: [`zsh`](https://www.zsh.org/)
 - Editor: [`neovim`](https://github.com/neovim/neovim) ([`nvchad`](https://nvchad.github.io/))
 - Panel: [`polybar`](https://github.com/polybar/polybar)
@@ -76,10 +76,10 @@ Here are some details about programs in the screenshots:
 - **File manager**: [`ranger`](https://github.com/ranger/ranger) with [`ranger devicons`](https://github.com/alexanderjeurissen/ranger_devicons) and [`ueberzug`](https://github.com/seebye/ueberzug) image previewer
 - **Pipes script**: [`pipes.sh`](https://github.com/pipeseroni/pipes.sh)
 - **Notification center**: [`script`](https://github.com/HynDuf7/dotfiles/blob/main/bin/noticenter) combine [`rofi configuration`](https://github.com/HynDuf7/dotfiles/blob/main/.config/rofi/themes/noticenter.rasi) with [`dunst notification logger`](https://github.com/HynDuf7/dotfiles/blob/main/bin/dunst-logger) (~~copied~~ inspired by [Barbaross/Nebula dotfiles](https://gitlab.com/Barbaross/Nebula))
-- **Discord theme**: [`tokyonight custom css`](https://github.com/HynDuf7/dotfiles/tree/main/.config/BetterDiscord/data/stable/custom.css) (taken from somewhere)
+- **Discord theme**: [`tokyonight theme`](https://betterdiscord.app/theme/Tokyo%20Night) (taken from BetterDiscord theme store)
 - **Firefox**: [`catppuccin theme`](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-mocha-mauve/) with [`Github`](https://github.com/catppuccin/github) and [`Youtube`](https://github.com/catppuccin/youtube) Stylus
-- **Note-taking**: [`obsidian`](https://obsidian.md/) with Obsidianite theme
-- **Flashcards study**: [`anki`](https://apps.ankiweb.net/) with some additional plugins
+- **Note-taking**: [`obsidian`](https://obsidian.md/) with Catppuccin theme
+- **Flashcards study**: [`anki`](https://apps.ankiweb.net/) with Catppuccin theme and some additional plugins
 - **Text editor**: [`neovim`](https://github.com/neovim/neovim) with [`nvchad`](https://nvchad.github.io/) ([`custom folder`](https://github.com/HynDuf7/dotfiles/tree/main/.config/nvim/lua/custom))
 - **PDF reader**: [`zathura`](https://github.com/pwmt/zathura) with [`catppuccin theme`](https://github.com/catppuccin/zathura) (and some color configs)
 - **Spotify theme**: [`spicetify`](https://spicetify.app/docs/getting-started) with [`catppuccin theme`](https://github.com/catppuccin/spicetify)
@@ -367,6 +367,8 @@ From those, you can imply that the command to run the rofi utils are (Bind it to
 
 ### <samp>Picom</samp>
 
+:exclamation: I have changed to default `picom` (install through normal `yay -S picom`) for calmer experience. If you still want fancy animations, please proceed. 
+
 This is a `picom` fork with splendid animations, so we have to build it on our own.
 
 First install all the dependencies required to build the compositor:
@@ -396,6 +398,8 @@ Then enable `picom` start-up when starting `bspwm` by adding this to your `~/.co
 ```sh
 picom &
 ```
+
+:exclamation: Set your bspwm border to `0` for better experience with this `picom` fork.
 
 <h2></h2>
 

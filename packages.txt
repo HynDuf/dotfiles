@@ -57,6 +57,7 @@ imagemagick
 jdk-openjdk
 jre-openjdk
 kitty
+lib32-glibc
 libconfig
 libev
 libreoffice-fresh
@@ -66,6 +67,7 @@ libva-utils
 linux
 linux-firmware
 linux-headers
+lld
 lsof
 lxappearance
 m4
@@ -82,7 +84,6 @@ nano
 nbfc-linux
 neofetch
 neovim
-nerd-fonts-fira-code
 nerd-fonts-jetbrains-mono
 nerd-fonts-sarasa-mono
 network-manager-applet
@@ -151,6 +152,7 @@ ttf-croscore
 ttf-dejavu
 ttf-droid
 ttf-fira-code
+ttf-firacode-nerd
 ttf-font-awesome
 ttf-font-awesome-4
 ttf-iosevka-nerd
