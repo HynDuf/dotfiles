@@ -5,6 +5,7 @@ Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 Xcursor.size: 32
+Xcursor.theme: Catppuccin-Mocha-Blue-Cursors
 
 ! window padding
 st.borderpx: 25

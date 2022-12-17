@@ -1,0 +1,12 @@
+#!/bin/bash
+cssPath="/home/hynduf/.mozilla/firefox/d1shenjt.default-release/chrome/userChrome-hover.css"
+if grep -q "hereOn" "$cssPath"; then
+    sed -i 's/sidebar-box #sidebar { \/\* hereOn/sidebar-box #sidebar:hover { \/\* hereOff/' "$cssPath"
+else
+    sed -i 's/sidebar-box #sidebar:hover { \/\* hereOff/sidebar-box #sidebar { \/\* hereOn/' "$cssPath"
+fi
+sleep 0.16
+window_id="$(xwininfo -tree -root | grep '\"Navigator\" \"firefox\"' | head -1 | grep -o '0x[0-9a-Z]*' | head -1)" #get window id for a firefox windown (doesnt matter which one)
+xdotool key --window "$window_id" --clearmodifiers "ctrl+shift+d" # send ctrl+shift+d keypress to firefox window
+
+

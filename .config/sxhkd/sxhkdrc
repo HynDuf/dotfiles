@@ -212,3 +212,6 @@ super + shift + f
 
 super + shift + e
     rofi -modi emoji -show emoji -theme "$HOME/.config/rofi/themes/emojimenu.rasi"
+
+super + z
+    ~/bin/toggle-treestyletab-firefox

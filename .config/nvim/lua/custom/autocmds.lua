@@ -2,14 +2,14 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Ibus typing
 local ibus_cur = "xkb:us::eng"
 autocmd("InsertEnter", {
-  pattern = { "*.tex", "*.md", "*.txt" },
+  pattern = { "*" },
   callback = function()
     os.execute("ibus engine " .. ibus_cur)
   end,
 })
 
 autocmd("InsertLeave", {
-  pattern = { "*.tex", "*.md", "*.txt" },
+  pattern = { "*" },
   callback = function()
     local f = io.popen("ibus engine", "r")
     if f then

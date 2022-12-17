@@ -16,10 +16,12 @@ bluez-utils
 brightnessctl
 bspwm
 btop
+catppuccin-gtk-theme-mocha
 cava
 clang
 cmake
 cmatrix
+copyq
 cowsay
 cuda
 cudnn
@@ -54,6 +56,7 @@ i3lock-color
 ibus
 ibus-bamboo
 imagemagick
+inkscape
 jdk-openjdk
 jre-openjdk
 kitty
@@ -82,6 +85,7 @@ mpv
 mtools
 nano
 nbfc-linux
+ncurses5-compat-libs
 neofetch
 neovim
 nerd-fonts-jetbrains-mono
@@ -122,6 +126,7 @@ pulseaudio
 pulseaudio-bluetooth
 ranger
 rar
+readline7
 redshift-git
 ripgrep
 rofi
@@ -142,12 +147,16 @@ sxhkd
 teams
 teamviewer
 texinfo
+texlive-bin
+texlive-core
+texlive-fontsextra
 tokei
 tor
 torbrowser-launcher
 tree
 ttf-caladea
 ttf-carlito
+ttf-cm-unicode
 ttf-croscore
 ttf-dejavu
 ttf-droid
@@ -156,6 +165,7 @@ ttf-firacode-nerd
 ttf-font-awesome
 ttf-font-awesome-4
 ttf-iosevka-nerd
+ttf-jetbrains-mono
 ttf-ms-win10-auto
 ttf-ubuntu-font-family
 ueberzug
