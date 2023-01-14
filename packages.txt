@@ -121,7 +121,6 @@ playerctl
 polybar
 pomo
 poppler
-postman-bin
 pulseaudio
 pulseaudio-bluetooth
 ranger
