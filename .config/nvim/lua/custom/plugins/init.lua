@@ -24,7 +24,7 @@ return {
 
   -- Override plugins config (partly)
   ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
-  ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
+  ["nvim-tree/nvim-tree.lua"] = override.nvimtree,
   ["williamboman/mason.nvim"] = override.mason,
   ["NvChad/ui"] = override.nvchad_ui,
 

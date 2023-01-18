@@ -120,6 +120,7 @@ pkgconf
 playerctl
 polybar
 pomo
+pomotroid-bin
 poppler
 pulseaudio
 pulseaudio-bluetooth
@@ -143,6 +144,7 @@ spotify
 sshpass
 sudo
 sxhkd
+syncthing
 teams
 teamviewer
 texinfo

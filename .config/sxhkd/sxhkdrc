@@ -7,7 +7,6 @@ super + Return
         kitty
 
 # program launcher
-
 super + c
         rofi -show drun -theme "$HOME/.config/rofi/themes/app-launcher.rasi"
 
@@ -215,3 +214,6 @@ super + shift + e
 
 super + z
     ~/bin/toggle-treestyletab-firefox
+
+super + shift + p
+    pomotroid --no-sandbox

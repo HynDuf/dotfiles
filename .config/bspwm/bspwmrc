@@ -11,7 +11,9 @@ ibus-daemon -drxR &
 nm-applet &
 setxkbmap -option caps:swapescape &
 pgrep -x battery-alert > /dev/null || ~/bin/battery-alert &
-pidof redshift || redshift -l "21.1:105.50" -t 6500:3800 &
+pidof redshift || redshift -l "12:111" -t "6500:3200" &
+pidof syncthing || syncthing -no-browser &
+trash-empty -f 30 &
 
 bspc monitor -d 1 2 3 4 5 6 7
 bspc config border_width         2
