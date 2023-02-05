@@ -31,6 +31,7 @@ dmenu
 dosfstools
 dunst
 efibootmgr
+espanso
 eww-git
 fakeroot
 fd
@@ -110,7 +111,7 @@ openssh
 os-prober
 p7zip
 pacman
-pandoc
+pandoc-cli
 papirus-icon-theme
 patch
 pavucontrol

@@ -1,0 +1,87 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+  - trigger: ";green"
+    replace: "🟢"
+  - trigger: ";yellow"
+    replace: "🟡"
+  - trigger: ";white"
+    replace: "⚪"
+  - trigger: ";red"
+    replace: "🔴"
+  - trigger: ";purple"
+    replace: "🟣"
+  - trigger: ";schedule"
+    replace: "⏳ "
+  - trigger: ";seed"
+    replace: "🌱"
+  - trigger: ";branch"
+    replace: "🌿"
+  - trigger: ";tree"
+    replace: "🌳"
+  - trigger: ";moc"
+    replace: "🗺️"
+  - trigger: ";low"
+    replace: "🔽"
+  - trigger: ";med"
+    replace: "🔼"
+  - trigger: ";high"
+    replace: "⏫"
+  - trigger: ";;mark"
+    replace: "<mark class='{{form1.type}}'>{{form1.content}}</mark>"
+    vars:
+    - name: form1
+      type: form
+      params:
+        layout: "Mark type: [[type]] Content: [[content]]"
+  - trigger: ";;anno"
+    replace: |
+      > [!tip] [Page {{form1.page}}]() - Created Date: {{mydate}} 
+      > **🎨 Type**: <mark style="background-color: {{form1.color}};color: black;">__</mark>
+      > **🏷️ Tags**: 
+      >  🖌️ **Highlight**:
+      > 
+      > - 🔖 **Comment**: 
+      > 	- 
+    vars:
+    - name: mydate
+      type: date
+      params:
+        format: "%Y-%m-%d %H:%M"
+    - name: form1
+      type: form
+      params:
+        layout: "Page: [[page]], Color: [[color]]"
+  # But matches can also be dynamic:
+  # Print the current date
+  # 02/05/2023
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'Hello from your shell'"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/""
