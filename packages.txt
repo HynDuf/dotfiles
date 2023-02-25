@@ -1,11 +1,17 @@
 amd-ucode
 amf-amdgpu-pro
+android-sdk
+android-sdk-build-tools
+android-sdk-cmdline-tools-latest
+android-sdk-platform-tools
+android-studio
 android-tools
 anki
 asciidoc
 auto-cpufreq
 autoconf
 automake
+awesome-git
 base
 betterdiscord-installer
 binutils
@@ -77,6 +83,7 @@ lxappearance
 m4
 maim
 make
+mariadb
 mars-mips
 maven
 mesa-vdpau
@@ -165,6 +172,7 @@ ttf-fira-code
 ttf-firacode-nerd
 ttf-font-awesome
 ttf-font-awesome-4
+ttf-google-sans
 ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
@@ -178,6 +186,7 @@ vim
 visual-studio-code-bin
 vlc
 which
+wmname
 xampp
 xclip
 xdotool

@@ -11,7 +11,7 @@ super + c
         rofi -show drun -theme "$HOME/.config/rofi/themes/app-launcher.rasi"
 
 # make sxhkd reload its configuration files:
-super + Escape
+super + shift + r
 	pkill -USR1 -x sxhkd
 
 #
@@ -71,7 +71,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }a
+super + {_,shift + }Escape
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor

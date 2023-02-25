@@ -48,7 +48,7 @@ matches:
         layout: "Mark type: [[type]] Content: [[content]]"
   - trigger: ";;anno"
     replace: |
-      > [!tip] [Page {{form1.page}}]() - Created Date: {{mydate}} 
+      > [!tip]- [Page {{form1.page}}]() - Created Date: {{mydate}} 
       > **🎨 Type**: <mark style="background-color: {{form1.color}};color: black;">__</mark>
       > **🏷️ Tags**: 
       >  🖌️ **Highlight**:

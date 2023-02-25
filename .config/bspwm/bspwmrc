@@ -14,6 +14,7 @@ pgrep -x battery-alert > /dev/null || ~/bin/battery-alert &
 pidof redshift || redshift -l "12:125" -t "6500:3200" &
 pidof syncthing || syncthing -no-browser &
 trash-empty -f 30 &
+wmname LG3D &
 
 bspc monitor -d 1 2 3 4 5 6 7
 bspc config border_width         2
