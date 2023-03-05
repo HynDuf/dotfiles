@@ -93,6 +93,7 @@ mpv
 mtools
 nano
 nbfc-linux
+ncdu
 ncurses5-compat-libs
 neofetch
 neovim

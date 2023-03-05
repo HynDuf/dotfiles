@@ -157,11 +157,11 @@ super + {F10, F11}
 # Changing the Volume
 
 ## Toggle mute/unmute volume
-super + shift + v
+super + shift + m
     pactl set-sink-mute 0 toggle
 
 ## Toggle mute/unmute mic
-super + shift + m
+super + alt + m
     pactl set-source-mute 1 toggle
 
 super + shift + {F10, F11}
@@ -217,3 +217,6 @@ super + z
 
 super + shift + p
     pomotroid --no-sandbox
+
+super + shift + v
+    copyq menu
