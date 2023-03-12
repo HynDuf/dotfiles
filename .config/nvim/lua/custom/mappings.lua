@@ -15,7 +15,6 @@ M.general = {
 
   n = {
     -- new file vertical split
-    ["<C-w>b"] = { ":vnew<CR>", "new file vertical split" },
     ["<C-w><C-b>"] = { ":vnew<CR>", "new file vertical split" },
     -- move a line up/down
     ["<A-j>"] = { ":m .+1<CR>==", "  nmove line down" },
@@ -27,16 +26,16 @@ M.general = {
       "   move to next opening instance ([{<",
     },
 
-    -- :q and readding the border in st
+    -- :q 
     ["<C-z>"] = {
       function()
         vim.cmd(string.format "silent :qa")
       end,
-      "   close and add st border",
+      "   close nvim",
     },
 
-    -- do PackerSync
-    ["<leader>ud"] = { ":PackerSync<CR>", "do PackerSync" },
+    -- do NvChadUpdate
+    ["<leader>ud"] = { ":NvChadUpdate<CR>", "do NvChadUpdate" },
 
     -- jupyter-ascending
     ["<leader>jc"] = { "0C# %%<CR>", "insert code block" },

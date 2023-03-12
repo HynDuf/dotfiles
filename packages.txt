@@ -125,6 +125,7 @@ pandoc-cli
 papirus-icon-theme
 patch
 pavucontrol
+pfetch
 pinta
 pkgconf
 playerctl

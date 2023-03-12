@@ -93,6 +93,14 @@ return {
 
   -- Custom plugins
   {
+    "goolord/alpha-nvim",
+    lazy = false,
+    enabled = true,
+    config = function()
+      require("alpha").setup(require("alpha.themes.theta").config)
+    end,
+  },
+  {
     "karb94/neoscroll.nvim",
     event = "CursorMoved",
     config = function()
@@ -117,23 +125,10 @@ return {
     "iamcco/markdown-preview.nvim",
     event = "VeryLazy",
     ft = "markdown",
-    run = function()
+    build = function()
       vim.fn["mkdp#util#install"]()
     end,
   },
-
-  -- fzf for telescope
-  -- {
-  --   "nvim-telescope/telescope-fzf-native.nvim",
-  --   event = "VeryLazy",
-  --   dependencies = {
-  --     "telescope.nvim",
-  --   },
-  --   run = "make",
-  --   config = function()
-  --     require("telescope").load_extension "fzf"
-  --   end,
-  -- },
 
   {
     "nvim-telescope/telescope-media-files.nvim",

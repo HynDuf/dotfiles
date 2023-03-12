@@ -48,9 +48,6 @@ M.treesitter = {
 }
 
 M.nvimtree = {
-    filters = {
-      dotfiles = true,
-    },
     git = { enable = true, ignore = false },
     renderer = { highlight_git = true, icons = { show = { git = true } } },
 }

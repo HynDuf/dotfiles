@@ -241,6 +241,8 @@ My [firefox custom chrome](https://github.com/HynDuf/dotfiles/tree/main/.config/
 
 ![overview-11](assets/showcase-firefox-tab.png)
 
+<h2></h2>
+
 <a name="obsidian"/>
 
 ### <samp>Obsidian</samp>
@@ -251,6 +253,8 @@ I haven't included any thing about Obsidian here yet. But I will create a repo f
 ![overview-12](assets/showcase-obsidian-daily.png)
 ![overview-12](assets/showcase-obsidian-graph.png)
 ![overview-12](assets/showcase-obsidian-notes.png)
+
+<h2></h2>
 
 <a name="polybar"/>
 
