@@ -25,16 +25,8 @@ M.statusline_overrides = function()
   }
 end
 
-M.nvchad_ui = {
-  override_options = {
-    statusline = {
-      overriden_modules = M.statusline_overrides,
-    },
-  },
-}
 
 M.treesitter = {
-  override_options = {
     ensure_installed = {
       "vim",
       "html",
@@ -53,21 +45,17 @@ M.treesitter = {
     matchup = {
       enable = true,
     },
-  },
 }
 
 M.nvimtree = {
-  override_options = {
     filters = {
       dotfiles = true,
     },
     git = { enable = true, ignore = false },
     renderer = { highlight_git = true, icons = { show = { git = true } } },
-  },
 }
 
 M.mason = {
-  override_options = {
     ensure_installed = {
       -- lua stuff
       "lua-language-server",
@@ -96,7 +84,6 @@ M.mason = {
 
       -- markdown
       "ltex-ls",
-    },
   },
 }
 

@@ -91,6 +91,7 @@ meson
 miniconda3
 mpv
 mtools
+mysql-workbench
 nano
 nbfc-linux
 ncdu
@@ -118,6 +119,7 @@ openmp
 openssh
 os-prober
 p7zip
+packettracer
 pacman
 pandoc-cli
 papirus-icon-theme
@@ -132,6 +134,7 @@ pomotroid-bin
 poppler
 pulseaudio
 pulseaudio-bluetooth
+putty
 ranger
 rar
 readline7

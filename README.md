@@ -25,6 +25,8 @@
     - [<samp>Preinstall</samp>](#preinstall)
     - [<samp>Dependency</samp>](#dependency)
     - [<samp>Background Wallpaper</samp>](#background-wallpaper)
+    - [<samp>Firefox</samp>](#firefox)
+    - [<samp>Obsidian</samp>](#obsidian)
     - [<samp>Polybar</samp>](#polybar)
     - [<samp>Dunst</samp>](#dunst)
     - [<samp>Rofi and Eww</samp>](#rofi-and-eww)
@@ -47,9 +49,8 @@ This is my personal repository for my Arch dotfiles (always WIP)
 
 Here are some information about my setup: 
 
-
 - Window Manager: [`bspwm`](https://github.com/baskerville/bspwm)
-- Compositor: [`pijulius/picom`](https://github.com/pijulius/picom)
+- Compositor: [`picom`](https://github.com/pijulius/picom)
 - Terminal: [`kitty`](https://github.com/kovidgoyal/kitty)
 - Shell: [`zsh`](https://www.zsh.org/)
 - Editor: [`neovim`](https://github.com/neovim/neovim) ([`nvchad`](https://nvchad.github.io/))
@@ -75,13 +76,15 @@ Here are some details about programs in the screenshots:
 - **Eww calendar**: [`calendar`](https://github.com/HynDuf7/dotfiles/tree/main/.config/eww)
 - **File manager**: [`ranger`](https://github.com/ranger/ranger) with [`ranger devicons`](https://github.com/alexanderjeurissen/ranger_devicons) and [`ueberzug`](https://github.com/seebye/ueberzug) image previewer
 - **Pipes script**: [`pipes.sh`](https://github.com/pipeseroni/pipes.sh)
-- **Notification center**: [`script`](https://github.com/HynDuf7/dotfiles/blob/main/bin/noticenter) combine [`rofi configuration`](https://github.com/HynDuf7/dotfiles/blob/main/.config/rofi/themes/noticenter.rasi) with [`dunst notification logger`](https://github.com/HynDuf7/dotfiles/blob/main/bin/dunst-logger) (~~copied~~ inspired by [Barbaross/Nebula dotfiles](https://gitlab.com/Barbaross/Nebula))
+- **Notification center**: [`script`](https://github.com/HynDuf7/dotfiles/blob/main/bin/noticenter) combine [`rofi configuration`](https://github.com/HynDuf7/dotfiles/blob/main/.config/rofi/themes/noticenter.rasi) with [`dunst notification logger`](https://github.com/HynDuf7/dotfiles/blob/main/bin/dunst-logger) (~~copied~~ inspired by [`Barbaross/Nebula dotfiles`](https://gitlab.com/Barbaross/Nebula))
 - **Discord theme**: [`tokyonight theme`](https://betterdiscord.app/theme/Tokyo%20Night) (taken from BetterDiscord theme store)
-- **Firefox**: [`catppuccin theme`](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-mocha-mauve/) with [`Github`](https://github.com/catppuccin/github) and [`Youtube`](https://github.com/catppuccin/youtube) Stylus
-- **Note-taking**: [`obsidian`](https://obsidian.md/) with Catppuccin theme
+- **Firefox**: [`beautiful custom css theme`](https://github.com/AmadeusWM/dotfiles-hyprland#firefox) by [`AmadeusWM`](https://github.com/AmadeusWM) and [`Github`](https://github.com/catppuccin/github), [`Youtube`](https://github.com/catppuccin/youtube) Stylus theme.
+- **Note-taking**: [`obsidian`](https://obsidian.md/) with [`AnuPpuccin`](https://github.com/AnubisNekhet/AnuPpuccin) theme (with 40+ plugins).
 - **Flashcards study**: [`anki`](https://apps.ankiweb.net/) with Catppuccin theme and some additional plugins
 - **Text editor**: [`neovim`](https://github.com/neovim/neovim) with [`nvchad`](https://nvchad.github.io/) ([`custom folder`](https://github.com/HynDuf7/dotfiles/tree/main/.config/nvim/lua/custom))
-- **PDF reader**: [`zathura`](https://github.com/pwmt/zathura) with [`catppuccin theme`](https://github.com/catppuccin/zathura) (and some color configs)
+- **PDF reader**: 
+    - [`zathura`](https://github.com/pwmt/zathura) with [`catppuccin theme`](https://github.com/catppuccin/zathura) (and some color configs)
+    - [`zotero`](https://github.com/zotero/zotero) with additional plugins
 - **Spotify theme**: [`spicetify`](https://spicetify.app/docs/getting-started) with [`catppuccin theme`](https://github.com/catppuccin/spicetify)
 - **Screen lock**: [`script`](https://github.com/HynDuf7/dotfiles/blob/main/bin/screen-lock) using [`i3lock-color`](https://github.com/Raymo111/i3lock-color)
 
@@ -91,9 +94,10 @@ Here are some details about programs in the screenshots:
 ![overview-4](assets/showcase-firefox.png)
 ![overview-5](assets/showcase-english.png)
 ![overview-6](assets/showcase-neovim.png)
-![overview-7](assets/showcase-zathura.png)
-![overview-8](assets/showcase-spotify.png)
-![overview-9](assets/showcase-screen-lock.png)
+![overview-7](assets/showcase-obsidian.png)
+![overview-8](assets/showcase-zotero-obsidian.png)
+![overview-9](assets/showcase-spotify.png)
+![overview-10](assets/showcase-screen-lock.png)
 
 
 <h2></h2>
@@ -225,6 +229,28 @@ feh --bg-fill ~/Pictures/hollow-knight.png &
 ```
 
 <h2></h2>
+
+<a name="firefox"/>
+
+### <samp>Firefox</samp>
+I used the [beautiful custom css theme](https://github.com/AmadeusWM/dotfiles-hyprland#firefox) made by [AmadeusWM](https://github.com/AmadeusWM).
+
+You can see how to install it on his dotfiles linked above.
+
+My [firefox custom chrome](https://github.com/HynDuf/dotfiles/tree/main/.config/firefox/chrome) folder isn't exactly like his. I have added the shortcut `Super + Z` to toggle expand the vertical side tab. If you want do the same, see [this reddit thread](https://www.reddit.com/r/unixporn/comments/zbbp7z/comment/iyu36r6/?utm_source=share&utm_medium=web2x&context=3) for hints.
+
+![overview-11](assets/showcase-firefox-tab.png)
+
+<a name="obsidian"/>
+
+### <samp>Obsidian</samp>
+I love Obsidian. It plays an important role in changing my life. I have templates for all kinds of things and it helps me organize my knowledge and life a lot easier.
+
+I haven't included any thing about Obsidian here yet. But I will create a repo for my Obsidian workflow soon. Follow me for further details.
+
+![overview-12](assets/showcase-obsidian-daily.png)
+![overview-12](assets/showcase-obsidian-graph.png)
+![overview-12](assets/showcase-obsidian-notes.png)
 
 <a name="polybar"/>
 

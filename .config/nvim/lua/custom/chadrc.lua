@@ -7,7 +7,7 @@ M.ui = {
   hl_add = require("custom.highlights").add,
 }
 
-M.plugins = require "custom.plugins"
+M.plugins = "custom.plugins"
 
 M.mappings = require "custom.mappings"
 
