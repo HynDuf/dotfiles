@@ -51,6 +51,8 @@ matches:
     replace: "🗃️"
   - trigger: ";question"
     replace: "❓"
+  - trigger: ";bell"
+    replace: "🛎️"
   - trigger: ";seed"
     replace: "🌱"
   - trigger: ";branch"

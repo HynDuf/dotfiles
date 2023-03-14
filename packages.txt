@@ -52,7 +52,6 @@ gcc
 gd
 gettext
 git
-gnome-keyring
 gnu-netcat
 google-chrome
 grep
@@ -148,6 +147,7 @@ ruby
 rust-analyzer
 rxfetch
 screenkey
+seahorse
 sed
 shellcheck
 simplescreenrecorder

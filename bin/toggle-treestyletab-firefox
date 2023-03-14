@@ -1,5 +1,5 @@
 #!/bin/bash
-cssPath="/home/hynduf/.mozilla/firefox/d1shenjt.default-release/chrome/userChrome-hover.css"
+cssPath="/home/hynduf/.mozilla/firefox/uio8fds0.default-release-1678699839791/chrome/userChrome-hover.css"
 if grep -q "hereOn" "$cssPath"; then
     sed -i 's/sidebar-box #sidebar { \/\* hereOn/sidebar-box #sidebar:hover { \/\* hereOff/' "$cssPath"
 else

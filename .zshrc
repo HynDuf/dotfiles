@@ -13,6 +13,7 @@ export PATH=$PATH:$ANDROID_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 export EDITOR=nvim
+export VISUAL=nvim
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"

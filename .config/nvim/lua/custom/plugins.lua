@@ -1,7 +1,7 @@
 local overrides = require "custom.configs.overrides"
 
 return {
-  -- Override definition  
+  -- Override definition
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
@@ -10,7 +10,7 @@ return {
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require("custom.configs.null-ls")
+          require "custom.configs.null-ls"
         end,
       },
       {
@@ -21,10 +21,10 @@ return {
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
           end, {})
-          require("custom.configs.lspconfig") -- Load in lsp config
+          require "custom.configs.lspconfig" -- Load in lsp config
         end,
       },
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
     },
     config = function() end, -- Override to setup mason-lspconfig
   },
@@ -92,6 +92,17 @@ return {
   },
 
   -- Custom plugins
+  -- {
+  --   "glacambre/firenvim",
+  --
+  --   -- Lazy load firenvim
+  --   -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+  --   cond = not not vim.g.started_by_firenvim,
+  --   build = function()
+  --     require("lazy").load { plugins = "firenvim", wait = true }
+  --     vim.fn["firenvim#install"](0)
+  --   end,
+  -- },
   {
     "goolord/alpha-nvim",
     lazy = false,
