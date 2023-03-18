@@ -92,17 +92,24 @@ return {
   },
 
   -- Custom plugins
-  -- {
-  --   "glacambre/firenvim",
-  --
-  --   -- Lazy load firenvim
-  --   -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-  --   cond = not not vim.g.started_by_firenvim,
-  --   build = function()
-  --     require("lazy").load { plugins = "firenvim", wait = true }
-  --     vim.fn["firenvim#install"](0)
-  --   end,
-  -- },
+  {
+    "epwalsh/obsidian.nvim",
+    event = "VeryLazy",
+    ft = "markdown",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("obsidian").setup {
+        dir = "~/Documents/Obsidian/Life",
+        disable_frontmatter = true,
+        completion = {
+          nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+        },
+      }
+    end,
+  },
   {
     "goolord/alpha-nvim",
     lazy = false,
@@ -113,7 +120,7 @@ return {
   },
   {
     "karb94/neoscroll.nvim",
-    event = "CursorMoved",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("neoscroll").setup()
     end,
@@ -181,9 +188,6 @@ return {
     "untitled-ai/jupyter_ascending.vim",
     event = "VeryLazy",
     ft = { "python" },
-    dependencies = {
-      "nvim-treesitter",
-    },
   },
 
   {
@@ -193,10 +197,7 @@ return {
 
   {
     "ggandor/lightspeed.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-treesitter",
-    },
+    event = "CursorMoved",
   },
 
   {

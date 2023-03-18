@@ -2,7 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "emmet_ls", "jsonls", "tsserver", "ltex" }
+local servers = { "html", "cssls", "emmet_ls", "jsonls", "tsserver" }
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })

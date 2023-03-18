@@ -25,62 +25,66 @@ M.statusline_overrides = function()
   }
 end
 
-
 M.treesitter = {
-    ensure_installed = {
-      "vim",
-      "html",
-      "css",
-      "javascript",
-      "json",
-      "toml",
-      "markdown",
-      "c",
-      "bash",
-      "lua",
-      "cpp",
-      "python",
-      "java",
-    },
-    matchup = {
-      enable = true,
-    },
+  ensure_installed = {
+    "vim",
+    "html",
+    "css",
+    "javascript",
+    "json",
+    "toml",
+    "markdown",
+    "c",
+    "bash",
+    "lua",
+    "cpp",
+    "python",
+    "java",
+  },
+  matchup = {
+    enable = true,
+  },
+  highlight = {
+    enable = true,
+    use_languagetree = true,
+    additional_vim_regex_highlighting = { "markdown" },
+  },
 }
 
 M.nvimtree = {
-    git = { enable = true, ignore = false },
-    renderer = { highlight_git = true, icons = { show = { git = true } } },
+  git = { enable = true, ignore = false },
+  renderer = { highlight_git = true, icons = { show = { git = true } } },
 }
 
 M.mason = {
-    ensure_installed = {
-      -- lua stuff
-      "lua-language-server",
-      "stylua",
+  ensure_installed = {
+    -- lua stuff
+    "lua-language-server",
+    "stylua",
 
-      -- shell
-      "shfmt",
-      "shellcheck",
+    -- shell
+    "shfmt",
+    "shellcheck",
 
-      -- c/cpp
-      "clangd",
+    -- c/cpp
+    "clangd",
 
-      -- java
-      "jdtls",
+    -- java
+    "jdtls",
 
-      -- python
-      "pyright",
+    -- python
+    "pyright",
 
-      -- web dev
-      "css-lsp",
-      "html-lsp",
-      "typescript-language-server",
-      "deno",
-      "emmet-ls",
-      "json-lsp",
+    -- web dev
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "deno",
+    "emmet-ls",
+    "json-lsp",
 
-      -- markdown
-      "ltex-ls",
+    -- markdown
+    "ltex-ls",
   },
 }
 

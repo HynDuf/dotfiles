@@ -1,8 +1,13 @@
 let EXPORTED_SYMBOLS = [];
 
 console.warn( "Browser is executing custom scripts via autoconfig" );
-const {Services} = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
+const FX_AUTOCONFIG_VERSION = "0.7";
+const Services =
+  globalThis.Services ||
+  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
 const {AppConstants} = ChromeUtils.import('resource://gre/modules/AppConstants.jsm');
+const FS = ChromeUtils.import("chrome://userchromejs/content/fs.jsm").FileSystem;
 
 const yPref = {
   get: function (prefPath) {
@@ -43,22 +48,6 @@ const yPref = {
   removeListener:(a)=>( Services.prefs.removeObserver(a.pref,a.observer) )
 };
 
-function resolveChromeURL(str){
-  const registry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
-  try{
-    return registry.convertChromeURL(Services.io.newURI(str.replace(/\\/g,"/"))).spec
-  }catch(e){
-    console.error(e);
-    return ""
-  }
-}
-
-// relative to "chrome" folder
-function resolveChromePath(str){
-  let parts = resolveChromeURL(str).split("/");
-  return parts.slice(parts.indexOf("chrome") + 1,parts.length - 1).join("/");
-}
-
 const SHARED_GLOBAL = {};
 Object.defineProperty(SHARED_GLOBAL,"widgetCallbacks",{value:new Map()});
 
@@ -80,20 +69,19 @@ const BROWSERCHROME = (() => {
 const PREF_ENABLED = 'userChromeJS.enabled';
 const PREF_SCRIPTSDISABLED = 'userChromeJS.scriptsDisabled';
 const PREF_GBROWSERHACKENABLED = 'userChromeJS.gBrowser_hack.enabled';
-const SCRIPT_DIR = resolveChromePath('chrome://userscripts/content/');
-const RESOURCE_DIR = resolveChromePath('chrome://userchrome/content/');
-const BASE_FILEURI = Services.io.getProtocolHandler('file')
-                    .QueryInterface(Ci.nsIFileProtocolHandler)
-                    .getURLSpecFromDir(Services.dirsvc.get('UChrm',Ci.nsIFile));
 
 class ScriptData {
-  constructor(leafName, headerText){
+  constructor(leafName, headerText, noExec){
+    const hasLongDescription = (/^\/\/\ @long-description/im).test(headerText);
     this.filename = leafName;
     this.name = headerText.match(/\/\/ @name\s+(.+)\s*$/im)?.[1];
     this.charset = headerText.match(/\/\/ @charset\s+(.+)\s*$/im)?.[1];
-    this.description = headerText.match(/\/\/ @description\s+(.+)\s*$/im)?.[1];
+    this.description = hasLongDescription
+      ? headerText.match(/\/\/ @description\s+.*?\/\*\s*(.+?)\s*\*\//is)?.[1]
+      : headerText.match(/\/\/ @description\s+(.+)\s*$/im)?.[1];
     this.version = headerText.match(/\/\/ @version\s+(.+)\s*$/im)?.[1];
     this.author = headerText.match(/\/\/ @author\s+(.+)\s*$/im)?.[1];
+    this.icon = headerText.match(/\/\/ @icon\s+(.+)\s*$/im)?.[1];
     this.homepageURL = headerText.match(/\/\/ @homepageURL\s+(.+)\s*$/im)?.[1];
     this.downloadURL = headerText.match(/\/\/ @downloadURL\s+(.+)\s*$/im)?.[1];
     this.updateURL = headerText.match(/\/\/ @updateURL\s+(.+)\s*$/im)?.[1];
@@ -106,7 +94,8 @@ class ScriptData {
     this.inbackground = this.isESM || /\/\/ @backgroundmodule\b/.test(headerText);
     this.ignoreCache = /\/\/ @ignorecache\b/.test(headerText);
     this.isRunning = false;
-    
+    this.manifest = headerText.match(/\/\/ @manifest\s+(.+)\s*$/im)?.[1];
+    this.noExec = noExec;
     // Construct regular expression to use to match target document
     let match, rex = {
       include: [],
@@ -139,7 +128,7 @@ class ScriptData {
   }
   
   tryLoadIntoWindow(win) {
-    if (this.inbackground || !this.regex.test(win.location.href)) {
+    if (this.inbackground || this.noExec || !this.regex.test(win.location.href)) {
       return
     }
     try {
@@ -162,54 +151,60 @@ class ScriptData {
       this.startup && SHARED_GLOBAL[this.startup]._startup(win)
       
     } catch (ex) {
-      console.error(new Error(`@ ${this.filename}`,{cause:ex}));
+      console.error(new Error(`@ ${this.filename}:${ex.lineNumber}`,{cause:ex}));
     }
     return
   }
   
   getInfo(){
-    let info = {...this};
-    info.regex = new RegExp(this.regex.source,this.regex.flags);
-    return info;
+    return ScriptInfo.fromScript(this,this.isEnabled);
   }
-  
+  registerManifest(){
+    if(this.isRunning){
+      return
+    }
+    let cmanifest = FS.getEntry(`${this.manifest}.manifest`, {baseDirectory: FS.SCRIPT_DIR});
+    if(cmanifest.isFile()){
+      Components.manager
+      .QueryInterface(Ci.nsIComponentRegistrar).autoRegister(cmanifest.entry());
+    }else{
+      console.warn(`Script '${this.filename}' tried to register a manifest but requested file '${this.manifest}' doesn't exist`);
+    }
+  }
+  static extractHeaderText(aFSResult){
+    return aFSResult.content()
+      .match(/^\/\/ ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*/m)?.[0] || ""
+  }
   static fromFile(aFile){
-    const headerText = utils.readFile(aFile,true)
-    .match(/^\/\/ ==UserScript==\s*\n(?:.*\n)*?\/\/ ==\/UserScript==\s*\n/m);
-    return new ScriptData(aFile.leafName, headerText ? headerText[0] : '');
+    if(aFile.fileSize < 24){
+      // Smaller files can't possibly have a valid header
+      return new ScriptData(aFile.leafName,"",aFile.fileSize === 0)
+    }
+    const result = FS.readFileSync(aFile,{ metaOnly: true });
+    const headerText = this.extractHeaderText(result);
+    // If there are less than 2 bytes after the header then we mark the script as non-executable. This means that if the file only has a header then we don't try to inject it to any windows, since it wouldn't do anything.
+    return new ScriptData(aFile.leafName, headerText, headerText.length > aFile.fileSize - 2);
   }
 }
-
-function getDirEntry(filename,isLoader = false){
-  if(typeof filename !== "string"){
-    return null
+// _ucUtils.getScriptData() returns these types of objects
+class ScriptInfo{
+  constructor(enabled){
+    this.isEnabled = enabled
   }
-  filename = filename.replace("\\","/");
-  let pathParts = ((filename.startsWith("..") ? "" : (isLoader ? SCRIPT_DIR : RESOURCE_DIR)) + "/" + filename)
-                  .split("/").filter( (a) => (!!a && a != "..") );
-  let entry = Services.dirsvc.get('UChrm',Ci.nsIFile);
-  
-  for(let part of pathParts){
-    entry.append(part)
+  asFile(){
+    return FS.getEntry(this.filename,{baseDirectory: FS.SCRIPT_DIR});
   }
-  if(!entry.exists()){
-    return null
+  static fromScript(aScript, isEnabled){
+    let info = new ScriptInfo(isEnabled);
+    Object.assign(info,aScript);
+    info.regex = new RegExp(aScript.regex.source, aScript.regex.flags);
+    return info
   }
-  if(entry.isDirectory()){
-    return entry.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
-  }else if(entry.isFile()){
-    return entry
-  }else{
-    return null
+  static fromString(aName, aStringAsFSResult) {
+    const headerText = ScriptData.extractHeaderText(aStringAsFSResult);
+    const scriptData = new ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2);
+    return ScriptInfo.fromScript(scriptData, false)
   }
-}
-
-async function getProfileDir(){
-  if(APP_VARIANT.FIREFOX){
-    return PathUtils.profileDir
-  }
-  // APP_VARIANT = THUNDERBIRD
-  return await PathUtils.getProfileDir()
 }
 
 function updateStyleSheet(name,type) {
@@ -234,8 +229,8 @@ function updateStyleSheet(name,type) {
       return false
     }
   }
-  let entry = getDirEntry(name);
-  if(!(entry && entry.isFile())){
+  let fsResult = FS.getEntry(name);
+  if(!fsResult.isFile()){
     return false
   }
   let recentWindow = Services.wm.getMostRecentBrowserWindow();
@@ -264,18 +259,18 @@ function updateStyleSheet(name,type) {
   // each instace but that's OK since sheets.find below will
   // only find the first instance and reload that which is
   // "probably" fine.
-  let entryFilePath = `file:///${entry.path.replaceAll("\\","/")}`;
+  let entryFilePath = `file:///${fsResult.entry().path.replaceAll("\\","/")}`;
   
   let target = sheets.find(sheet => sheet.href === entryFilePath);
   if(target){
-    recentWindow.InspectorUtils.parseStyleSheet(target,utils.readFile(entry));
+    recentWindow.InspectorUtils.parseStyleSheet(target,fsResult.readSync());
     return true
   }
   return false
 }
 
 const utils = {
-  
+  get version(){ return FX_AUTOCONFIG_VERSION },
   get sharedGlobal(){ return SHARED_GLOBAL },
   
   get brandName(){ return AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE },
@@ -287,23 +282,20 @@ const utils = {
     }
     return el
   },
-  
+  fs: FS,
   createWidget(desc){
     if(!desc || !desc.id ){
-      console.error("custom widget description is missing 'id' property");
-      return null
+      throw new Error("custom widget description is missing 'id' property");
     }
-    if(!(['toolbaritem','toolbarbutton']).includes(desc.type)){
-      console.error("custom widget has unsupported type: "+desc.type);
-      return null
+    if(!(desc.type === "toolbarbutton" || desc.type === "toolbaritem")){
+      throw new Error(`custom widget has unsupported type: '${desc.type}'`);
     }
     const CUI = Services.wm.getMostRecentBrowserWindow().CustomizableUI;
-    let newWidget = CUI.getWidget(desc.id);
-
-    if(newWidget && newWidget.hasOwnProperty("source")){
+    
+    if(CUI.getWidget(desc.id)?.hasOwnProperty("source")){
       // very likely means that the widget with this id already exists
       // There isn't a very reliable way to 'really' check if it exists or not
-      return newWidget
+      throw new Error(`Widget with ID: '${desc.id}' already exists`);
     }
     // This is pretty ugly but makes onBuild much cleaner.
     let itemStyle = "";
@@ -313,7 +305,9 @@ const utils = {
       }else{
         itemStyle += "background: transparent center no-repeat ";
       }
-      itemStyle += `url(chrome://userChrome/content/${desc.image});`;
+      itemStyle += /^chrome:\/\/|resource:\/\//.test(desc.image)
+        ? `url(${desc.image});`
+        : `url(chrome://userChrome/content/${desc.image});`;
       itemStyle += desc.style || "";
     }
     SHARED_GLOBAL.widgetCallbacks.set(desc.id,desc.callback);
@@ -321,6 +315,7 @@ const utils = {
     return CUI.createWidget({
       id: desc.id,
       type: 'custom',
+      defaultArea: desc.area || CUI.AREA_NAVBAR,
       onBuild: function(aDocument) {
         let toolbaritem = aDocument.createXULElement(desc.type);
         let props = {
@@ -339,123 +334,24 @@ const utils = {
       }
     });
   },
-  
-  readFile: function (aFile, metaOnly = false) {
-    if(typeof aFile === "string"){
-      aFile = getDirEntry(aFile);
+  getScriptData: (aFilter) => {
+    const filterType = typeof aFilter;
+    if(aFilter && !(filterType === "string" || filterType === "function")){
+      throw "getScriptData() called with invalid filter type: "+filterType
     }
-    if(!aFile){
-      return null
+    if(filterType === "string"){
+      let script = _ucjs.scripts.find(s => s.filename === aFilter);
+      return script ? ScriptInfo.fromScript(script, script.isEnabled) : null;
     }
-    let stream = Cc['@mozilla.org/network/file-input-stream;1'].createInstance(Ci.nsIFileInputStream);
-    let cvstream = Cc['@mozilla.org/intl/converter-input-stream;1'].createInstance(Ci.nsIConverterInputStream);
-    try{
-      stream.init(aFile, 0x01, 0, 0);
-      cvstream.init(stream, 'UTF-8', 1024, Ci.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER);
-    }catch(e){
-      console.error(e);
-      return null
-    }
-    let content = '',
-    data = {};
-    while (cvstream.readString(4096, data)) {
-      content += data.value;
-      if (metaOnly && content.indexOf('// ==/UserScript==') > 0) {
-        break;
-      }
-    }
-    cvstream.close();
-    stream.close();
-    return content.replace(/\r\n?/g, '\n');
-  },
-  
-  readFileAsync: function(path){
-    if(typeof path !== "string"){
-      return Promise.reject("readFileAsync: path is not a string")
-    }
-    let base = ["chrome",RESOURCE_DIR];
-    let parts = path.split(/[\\\/]/);
-    while(parts[0] === ".."){
-      base.pop();
-      parts.shift();
-    }
-    
-    return new Promise(resolve => {
-      getProfileDir()
-      .then((path) => PathUtils.join(path, ...base.concat(parts)))
-      .then(IOUtils.readUTF8)
-      .then(resolve)
-    })
-    
-  },
-  
-  readJSON: async function(path){
-    try{
-      let content = await utils.readFileAsync(path);
-      return JSON.parse(content);
-    }catch(ex){
-      console.error(ex)
-    }
-    return null
-  },
-  
-  writeFile: async function(path, content, options = {}){
-    if(!path || typeof path !== "string"){
-      throw "writeFile: path is invalid"
-    }
-    if(typeof content !== "string"){
-      throw "writeFile: content to write must be a string"
-    }
-
-    let base = ["chrome",RESOURCE_DIR];
-    let parts = path.split(/[\\\/]/);
-    
-    // Normally, this API can only write into resources directory
-    // Writing outside of resources can be enabled using following pref
-    const disallowUnsafeWrites = !yPref.get("userChromeJS.allowUnsafeWrites");
-
-    while(parts[0] === ".."){
-      if(disallowUnsafeWrites){
-        throw "Writing outside of resources directory is not allowed"
-      }
-      base.pop();
-      parts.shift();
-    }
-    const fileName = PathUtils.join( await getProfileDir(), ...base.concat(parts) );
-    
-    if(!options.tmpPath){
-      options.tmpPath = fileName + ".tmp";
-    }
-    return IOUtils.writeUTF8( fileName, content, options );
-  },
-  
-  createFileURI: (fileName = "") => {
-    fileName = String(fileName);
-    let u = resolveChromeURL(`chrome://userchrome/content/${fileName}`);
-    return fileName ? u : u.substr(0,u.lastIndexOf("/") + 1); 
-  },
-  
-  get chromeDir(){
-    return {
-      get files(){
-        const dir = Services.dirsvc.get('UChrm',Ci.nsIFile);
-        return dir.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator)
-      },
-      uri: BASE_FILEURI
-    }
-  },
-  
-  getFSEntry: (fileName) => ( getDirEntry(fileName) ),
-  
-  getScriptData: () => {
-    let scripts = [];
     const disabledScripts = (yPref.get(PREF_SCRIPTSDISABLED) || '').split(",");
-    for(let script of _ucjs.scripts){
-      let scriptInfo = script.getInfo();
-      scriptInfo.isEnabled = !disabledScripts.includes(script.filename);
-      scripts.push(scriptInfo);
+    if(filterType === "function"){
+      return _ucjs.scripts.filter(aFilter).map(
+        (script) => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
+      );
     }
-    return scripts
+    return _ucjs.scripts.map(
+      (script) => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
+    );
   },
   
   get windows(){
@@ -507,6 +403,9 @@ const utils = {
     }
     let disabledScripts = yPref.get(PREF_SCRIPTSDISABLED).split(",");
     for(let item of menu.children){
+      if(item.getAttribute("type") != "checkbox"){
+        continue
+      }
       if (disabledScripts.includes(item.getAttribute("filename"))){
         item.removeAttribute("checked");
       }else{
@@ -694,7 +593,62 @@ const utils = {
       return true
     }
     return false
+  },
+  
+  parseStringAsScriptInfo: (aName, aString) => ScriptInfo.fromString(aName, FS.StringContent({content: aString})),
+  
+  openScriptDir: () => FS.getEntry("",{baseDirectory: FS.SCRIPT_DIR}).showInFileManager(),
+  
+  /** LEGACY FileSystem helpers, don't use - will be removed in near future
+   *  Use _ucUtils.fs. methods instead.
+   */
+  readFile: function (aFile, metaOnly = false, replaceNewlines = true){
+    let result = FS.readFileSync(aFile,{metaOnly: metaOnly});
+    if(result.isError()){
+      return null
+    }
+    if(!result.isContent()){
+      throw new Error("aFile is not a readable file")
+    }
+    return result.content(replaceNewlines)
+  },
+  
+  readFileAsync: async function(path){
+    let result = await FS.readFile(path);
+    return result.content()
+  },
+  
+  readJSON: function(path){
+    return FS.readJSON(path);
+  },
+  
+  writeFile: function(path, content, options = {}){
+    return FS.writeFile(path, content, options)
+  },
+  
+  createFileURI: (fileName = "") => FS.createFileURI(fileName),
+  
+  get chromeDir(){
+    return {
+      get files(){
+        const dir = Services.dirsvc.get('UChrm',Ci.nsIFile);
+        return dir.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator)
+      },
+      uri: FS.BASE_FILEURI
+    }
+  },
+  
+  getFSEntry: (fileName, autoEnumerate = true) => {
+    let result = FS.getEntry(fileName);
+    if(result.isError() || result.isContent()){
+      return null
+    }
+    if(result.isDirectory() && autoEnumerate){
+      return result.entry().directoryEntries.QueryInterface(Ci.nsISimpleEnumerator)
+    }
+    return result.entry()
   }
+  
 }
 
 Object.freeze(utils);
@@ -769,130 +723,157 @@ function escapeXUL(markup) {
   });
 }
 
-function UserChrome_js() {
-  this.scripts = [];
-  this.SESSION_RESTORED = false;
-  this.isInitialWindow = true;
-  
-  const gBrowserHackRequired = yPref.get("userChromeJS.gBrowser_hack.required") ? 2 : 0;
-  const gBrowserHackEnabled = yPref.get(PREF_GBROWSERHACKENABLED) ? 1 : 0;
-  this.GBROWSERHACK_ENABLED = gBrowserHackRequired|gBrowserHackEnabled;
-  
-  if(!yPref.get(PREF_ENABLED) || !(/^[\w_]*$/.test(SCRIPT_DIR))){
-    console.log("Scripts are disabled or the given script directory name is invalid");
-    return
+class UserChrome_js{
+  constructor(){
+    this.scripts = [];
+    this.SESSION_RESTORED = false;
+    this.isInitialWindow = true;
+    this.initialized = false;
+    this.init();
   }
-  let files = getDirEntry('',true);
-  while(files.hasMoreElements()){
-    let file = files.getNext().QueryInterface(Ci.nsIFile);
-    if (/(.+\.uc\.js)|(.+\.sys\.mjs)$/i.test(file.leafName)) {
-      let script = ScriptData.fromFile(file);
-      this.scripts.push(script);
-      if(script.inbackground && script.isEnabled){
-        try{
-          const fileName = `chrome://userscripts/content/${script.filename}`;
-          if(script.isESM){
-            ChromeUtils.importESModule( fileName );
-          }else{
-            ChromeUtils.import( fileName );
+  init(){
+    if(this.initialized){
+      return
+    }
+    // gBrowserHack setup
+    const gBrowserHackRequired = yPref.get("userChromeJS.gBrowser_hack.required") ? 2 : 0;
+    const gBrowserHackEnabled = yPref.get(PREF_GBROWSERHACKENABLED) ? 1 : 0;
+    this.GBROWSERHACK_ENABLED = gBrowserHackRequired|gBrowserHackEnabled;
+    const disabledScripts = (yPref.get(PREF_SCRIPTSDISABLED) || '').split(",");
+    // load script data
+    for(let entry of FS.getEntry('',{baseDirectory: FS.SCRIPT_DIR})){
+      if (/(.+\.uc\.js|.+\.sys\.mjs)$/i.test(entry.leafName)) {
+        let script = ScriptData.fromFile(entry);
+        this.scripts.push(script);
+        const scriptIsEnabled = !disabledScripts.includes(script.fileName);
+        if(scriptIsEnabled && script.manifest){
+          try{
+            script.registerManifest();
+          }catch(ex){
+            console.error(new Error(`@ ${script.filename}`,{cause:ex}));
           }
-          script.isRunning = true;
-        }catch(ex){
-          console.error(new Error(`@ ${script.filename}`,{cause:ex}));
+        }
+        if(scriptIsEnabled && script.inbackground){
+          try{
+            const fileName = `chrome://userscripts/content/${script.filename}`;
+            if(script.isESM){
+              ChromeUtils.importESModule( fileName );
+            }else{
+              ChromeUtils.import( fileName );
+            }
+            script.isRunning = true;
+          }catch(ex){
+            console.error(new Error(`@ ${script.filename}`,{cause:ex}));
+          }
         }
       }
     }
+    this.scripts.sort((a,b) => a.loadOrder - b.loadOrder);
+    Services.obs.addObserver(this, 'domwindowopened', false);
+    this.initialized = true;
   }
-  this.scripts.sort((a,b) => a.loadOrder > b.loadOrder);
-  
-  Services.obs.addObserver(this, 'domwindowopened', false);
-}
-
-UserChrome_js.prototype = {
-  observe: function (aSubject, aTopic, aData) {
-      aSubject.addEventListener('DOMContentLoaded', this, true);
-  },
-
-  handleEvent: function (aEvent) {
-    let document = aEvent.originalTarget;
-    let window = document.defaultView;
-    let regex = /^chrome:(?!\/\/global\/content\/(commonDialog|alerts\/alert)\.xhtml)|about:(?!blank)/i;
-    // Don't inject scripts to modal prompt windows or notifications
-    if(regex.test(window.location.href)) {
-      Object.defineProperty(window,"_ucUtils",{ get: () => utils });
-      document.allowUnsafeHTML = false; // https://bugzilla.mozilla.org/show_bug.cgi?id=1432966
-      
-      // This is a hack to make gBrowser available for scripts.
-      // Without it, scripts would need to check if gBrowser exists and deal
-      // with it somehow. See bug 1443849
-      const _gb = APP_VARIANT.FIREFOX && "_gBrowser" in window;
-      if(this.GBROWSERHACK_ENABLED && _gb){
-        window.gBrowser = window._gBrowser;
-      }else if(_gb && this.isInitialWindow){
-        this.isInitialWindow = false;
-        let timeout = window.setTimeout(() => {
-          showBrokenNotification(window);
-        },5000);
-        utils.windowIsReady(window)
-        .then(() => {
-          // startup is fine, clear timeout
-          window.clearTimeout(timeout);
-        })
-      }
-      let isWindow = window.isChromeWindow;
-      
-      // Inject scripts to window
-      if(yPref.get(PREF_ENABLED)){
-        const disabledScripts = (yPref.get(PREF_SCRIPTSDISABLED) || '').split(",");
-        for(let script of this.scripts){
-          if(script.inbackground){
-            continue
-          }
-          if(!disabledScripts.includes(script.filename)){
-            script.tryLoadIntoWindow(window)
-          }
+  onDOMContent(document){
+    const window = document.defaultView;
+    if(!(/^chrome:(?!\/\/global\/content\/(commonDialog|alerts\/alert)\.xhtml)|about:(?!blank)/i).test(window.location.href)){
+      // Don't inject scripts to modal prompt windows or notifications
+      return
+    }
+    // TODO maybe store utils differently?
+    Object.defineProperty(window,"_ucUtils",{ get: () => utils });
+    document.allowUnsafeHTML = false; // https://bugzilla.mozilla.org/show_bug.cgi?id=1432966
+    
+    // This is a hack to make gBrowser available for scripts.
+    // Without it, scripts would need to check if gBrowser exists and deal
+    // with it somehow. See bug 1443849
+    const _gb = APP_VARIANT.FIREFOX && "_gBrowser" in window;
+    if(this.GBROWSERHACK_ENABLED && _gb){
+      window.gBrowser = window._gBrowser;
+    }else if(_gb && this.isInitialWindow){
+      this.isInitialWindow = false;
+      let timeout = window.setTimeout(() => {
+        showBrokenNotification(window);
+      },5000);
+      utils.windowIsReady(window)
+      .then(() => {
+        // startup is fine, clear timeout
+        window.clearTimeout(timeout);
+      })
+    }
+    
+    // Inject scripts to window
+    if(yPref.get(PREF_ENABLED)){
+      const disabledScripts = (yPref.get(PREF_SCRIPTSDISABLED) || '').split(",");
+      for(let script of this.scripts){
+        if(script.inbackground){
+          continue
         }
-      }
-      
-      // Add simple script menu to menubar tools popup
-      const menu = document.querySelector(
-        APP_VARIANT.FIREFOX ? "#menu_openDownloads" : "menuitem#addressBook");
-      if(isWindow && menu){
-        window.MozXULElement.insertFTLIfNeeded("toolkit/about/aboutSupport.ftl");
-        let menuFragment = window.MozXULElement.parseXULToFragment(`
-          <menu id="userScriptsMenu" label="userScripts">
-            <menupopup id="menuUserScriptsPopup" onpopupshown="_ucUtils.updateMenuStatus(this)">
-              <menuseparator></menuseparator>
-              <menuitem id="userScriptsRestart" label="Restart" oncommand="_ucUtils.restart(false)" tooltiptext="Toggling scripts requires restart"></menuitem>
-              <menuitem id="userScriptsClearCache" label="Restart and clear startup cache" oncommand="_ucUtils.restart(true)" tooltiptext="Toggling scripts requires restart"></menuitem>
-            </menupopup>
-          </menu>
-        `);
-        const itemsFragment = window.MozXULElement.parseXULToFragment("");
-        for(let script of this.scripts){
-          itemsFragment.append(
-            window.MozXULElement.parseXULToFragment(`
-              <menuitem type="checkbox"
-                        label="${escapeXUL(script.name || script.filename)}"
-                        filename="${escapeXUL(script.filename)}"
-                        checked="true"
-                        oncommand="_ucUtils.toggleScript(this)">
-              </menuitem>
-          `)
-          );
+        if(!disabledScripts.includes(script.filename)){
+          script.tryLoadIntoWindow(window)
         }
-        menuFragment.getElementById("menuUserScriptsPopup").prepend(itemsFragment);
-        menu.parentNode.insertBefore(menuFragment,menu);
-        
-        document.l10n.formatValues(["restart-button-label","clear-startup-cache-label"])
-        .then(values => {
-          let baseTitle = `${values[0]} ${utils.brandName}`;
-          document.getElementById("userScriptsRestart").setAttribute("label", baseTitle);
-          document.getElementById("userScriptsClearCache").setAttribute("label", values[1].replace("…","") + " & " + baseTitle);
-        })
       }
     }
+    if(window.isChromeWindow){
+      this.maybeAddScriptMenuItemsToWindow(window);
+    }
   }
+  // Add simple script menu to menubar tools popup
+  maybeAddScriptMenuItemsToWindow(window){
+    const document = window.document;
+    const menu = document.querySelector(
+      APP_VARIANT.FIREFOX ? "#menu_openDownloads" : "menuitem#addressBook");
+    if(!menu){
+      // this probably isn't main browser window so we don't have suitable target menu
+      return
+    }
+    window.MozXULElement.insertFTLIfNeeded("toolkit/about/aboutSupport.ftl");
+    let menuFragment = window.MozXULElement.parseXULToFragment(`
+      <menu id="userScriptsMenu" label="userScripts">
+        <menupopup id="menuUserScriptsPopup" onpopupshown="_ucUtils.updateMenuStatus(this)">
+          <menuseparator></menuseparator>
+          <menuitem id="userScriptsMenu-OpenFolder" label="Open folder" oncommand="_ucUtils.openScriptDir()"></menuitem>
+          <menuitem id="userScriptsMenu-Restart" label="Restart" oncommand="_ucUtils.restart(false)" tooltiptext="Toggling scripts requires restart"></menuitem>
+          <menuitem id="userScriptsMenu-ClearCache" label="Restart and clear startup cache" oncommand="_ucUtils.restart(true)" tooltiptext="Toggling scripts requires restart"></menuitem>
+        </menupopup>
+      </menu>
+    `);
+    const itemsFragment = window.MozXULElement.parseXULToFragment("");
+    for(let script of this.scripts){
+      itemsFragment.append(
+        window.MozXULElement.parseXULToFragment(`
+          <menuitem type="checkbox"
+                    label="${escapeXUL(script.name || script.filename)}"
+                    filename="${escapeXUL(script.filename)}"
+                    checked="true"
+                    oncommand="_ucUtils.toggleScript(this)">
+          </menuitem>
+      `)
+      );
+    }
+    menuFragment.getElementById("menuUserScriptsPopup").prepend(itemsFragment);
+    menu.parentNode.insertBefore(menuFragment,menu);
+    document.l10n.formatValues(["restart-button-label","clear-startup-cache-label","show-dir-label"])
+    .then(values => {
+      let baseTitle = `${values[0]} ${utils.brandName}`;
+      document.getElementById("userScriptsMenu-Restart").setAttribute("label", baseTitle);
+      document.getElementById("userScriptsMenu-ClearCache").setAttribute("label", values[1].replace("…","") + " & " + baseTitle);
+      document.getElementById("userScriptsMenu-OpenFolder").setAttribute("label",values[2])
+    })
+  }
+  
+  observe(aSubject, aTopic, aData) {
+    aSubject.addEventListener('DOMContentLoaded', this, true);
+  }
+  
+  handleEvent(aEvent){
+    switch (aEvent.type){
+      case "DOMContentLoaded":
+        this.onDOMContent(aEvent.originalTarget);
+        break;
+      default:
+        console.warn(new Error("unexpected event received",{cause:aEvent}));
+    }
+  }
+  
 }
 
 const _ucjs = !Services.appinfo.inSafeMode && new UserChrome_js();
