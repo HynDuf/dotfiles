@@ -21,34 +21,25 @@ autocmd("InsertLeave", {
   end,
 })
 
--- Dynamic terminal padding with/without nvim - credit: siduck
--- replace stuff from file
-local function sed(from, to, fname)
-  vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
+---@param padding_amount integer
+---@param margin_amount integer
+local set_spacing = function(padding_amount, margin_amount)
+  -- locar command = string.format('kitty @ set-spacing padding=%d margin=%d', padding_amount, margin_amount)
+  vim.fn.system({
+    "kitty",
+    "@", "set-spacing",
+    "padding=" .. padding_amount,
+    "margin=" .. margin_amount,
+  })
 end
 
--- reloads kitty for current focused window only
-local function liveReloadKitty()
-  vim.cmd(([[silent !kill -s SIGUSR1 %s]]):format(vim.g.window_id))
-end
+set_spacing(0, 0)
 
-autocmd({ "BufNewFile", "BufRead" }, {
-  callback = function(ctx)
-    -- remove terminal padding
-    sed("window_margin_width 20", "window_margin_width 0", "~/.config/kitty/kitty.conf")
-    liveReloadKitty()
-    -- revert kitty margin width change but dont reload it
-    sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
-    vim.api.nvim_del_autocmd(ctx.id)
-  end,
-})
-
--- add terminal padding
-autocmd("VimLeavePre", {
+vim.api.nvim_create_autocmd("VimLeave", {
+  once = true,
   callback = function()
-    sed("window_margin_width 0", "window_margin_width 20", "~/.config/kitty/kitty.conf")
-    liveReloadKitty()
-  end,
+    set_spacing(0, 20)
+  end
 })
 
 -- auto reload buffer when changed

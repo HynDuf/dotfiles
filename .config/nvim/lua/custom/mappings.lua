@@ -14,6 +14,10 @@ M.general = {
   },
 
   n = {
+
+    ["<A-o>"] = { "<cmd> Telescope find_files <CR>", "find files" },
+    ["<leader>o"] = { "<cmd>Portal jumplist backward<CR>", "Portal Backward" },
+    ["<leader>i"] = { "<cmd>Portal jumplist forward<CR>", "Portal Forward" },
     -- new file vertical split
     ["<C-w><C-b>"] = { ":vnew<CR>", "new file vertical split" },
     -- move a line up/down
@@ -26,7 +30,7 @@ M.general = {
       "   move to next opening instance ([{<",
     },
 
-    -- :q 
+    -- :q
     ["<C-z>"] = {
       function()
         vim.cmd(string.format "silent :qa")

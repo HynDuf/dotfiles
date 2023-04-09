@@ -1,8 +1,8 @@
 -- load your globals, autocmds here or anything .__.
-vim.g.window_id = vim.fn.system "xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$'"
 vim.g.lightspeed_last_motion = ""
 vim.g.yankring_clipboard_monitor = 0
-
+vim.g.matchup_delim_stopline = 1000
+vim.g.matchup_matchparen_stopline = 300
 vim.keymap.set("x", "p", function()
   return 'pgv"' .. vim.v.register .. "y"
 end, { remap = false, expr = true })

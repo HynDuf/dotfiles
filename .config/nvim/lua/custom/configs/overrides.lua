@@ -83,8 +83,6 @@ M.mason = {
     "emmet-ls",
     "json-lsp",
 
-    -- markdown
-    "ltex-ls",
   },
 }
 

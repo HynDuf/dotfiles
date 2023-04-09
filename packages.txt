@@ -7,6 +7,7 @@ android-sdk-platform-tools
 android-studio
 android-tools
 anki
+arandr
 asciidoc
 auto-cpufreq
 autoconf
@@ -34,11 +35,12 @@ cudnn
 dhcpcd
 discord
 dmenu
+docker
 dosfstools
 dunst
 efibootmgr
 espanso
-eww-git
+eww
 fakeroot
 fd
 feh
@@ -138,6 +140,7 @@ putty
 ranger
 rar
 readline7
+redis
 redshift-git
 ripgrep
 rofi
@@ -146,6 +149,7 @@ rofi-emoji
 ruby
 rust-analyzer
 rxfetch
+scrcpy
 screenkey
 seahorse
 sed
@@ -154,6 +158,7 @@ simplescreenrecorder
 spicetify-cli
 spotify
 sshpass
+staruml
 sudo
 sxhkd
 syncthing
@@ -178,6 +183,7 @@ ttf-firacode-nerd
 ttf-font-awesome
 ttf-font-awesome-4
 ttf-google-sans
+ttf-ibm-plex
 ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd

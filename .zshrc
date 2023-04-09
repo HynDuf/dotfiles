@@ -47,6 +47,7 @@ alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "
 alias r='ranger'
 alias f='fzf'
 alias ss='screenshot'
+alias sv='sudoedit'
 
 # Start jupyter notebook and edit something with neovim
 # Usage: juv test.sync.py

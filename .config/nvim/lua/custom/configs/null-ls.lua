@@ -31,6 +31,15 @@ local sources = {
   -- python
   b.formatting.yapf,
   b.formatting.isort,
+
+  -- golang
+  b.formatting.gofmt,
+
+  -- sql
+  b.formatting.sql_formatter.with {
+    command = "sql-formatter",
+    filetypes = { "sql" },
+  },
 }
 
 null_ls.setup {

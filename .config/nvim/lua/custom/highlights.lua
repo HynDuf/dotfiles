@@ -1,7 +1,7 @@
 local M = {}
 M.override = {
   -- Visual background color override
-  Visual = { bg = "#2f263d" },
+  Visual = { bg = "#2f265d" },
   CursorLineNr = { fg = "#7aa2f7" },
 }
 M.add = {
