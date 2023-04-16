@@ -126,6 +126,7 @@ pandoc-cli
 papirus-icon-theme
 patch
 pavucontrol
+perf
 pfetch
 pinta
 pkgconf
