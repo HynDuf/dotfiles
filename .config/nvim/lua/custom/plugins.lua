@@ -242,7 +242,7 @@ return {
 
   {
     "andymass/vim-matchup",
-    event = "VeryLazy",
+    lazy = false,
     dependencies = {
       "vim-repeat",
     },

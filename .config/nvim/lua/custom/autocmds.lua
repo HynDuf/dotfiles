@@ -10,7 +10,7 @@ autocmd("InsertEnter", {
 })
 
 autocmd("InsertLeave", {
-  pattern = { "*", "*.txt" },
+  pattern = { "*" },
   callback = function()
     local f = io.popen("ibus engine", "r")
     if f then

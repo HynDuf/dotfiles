@@ -89,6 +89,7 @@ mars-mips
 maven
 mesa-vdpau
 meson
+microsoft-edge-stable-bin
 miniconda3
 mpv
 mtools
@@ -135,6 +136,7 @@ polybar
 pomo
 pomotroid-bin
 poppler
+postman-bin
 pulseaudio
 pulseaudio-bluetooth
 putty
@@ -148,7 +150,6 @@ rofi
 rofi-calc
 rofi-emoji
 ruby
-rust-analyzer
 rxfetch
 scrcpy
 screenkey

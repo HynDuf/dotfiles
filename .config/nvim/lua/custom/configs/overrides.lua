@@ -40,6 +40,7 @@ M.treesitter = {
     "cpp",
     "python",
     "java",
+    "go",
   },
   matchup = {
     enable = true,

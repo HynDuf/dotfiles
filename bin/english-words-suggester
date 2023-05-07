@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Call update_skip_words.py
+python /home/hynduf/Projects/english-words-suggester/update_skip_words.py
+
+# Call get_suggested_words.py
+python /home/hynduf/Projects/english-words-suggester/get_suggested_words.py
