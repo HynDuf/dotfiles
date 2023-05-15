@@ -78,6 +78,7 @@ libva-utils
 linux
 linux-firmware
 linux-headers
+linux-wifi-hotspot
 lld
 lsof
 lxappearance
@@ -173,6 +174,7 @@ texlive-fontsextra
 tokei
 tor
 torbrowser-launcher
+trash-cli
 tree
 ttf-caladea
 ttf-carlito

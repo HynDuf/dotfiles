@@ -1,7 +1,14 @@
+function dir_icon {
+  if [[ "$PWD" == "$HOME" ]]; then
+    echo "%B%F{green}%f%b"
+  else
+    echo "%B%F{cyan}%f%b"
+  fi
+}
 
 PROMPT='
-%{$fg_bold[blue]%}%~%{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}
-%{$fg[yellow]%}  ➞  %{$reset_color%}'
+%B%F{blue}%f%b  %B%F{yellow}%n%f%b $(dir_icon)  %B%F{magenta}%~%f%b${vcs_info_msg_0_} 
+%(?.%B%F{yellow} .%F{red} )%f%b '
 
 RPROMPT='$(git_prompt_info) $(ruby_prompt_info)'
 
