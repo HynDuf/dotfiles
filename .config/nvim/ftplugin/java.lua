@@ -1,7 +1,8 @@
 -- load nvim-jdtls
 if not vim.g.loaded_jdtls then
   vim.g.loaded_jdtls = true
-  require("packer").loader "nvim-jdtls"
+  require("lazy").load { plugins = "nvim-lspconfig" }
+  require("lazy").load { plugins = "nvim-jdtls" }
 end
 
 local jdtls = require "jdtls"

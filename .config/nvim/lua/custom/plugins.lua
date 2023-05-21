@@ -155,7 +155,6 @@ return {
 
   {
     "mfussenegger/nvim-jdtls",
-    opt = true,
   },
 
   {
