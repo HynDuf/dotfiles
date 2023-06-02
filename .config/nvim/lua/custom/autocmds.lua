@@ -97,3 +97,10 @@ end, { expr = true })
 vim.keymap.set("n", ",", function()
   return (vim.g.lightspeed_last_motion == "sx" and "<Plug>Lightspeed_,_sx" or "<Plug>Lightspeed_,_ft")
 end, { expr = true })
+
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.cmd('!notify-send  "hello"')
+    vim.cmd('sleep 10m')
+  end,
+})

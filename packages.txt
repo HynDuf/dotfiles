@@ -92,6 +92,9 @@ mesa-vdpau
 meson
 microsoft-edge-stable-bin
 miniconda3
+mongodb-bin
+mongodb-compass
+mongosh-bin
 mpv
 mtools
 mysql-workbench
@@ -120,6 +123,7 @@ obsidian
 opendoas
 openmp
 openssh
+openssl
 os-prober
 p7zip
 packettracer
@@ -167,6 +171,7 @@ sxhkd
 syncthing
 teams
 teamviewer
+telegram-desktop
 texinfo
 texlive-bin
 texlive-core
