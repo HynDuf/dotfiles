@@ -15,6 +15,7 @@ M.general = {
   },
 
   n = {
+    ["<A-s>"] = { ":wa<CR>", "Save all buffers" },
     ["gb"] = { ":b#<CR>", "Open last visited buffer" },
     ["<A-o>"] = { "<cmd> Telescope find_files <CR>", "find files" },
     ["<leader>o"] = { "<cmd>Portal jumplist backward<CR>", "Portal Backward" },

@@ -3,7 +3,9 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/apps/flutter/bin"
+export PATH="$PATH:$HOME/go/bin"
 export DENO_INSTALL="/home/hynduf/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export ANDROID_SDK_ROOT='/opt/android-sdk'
@@ -43,6 +45,14 @@ source $ZSH/oh-my-zsh.sh
 alias v='nvim'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long'
+
+alias e='erdtree_level'
+erdtree_level() {
+  local level="$1"
+  shift
+  erd -H -I -i -. --no-git -L "$level" "$@"
+}
+
 alias pom='~/bin/switch-desktop-workaround 7 follow & pomo start -t my-project "Study now"'
 alias r='ranger'
 alias f='fzf'

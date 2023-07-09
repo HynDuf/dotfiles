@@ -1,29 +1,34 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
+if [ -x "$HOME/bin/dual_monitor" ]; then
+	~/bin/dual_monitor
+fi
+pgrep -x sxhkd >/dev/null || sxhkd &
 xsetroot -cursor_name left_ptr &
 xset r rate 350 20 &
-$HOME/.config/polybar/launch.sh &
-dunst -conf $HOME/.config/dunst/dunstrc &
+"$HOME/.config/polybar/launch.sh" &
+dunst -conf "$HOME/.config/dunst/dunstrc" &
 picom &
 feh --bg-fill ~/Pictures/hollow-knight.png &
 ibus-daemon -drxR &
 nm-applet &
 setxkbmap -option caps:swapescape &
-pgrep -x battery-alert > /dev/null || ~/bin/battery-alert &
+pgrep -x battery-alert >/dev/null || ~/bin/battery-alert &
 pidof redshift || redshift -l "12:125" -t "6500:3200" &
 pidof syncthing || syncthing -no-browser &
 trash-empty -f 30 &
 wmname LG3D & # This is for IntellJ and IntellJ-based (Android Studio)
 copyq &
 
-bspc monitor -d 1 2 3 4 5 6 7
-bspc config border_width         2
-bspc config window_gap          17
+bspc wm -O eDP-1-0 HDMI-A-1-0
+bspc monitor eDP-1-0 -d 1 2 3 4 5 6 7
+bspc monitor HDMI-A-1-0 -d 8 9
+bspc config border_width 2
+bspc config window_gap 17
 bspc config focused_border_color \#ad8ee6
-bspc config split_ratio          0.55
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio 0.55
+bspc config borderless_monocle true
+bspc config gapless_monocle true
 # bspc config focus_follows_pointer true
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
