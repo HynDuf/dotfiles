@@ -50,6 +50,7 @@ feh
 file
 findutils
 firefox
+firefox-profile-switcher-connector
 flex
 fortune-mod
 gawk
@@ -98,6 +99,7 @@ microsoft-edge-stable-bin
 miniconda3
 mongodb-bin
 mongodb-compass
+mongodb-tools
 mongosh-bin
 mpv
 mtools
@@ -167,6 +169,7 @@ seahorse
 sed
 shellcheck
 simplescreenrecorder
+solidity
 spicetify-cli
 spotify
 sshpass
@@ -203,7 +206,7 @@ ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 ttf-ms-win10-auto
 ttf-ubuntu-font-family
-ueberzug
+ueberzugpp
 usb_modeswitch
 usbutils
 uthash

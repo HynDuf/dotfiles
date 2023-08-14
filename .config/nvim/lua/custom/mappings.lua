@@ -35,6 +35,7 @@ M.general = {
     -- :q
     ["<C-z>"] = {
       function()
+        vim.cmd(string.format "silent :wa")
         vim.cmd(string.format "silent :qa")
       end,
       "   close nvim",
